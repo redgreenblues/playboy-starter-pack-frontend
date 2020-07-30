@@ -5,6 +5,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## PACKAGE TO INSTALL BEFORE USAGE
+
+1) npm install react-router-dom
+2) npm install mdbreact
 ## Available Scripts
 
 In the project directory, you can run:
