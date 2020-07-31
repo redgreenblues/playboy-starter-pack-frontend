@@ -5,7 +5,7 @@ import {MDBNavbarBrand} from 'mdbreact'
 import {Link} from 'react-router-dom';
 
 const bannerTitleStyle = {
-    marginBottom : '25%',
+    marginTop: '10%',
     fontSize : '80px'
 }
 
