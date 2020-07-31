@@ -7,7 +7,7 @@ import { MDBContainer, MDBBtn, MDBInput,
 from 'mdbreact';
 
 const api = Axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL /*|| 'http://localhost:3000/app'*/
+    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
 })
 
 class signUpPage extends Component {
