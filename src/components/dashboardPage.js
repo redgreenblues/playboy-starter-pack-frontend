@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 
+const headerStyle = {
+    backgroundImage : "./public/banner_bg.jpg"
+}
 
 export class dashboardPage extends Component {
-    static propTypes = {
-
-    }
-
     render() {
         return (
-            <div>
-                <h1>this is dashboardPage</h1>
-            </div>
+            <Fragment>
+                <header className='header'>
+                    <h1>this is dashboardPage</h1>
+                </header>
+            </Fragment>
         )
     }
 }

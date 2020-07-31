@@ -1,13 +1,16 @@
 import React, { Component } from 'react'
-import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBInput,
+import { MDBContainer, MDBBtn, MDBInput,
         MDBCol,MDBCard, MDBCardBody,
         MDBCardTitle, MDBCardText } 
 from 'mdbreact';
+import { Link } from 'react-router-dom';
 
 export class landingPage extends Component {
     constructor(props) {
         super(props)
     }
+    // call the backend to authenticate
+    // if authed, redirect to dashboard page. 
 
 
     render() {
@@ -24,14 +27,11 @@ export class landingPage extends Component {
                                 <MDBInput label='username' />
                                 <MDBInput label='password' type='password' />
                                 <div className='cardbottom'>
-                                    <MDBBtn type='submit'>sign in</MDBBtn>
-     
+                                <Link to='/dashboard'><MDBBtn type='submit'>sign in</MDBBtn></Link>
                                     <MDBCardText className='my-2'>Or</MDBCardText>
-                                    <MDBBtn href='/signup'>sign up</MDBBtn>
-
+                                    <Link to='/signup'><MDBBtn>sign up</MDBBtn></Link>
                                 </div>
                             </MDBCardBody>
-                            
                         </MDBCard>
                     </form>
                 </MDBCol>
