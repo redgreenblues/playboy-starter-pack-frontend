@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
+import {Redirect, Link} from "react-router-dom"
+import { MDBContainer, MDBBtn, MDBInput,
+    MDBCol,MDBCard, MDBCardBody,
+    MDBCardTitle } 
+from 'mdbreact';
 
 const api = Axios.create({
     baseURL: 'http://localhost:3000/app',
@@ -13,7 +18,9 @@ class signUpPage extends Component {
             registerPassword: '',
             registerPassword2: '', // Confirmation password
             registerEmail: '',
-            registerProfileImg: ''
+            registerProfileImg: '',
+            registerProfileBio:'',
+            registerSuccess : false
         }
     }
 
@@ -22,15 +29,22 @@ class signUpPage extends Component {
             [event.target.name]: event.target.value
         })
     }
+    redirecting = ()=> { // adding a function to redirect
+        if(this.state.registerSuccess){
+        return <Redirect to='/'/>
+        } else return false
+    }
 
     register = async event => {
         event.preventDefault();
+        console.log('this.state is: ', this.state)
         try {
             await api.post('/register', {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,
                 password: this.state.registerPassword,
-                profileImg: this.state.profileImg
+                profileImg: this.state.profileImg,
+                // add a field of profile bio
             }, {
                 withCredentials: true
             })
@@ -39,16 +53,24 @@ class signUpPage extends Component {
                 registerPassword: '',
                 registerPassword2: '', // Confirmation password
                 registerEmail: '',
-                registerProfileImg: ''
+                registerProfileImg: '',
+                registerSuccess : true // adding a function to redirect
             })
+            console.log('registered')
+            await alert('Sign up successful!')
+            await this.redirecting()
         } catch (err) {
             console.log(err)
-        }        
+        }
+
     }
 
     render() {
         return (
+            
+            /*
             <div className='landingPage'>
+                {this.redirecting()}
                 <form onSubmit={this.register}>
                     <label htmlFor='registerUsername'>Username:</label>
                     <input type='text' name='registerUsername' value={this.state.registerUsername} onChange={this.handleChange} required/>
@@ -68,6 +90,65 @@ class signUpPage extends Component {
                     <input type='submit' value='Submit'></input>
                 </form>
             </div>
+            */
+           <div className='landingPage'>
+           <MDBContainer>
+           {this.redirecting()}
+               <MDBCol style={{ maxWidth: "35rem" }}>
+               <MDBCard>
+                   <MDBCardTitle className='m-2'>
+                       This is sign up page
+                   </MDBCardTitle>
+                   <MDBCardBody>
+                   <form onSubmit={this.register}>
+                       <MDBInput label='username' 
+                                 type='text' 
+                                 name='registerUsername' 
+                                 value={this.state.registerUsername} 
+                                 onChange={this.handleChange}
+                                 required>
+                        </MDBInput>
+                       <MDBInput label='create password' 
+                                 type='password' 
+                                 name='registerPassword'
+                                 value={this.state.registerPassword} 
+                                 onChange={this.handleChange}
+                                 required>
+                        </MDBInput>
+                       <MDBInput label='confirm password' 
+                                 type='password' 
+                                 name='registerPassword2'
+                                 value={this.state.registerPassword2} 
+                                 onChange={this.handleChange}
+                                 required>
+                        </MDBInput>
+                       <MDBInput label='email' 
+                                 type='email' 
+                                 name='registerEmail'
+                                 value={this.state.registerEmail} 
+                                 onChange={this.handleChange}
+                                 required>
+                        </MDBInput>
+                       <MDBInput label='Add a profile image' 
+                                 type='url' 
+                                 name='registerProfileImg'
+                                 value={this.state.registerProfileImg} 
+                                 onChange={this.handleChange}>
+                        </MDBInput>
+                       <MDBInput label='favourite quote or a sentence to describe yourself' 
+                                 type='text' 
+                                 name='registerProfileBio'
+                                 value={this.state.registerProfileBio} 
+                                 onChange={this.handleChange}>
+                        </MDBInput>
+                       <MDBBtn type='submit'>join the club!</MDBBtn>
+                   </form>
+                   </MDBCardBody>
+               </MDBCard>
+               </MDBCol>
+           </MDBContainer>
+           </div>
+
         )
     }
 }
