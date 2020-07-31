@@ -5,12 +5,7 @@ import { MDBContainer, MDBBtn, MDBInput,
 from 'mdbreact';
 import { Link } from 'react-router-dom';
 
-export class landingPage extends Component {
-    constructor(props) {
-        super(props)
-    }
-
-
+class landingPage extends Component {
     render() {
         return (
             <div className='landingPage'>

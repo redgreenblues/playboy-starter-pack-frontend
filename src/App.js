@@ -17,12 +17,12 @@ function App() {
     <Router>
     <div className="App">
       <Switch>
-      <Route path="/" exact component={landingPage}/>
-      <Route path="/signup" exact component={signUpPage}/>
-      <Route path="/dashboard" exact component={dashboardPage}/>
-      <Route path="/gifs" exact component={gifsPage}/>
-      <Route path="/memes" exact component={memesPage}/>
-      <Route path="/puns" exact component={punsPage}/>
+        <Route path="/" exact component={landingPage}/>
+        <Route path="/signup" exact component={signUpPage}/>
+        <Route path="/dashboard" exact component={dashboardPage}/>
+        <Route path="/gifs" exact component={gifsPage}/>
+        <Route path="/memes" exact component={memesPage}/>
+        <Route path="/puns" exact component={punsPage}/>
       </Switch>
     </div>
     </Router>
