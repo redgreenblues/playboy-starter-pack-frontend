@@ -9,6 +9,8 @@ export class landingPage extends Component {
     constructor(props) {
         super(props)
     }
+    // call the backend to authenticate
+    // if authed, redirect to dashboard page. 
 
 
     render() {
@@ -30,7 +32,6 @@ export class landingPage extends Component {
                                     <Link to='/signup'><MDBBtn>sign up</MDBBtn></Link>
                                 </div>
                             </MDBCardBody>
-                            
                         </MDBCard>
                     </form>
                 </MDBCol>
