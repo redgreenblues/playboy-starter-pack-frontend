@@ -1,7 +1,12 @@
 import React, { Component, Fragment } from 'react'
+import NavBar from './navBar'
+import Features from './features.js'
+import {MDBNavbarBrand} from 'mdbreact'
+import {Link} from 'react-router-dom';
 
-const headerStyle = {
-    backgroundImage : "./public/banner_bg.jpg"
+const bannerTitleStyle = {
+    marginBottom : '25%',
+    fontSize : '80px'
 }
 
 export class dashboardPage extends Component {
@@ -9,8 +14,12 @@ export class dashboardPage extends Component {
         return (
             <Fragment>
                 <header className='header'>
-                    <h1>this is dashboardPage</h1>
+                    <MDBNavbarBrand style={bannerTitleStyle}>
+                        <Link to='/' ><strong className='white-text' >PLAYBOY STARTER PACK</strong></Link>
+                    </MDBNavbarBrand>
+                    <NavBar/>
                 </header>
+                <Features />
             </Fragment>
         )
     }
