@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
+import NavBar from '../navBar'
 
 
-export class punsPage extends Component {
+export class NewPun extends Component {
     static propTypes = {
 
     }
@@ -9,10 +10,11 @@ export class punsPage extends Component {
     render() {
         return (
             <div>
-                <h1>this is punsPage</h1>
+                <NavBar/>
+                <h1>create new pun</h1>
             </div>
         )
     }
 }
 
-export default punsPage
+export default NewPun

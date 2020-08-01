@@ -5,7 +5,14 @@ import { MDBContainer, MDBBtn, MDBInput,
 from 'mdbreact';
 import { Link } from 'react-router-dom';
 
-class landingPage extends Component {
+export class landingPage extends Component {
+    constructor(props) {
+        super(props)
+    }
+    // call the backend to authenticate
+    // if authed, redirect to dashboard page. 
+
+
     render() {
         return (
             <div className='landingPage'>
@@ -25,7 +32,6 @@ class landingPage extends Component {
                                     <Link to='/signup'><MDBBtn>sign up</MDBBtn></Link>
                                 </div>
                             </MDBCardBody>
-                            
                         </MDBCard>
                     </form>
                 </MDBCol>
