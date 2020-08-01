@@ -1,18 +1,99 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import { Redirect, Link } from "react-router-dom"
+import Axios from 'axios';
 import NavBar from '../navBar'
+import {
+    MDBContainer, MDBBtn, MDBInput,
+    MDBCol, MDBCard, MDBCardBody,
+    MDBCardTitle
+}
+from 'mdbreact';
 
+const api = Axios.create({
+    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
+})
 
 export class NewPun extends Component {
-    static propTypes = {
+    constructor(props) {
+        super(props)
+        this.state = {
+            memeImg: '',
+            memeCaption: '',
+            addSuccess: false
+        }
+    }
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+    redirecting = () => { // adding a function to redirect
+        if (this.state.addSuccess) {
+            this.setState({
+                addSuccess : false
+            })
+            return <Redirect to='/memes' />
+        } else return false
+    }
+    registerMeme = async event => {
+        event.preventDefault();
+        console.log('this.state is: ', this.state)
+        try {
+            await api.post('/meme', {
+                content: this.state.memeImg,
+                caption: this.state.memeCaption,
+                // add a field of profile bio
+            }, {
+                withCredentials: true
+            })
+            this.setState({
+                memeImg: '',
+                memeCaption: '',
+                addSuccess: true
+            })
+            console.log('registered')
+            await alert('Sign up successful!')
+            await this.redirecting()
+        } catch (err) {
+            this.setState({
+                error: true
+            })
+        }
 
     }
 
     render() {
         return (
-            <div>
-                <NavBar/>
-                <h1>create new pun</h1>
-            </div>
+            <Fragment>
+            <NavBar />
+            {this.redirecting()}
+            <MDBContainer className='my-3'>
+                <MDBCol style={{ maxWidth: "35rem" }}>
+                    <MDBCard>
+                        <MDBCardTitle className='m-2'>
+                            Create Meme
+               </MDBCardTitle>
+                        <MDBCardBody>
+                            <form onSubmit={this.registerPun}>
+                                <MDBInput label='Add an image'
+                                    type='text'
+                                    name='punContent'
+                                    value={this.state.punContent}
+                                    onChange={this.handleChange}>
+                                </MDBInput>
+                                <MDBInput label='caption'
+                                    type='text'
+                                    name='memeCaption'
+                                    value={this.state.punCaption}
+                                    onChange={this.handleChange}>
+                                </MDBInput>
+                                <MDBBtn type='submit'>Add Pun</MDBBtn>
+                            </form>
+                        </MDBCardBody>
+                    </MDBCard>
+                </MDBCol>
+            </MDBContainer>
+        </Fragment>
         )
     }
 }
