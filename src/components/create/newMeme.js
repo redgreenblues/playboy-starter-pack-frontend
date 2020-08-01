@@ -13,7 +13,7 @@ const api = Axios.create({
     baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
 })
 
-export class newMeme extends Component {
+export class NewMeme extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -98,4 +98,4 @@ export class newMeme extends Component {
     }
 }
 
-export default newMeme
+export default NewMeme

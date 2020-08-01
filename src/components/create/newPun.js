@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NavBar from '../navBar'
 
 
-export class newPun extends Component {
+export class NewPun extends Component {
     static propTypes = {
 
     }
@@ -17,4 +17,4 @@ export class newPun extends Component {
     }
 }
 
-export default newPun
+export default NewPun

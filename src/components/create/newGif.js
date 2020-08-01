@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NavBar from '../navBar'
 
 
-export class newGif extends Component {
+export class NewGif extends Component {
 
 
     render() {
@@ -15,4 +15,4 @@ export class newGif extends Component {
     }
 }
 
-export default newGif
+export default NewGif
