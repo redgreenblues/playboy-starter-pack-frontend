@@ -6,9 +6,9 @@ import dashboardPage from './pages/dashboardPage';
 import gifsPage from './pages/gifsPage';
 import memesPage from './pages/memesPage';
 import punsPage from './pages/punsPage';
-import newMeme from './create/newMeme'
-import newPun from './create/newPun'
-import newGif from './create/newGif'
+import NewMeme from './create/newMeme'
+import NewPun from './create/newPun'
+import NewGif from './create/newGif'
 
 export class MainContent extends Component {
     render() {
@@ -23,9 +23,9 @@ export class MainContent extends Component {
               <Route path="/gifs" exact component={gifsPage}/>
               <Route path="/memes" exact component={memesPage}/>
               <Route path="/puns" exact component={punsPage}/>
-              <Route path="/new/meme" exact component={newMeme}/>
-              <Route path="/new/pun" exact component={newPun}/>
-              <Route path="/new/gif" exact component={newGif}/>
+              <Route path="/new/meme" exact component={NewMeme}/>
+              <Route path="/new/pun" exact component={NewPun}/>
+              <Route path="/new/gif" exact component={NewGif}/>
               </Switch>
             </div>
           </Router>
