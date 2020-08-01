@@ -1,11 +1,11 @@
 import React, { Component,Fragment } from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import landingPage from './pages/landingPage';
-import signUpPage from './pages/signUpPage';
-import dashboardPage from './pages/dashboardPage';
-import gifsPage from './pages/gifsPage';
-import memesPage from './pages/memesPage';
-import punsPage from './pages/punsPage';
+import landingPage from '../pages/landingPage';
+import signUpPage from '../pages/signUpPage';
+import dashboardPage from '../pages/dashboardPage';
+import gifsPage from '../pages/gifsPage';
+import memesPage from '../pages/memesPage';
+import punsPage from '../pages/punsPage';
 import NewMeme from './create/newMeme'
 import NewPun from './create/newPun'
 import NewGif from './create/newGif'
