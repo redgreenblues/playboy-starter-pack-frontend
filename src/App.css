@@ -30,6 +30,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
+  justify-content: space-around;
   background-image: url("./public/banner_bg.jpg");
   height: 60vh;
   background-size: cover;

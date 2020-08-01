@@ -26,7 +26,7 @@ export class NavBar extends Component {
               <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                 <MDBNavbarNav left>
 
-                  <MDBNavItem active>
+                  <MDBNavItem>
                     <MDBNavLink to="/memes">Memes</MDBNavLink>
                   </MDBNavItem>
 

@@ -1,18 +1,70 @@
-import React, { Component } from 'react'
-
+import React, { Component, Fragment } from 'react'
+import NavBar from './navBar'
+import {MDBRow} from 'mdbreact'
+import ContentCard from './contentCard'
 
 export class gifsPage extends Component {
-    static propTypes = {
-
-    }
-
     render() {
         return (
-            <div>
-                <h1>this gifsPage</h1>
-            </div>
+            <Fragment>
+                <NavBar />
+                <MDBRow>
+                    <img
+                        src='https://i.imgur.com/AqFk9Ux.gif'
+                        className="rounded-circle img-fluid mx-auto my-3 d-block"
+                        alt="cat gif"
+                        title='cat gif'
+                        width='300' height='300' />
+                </MDBRow>
+
+                {/* fetch meme here */}
+
+                <MDBRow style={{ width: "70%", justifyContent: "center" }} className='mx-auto'>
+                    <ContentCard
+                        imgUrl='https://i0.wp.com/www.dogwonder.co.uk/wp-content/uploads/2009/12/tumblr_ku2pvuJkJG1qz9qooo1_r1_400.gif?resize=320%2C320'
+                        description = 'Its friday!'
+                        postedBy= 'username'
+                        likeAmt = '7'
+                        commentAmt = '3'
+                    ></ContentCard>
+                    <ContentCard
+                        imgUrl='https://i.pinimg.com/originals/ae/c0/44/aec0445c6b1673136db065b176d1e888.gif'
+                        description= 'Whhaaaaaaaaaaaaattttttt'
+                        postedBy= 'username'
+                        likeAmt = '3'
+                        commentAmt = ''
+                    ></ContentCard>
+                    <ContentCard
+                        imgUrl='https://i.pinimg.com/originals/ae/c0/44/aec0445c6b1673136db065b176d1e888.gif'
+                        description= 'Areeeeeeee youuuuuuuuuuuuu'
+                        postedBy= 'username'
+                        likeAmt = '6'
+                        commentAmt = '10'
+                    ></ContentCard>
+                    <ContentCard
+                        imgUrl='https://i.pinimg.com/originals/ae/c0/44/aec0445c6b1673136db065b176d1e888.gif'
+                        description= 'Thattttt wasssssss impressiveeeeeeee'
+                        postedBy= 'username'
+                        likeAmt = '6'
+                        commentAmt = '10'
+                    ></ContentCard>
+                    <ContentCard
+                        imgUrl='https://i.imgur.com/zByMh1H.gif'
+                        description= 'Kyah yah yah yah yah kya wha give me a hug!'
+                        postedBy= 'username'
+                        likeAmt = '6'
+                        commentAmt = '10'
+                    ></ContentCard>
+                    <ContentCard
+                        imgUrl='https://mdbootstrap.com/img/Photos/Others/images/43.jpg'
+                        description= 'MDBbootstrap starter pack'
+                        postedBy= 'username'
+                        likeAmt = '6'
+                        commentAmt = '10'
+                    ></ContentCard>
+                </MDBRow>
+            </Fragment>
         )
     }
 }
-
 export default gifsPage
