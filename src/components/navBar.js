@@ -5,7 +5,6 @@ import {
   } from "mdbreact";
 import {Link} from 'react-router-dom';
 
-
 export class NavBar extends Component {
   state = {
     isOpen: false
@@ -45,10 +44,10 @@ export class NavBar extends Component {
                       </MDBDropdownToggle>
                       <MDBDropdownMenu className="dropdown-default">
                         <MDBCardTitle className='m-2 border-bottom text-center'>create</MDBCardTitle>
-                        <MDBDropdownItem href="#!">memes</MDBDropdownItem>
-                        <MDBDropdownItem href="#!">gifs</MDBDropdownItem>
-                        <MDBDropdownItem href="#!">puns</MDBDropdownItem>
-                        <MDBDropdownItem href="#!">logout</MDBDropdownItem>
+                          <MDBDropdownItem href="/new/meme">memes</MDBDropdownItem>
+                          <MDBDropdownItem href="/new/gif">gifs</MDBDropdownItem>
+                          <MDBDropdownItem href="/new/pun">puns</MDBDropdownItem>
+                          <MDBDropdownItem href="#!">logout</MDBDropdownItem>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>

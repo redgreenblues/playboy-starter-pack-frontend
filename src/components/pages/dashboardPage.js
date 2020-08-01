@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import NavBar from './navBar'
-import Features from './features.js'
+import NavBar from '../navBar'
+import Features from '../features.js'
 import {MDBNavbarBrand} from 'mdbreact'
 import {Link} from 'react-router-dom';
 
