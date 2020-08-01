@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
-import NavBar from '../navBar'
+import NavBar from '../components/navBar'
 import {MDBRow} from 'mdbreact'
-import ContentCard from '../contentCard'
+import ContentCard from '../components/contentCard'
 
 export class punsPage extends Component {
     render() {
