@@ -4,22 +4,41 @@ import {
   MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBCardTitle
   } from "mdbreact";
 import {Link} from 'react-router-dom';
+import api from '../api';
 
 export class NavBar extends Component {
+  constructor(props) {
+    super(props)
+  }
+  
   state = {
-    isOpen: false
+    isOpen: false,
+    username : ''
   };
   
   toggleCollapse = () => {
     this.setState({ isOpen: !this.state.isOpen });
   }
-  
+  componentDidMount = async () => {
+    try {
+        const response = await api.checkAuthentication();
+        this.setState({
+            username: response.data.username,
+            authenticated: true
+        })
+        console.log(this.state.username)
+    } catch (err) {
+        console.log(err)
+        this.setState({
+            authenticated: false
+        })
+    }
+}
     render() {
         return (
-
             <MDBNavbar color="rgba-black-strong" dark expand="md">
               <MDBNavbarBrand>
-                <Link to='/'><strong className="white-text">Username</strong></Link>
+                <Link to={`/${this.state.username}`}><strong className="white-text">{this.state.username}</strong></Link>
               </MDBNavbarBrand>
               <MDBNavbarToggler onClick={this.toggleCollapse} />
               <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>

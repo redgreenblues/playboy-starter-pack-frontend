@@ -58,11 +58,13 @@ class LandingPage extends Component {
             <div className='landingPage'>
                 <MDBContainer >
                     {this.redirecting()}
+                    
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <form onSubmit={this.login}>
                             <MDBCard>
                                 <MDBCardTitle className='m-3' style={{ Width: '95%', margin: '0 auto' }}>
                                     Welcome to playboy club!
+                                    {this.state.error? <h4>Either wrong password / username</h4> : null}
                             </MDBCardTitle>
                                 <MDBCardBody>
                                         <MDBInput label='username'

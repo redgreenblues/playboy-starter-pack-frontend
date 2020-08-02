@@ -15,11 +15,7 @@
   },
   "scripts": {
     "start": "PORT=8000 react-scripts start",
-<<<<<<< HEAD
     "start:win" : " set PORT=8000 && react-scripts start",
-=======
-    "start:win": " set PORT=8000 && react-scripts start",
->>>>>>> 7f1334b10405819d5e21ccc5fad4b4e86e13c668
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
