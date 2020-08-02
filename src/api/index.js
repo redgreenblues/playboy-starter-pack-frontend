@@ -5,20 +5,30 @@ const api = Axios.create({
     baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
 })
 
+// User
 const registerUser = payload => api.post('/register', payload);
-const loginUser = payload => api.post('/login', payload)
-const checkAuthentication = () => api.get('/user')
+const loginUser = payload => api.post('/login', payload);
+const getUser = () => api.get('/user');
+const logOut = () => api.get('/logout');
+
+// Gif
 const registerGif = payload => api.post('/gif',payload);
-const registerMeme = payload => api.post('/meme', payload)
-const registerPun = payload => api.post('/pun', payload)
-const getAllGifs = () => api.get('/gifs')
-const getAllPuns = () => api.get('/puns')
-const getAllMemes = () => api.get('/memes')
+const getAllGifs = () => api.get('/gifs');
+
+// Meme
+const registerMeme = payload => api.post('/meme', payload);
+const getAllMemes = () => api.get('/memes');
+
+// Pun
+const registerPun = payload => api.post('/pun', payload);
+const getAllPuns = () => api.get('/puns');
+
 
 const apis = {
     registerUser,
     loginUser,
-    checkAuthentication,
+    getUser,
+    logOut,
     registerGif,
     registerMeme,
     registerPun,
