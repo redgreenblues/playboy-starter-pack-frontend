@@ -2,8 +2,30 @@ import React, { Component, Fragment } from 'react'
 import NavBar from '../components/navBar'
 import {MDBRow} from 'mdbreact'
 import ContentCard from '../components/contentCard'
+import api from '../api'
 
-export class punsPage extends Component {
+export class PunsPage extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+             punsData : ''
+        }
+    }
+    
+    componentDidMount = async () => {
+        try {
+            const response = await api.getAllPuns()
+
+            this.setState({
+                punsData: response.data
+            })
+            console.log(this.state.punsData)
+        } catch (err) {
+            this.setState({
+                error: err
+            })
+        }
+    }
     render() {
         return (
             <Fragment>
@@ -17,9 +39,21 @@ export class punsPage extends Component {
                         width='300' height='300' />
                 </MDBRow>
 
-                {/* fetch meme here */}
-
                 <MDBRow style={{ width: "70%", justifyContent: "center" }} className='mx-auto'>
+                    {this.state.punsData ?
+                        this.state.punsData.map((pun, index) => {
+                            return <ContentCard
+                                pun={pun.content}
+                                caption={pun.caption}
+                                postedBy={pun.username}
+                                commentAmt={pun.comments.length}
+                                likeAmt= {0}
+                                key={pun._id}
+                            />
+                        })
+                        :
+                        null
+                    }
                     <ContentCard
                         pun= 'I lost my job at the bank on my very first day. A woman asked me to check her balance, so I pushed her over'
                         caption = 'Its friday!'
@@ -68,4 +102,4 @@ export class punsPage extends Component {
     }
 }
 
-export default punsPage
+export default PunsPage

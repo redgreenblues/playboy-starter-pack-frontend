@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import Axios from 'axios';
-import { Redirect, Link } from "react-router-dom"
+
+import { Redirect} from "react-router-dom"
 import {
     MDBContainer, MDBBtn, MDBInput,
     MDBCol, MDBCard, MDBCardBody,
@@ -8,10 +8,7 @@ import {
 }
     from 'mdbreact';
 import NavBar from '../navBar';
-
-const api = Axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
-})
+import api from '../../api';
 
 export class NewMeme extends Component {
     constructor(props) {
@@ -37,29 +34,28 @@ export class NewMeme extends Component {
     }
     registerMeme = async event => {
         event.preventDefault();
-        console.log('this.state is: ', this.state)
+
         try {
-            await api.post('/meme', {
+            const payload = { 
                 content: this.state.memeImg,
                 caption: this.state.memeCaption,
-                // add a field of profile bio
-            }, {
-                withCredentials: true
-            })
+            }
+            await api.registerMeme(payload)
+
             this.setState({
                 memeImg: '',
                 memeCaption: '',
                 addSuccess: true
             })
-            console.log('registered')
-            await alert('Sign up successful!')
+            console.log('Memes added')
+            await alert('Added Memes')
+            console.log('this.state is: ', this.state)
             await this.redirecting()
         } catch (err) {
             this.setState({
                 error: true
             })
         }
-
     }
     render() {
         return (

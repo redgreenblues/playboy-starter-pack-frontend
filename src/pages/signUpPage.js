@@ -7,7 +7,7 @@ from 'mdbreact';
 
 import api from '../api';
 
-class signUpPage extends Component {
+class SignUpPage extends Component {
     constructor(props) {
         super(props) 
         this.state = {
@@ -128,4 +128,4 @@ class signUpPage extends Component {
     }
 }
 
-export default signUpPage
+export default SignUpPage
