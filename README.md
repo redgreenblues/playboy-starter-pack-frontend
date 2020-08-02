@@ -1,6 +1,7 @@
 ## Playboy starter pack frontend
 
--- (link to backend)
+-- https://github.com/leeyuejia/playboy-starter-pack
+
 -- (link to repo)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
