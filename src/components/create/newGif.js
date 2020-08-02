@@ -1,20 +1,28 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import NavBar from '../navBar'
 import { Redirect, Link } from "react-router-dom"
-import Axios from 'axios';
+import {
+    MDBContainer, MDBBtn, MDBInput,
+    MDBCol, MDBCard, MDBCardBody,
+    MDBCardTitle
+}
+    from 'mdbreact';
+// import Axios from 'axios';
+// const api = Axios.create({
+//     baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
+// })
+
+import api from '../../api';
 
 
-const api = Axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
-})
 
 
 export class NewGif extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            memeImg: '',
-            memeCaption: '',
+            gifImg: '',
+            gifCaption: '',
             addSuccess: false
         }
     }
@@ -28,27 +36,25 @@ export class NewGif extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/memes' />
+            return <Redirect to='/gifs' />
         } else return false
     }
-    registerMeme = async event => {
+    registerGif = async event => {
         event.preventDefault();
-        console.log('this.state is: ', this.state)
         try {
-            await api.post('/meme', {
-                content: this.state.memeImg,
-                caption: this.state.memeCaption,
-                // add a field of profile bio
-            }, {
-                withCredentials: true
-            })
+            const payload = {
+                content: this.state.gifImg,
+                caption : this.state.gifCaption
+            }
+            await api.registerGif(payload)
+            console.log('registered')
+            await alert('Gif added!')
             this.setState({
-                memeImg: '',
-                memeCaption: '',
+                gifImg: '',
+                gifCaption: '',
                 addSuccess: true
             })
-            console.log('registered')
-            await alert('Sign up successful!')
+            console.log('this.state is: ', this.state)
             await this.redirecting()
         } catch (err) {
             this.setState({
@@ -58,10 +64,37 @@ export class NewGif extends Component {
     }
     render() {
         return (
-            <div>
-                <NavBar/>
-                <h1>create new gif</h1>
-            </div>
+            <Fragment>
+                <NavBar />
+                {this.redirecting()}
+                <MDBContainer className='my-3'>
+                    <MDBCol style={{ maxWidth: "35rem" }}>
+                        <MDBCard>
+                            <MDBCardTitle className='m-2'>
+                                Create Giphy
+                   </MDBCardTitle>
+                            <MDBCardBody>
+                                <form onSubmit={this.registerGif}>
+                                    <MDBInput label='Add a giphy image'
+                                        type='url'
+                                        name='gifImg'
+                                        accept='.gif'
+                                        value={this.state.gifImg}
+                                        onChange={this.handleChange}>
+                                    </MDBInput>
+                                    <MDBInput label='caption'
+                                        type='text'
+                                        name='gifCaption'
+                                        value={this.state.gifCaption}
+                                        onChange={this.handleChange}>
+                                    </MDBInput>
+                                    <MDBBtn type='submit'>Add gif</MDBBtn>
+                                </form>
+                            </MDBCardBody>
+                        </MDBCard>
+                    </MDBCol>
+                </MDBContainer>
+            </Fragment>
         )
     }
 }

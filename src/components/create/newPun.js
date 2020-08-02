@@ -8,17 +8,14 @@ import {
     MDBCardTitle
 }
 from 'mdbreact';
-
-const api = Axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
-})
+import api from '../../api';
 
 export class NewPun extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            memeImg: '',
-            memeCaption: '',
+            punLine: '',
+            punCaption: '',
             addSuccess: false
         }
     }
@@ -32,27 +29,25 @@ export class NewPun extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/memes' />
+            return <Redirect to='/puns' />
         } else return false
     }
-    registerMeme = async event => {
+    registerPun = async event => {
         event.preventDefault();
-        console.log('this.state is: ', this.state)
         try {
-            await api.post('/meme', {
-                content: this.state.memeImg,
-                caption: this.state.memeCaption,
-                // add a field of profile bio
-            }, {
-                withCredentials: true
-            })
+            const payload = {
+                content: this.state.punLine,
+                caption : this.state.punCaption
+            }
+            await api.registerPun(payload)
             this.setState({
-                memeImg: '',
-                memeCaption: '',
+                punLine: '',
+                punCaption: '',
                 addSuccess: true
             })
-            console.log('registered')
-            await alert('Sign up successful!')
+            console.log('pun added')
+            await alert('Pun added!')
+            console.log('this.state is: ', this.state)
             await this.redirecting()
         } catch (err) {
             this.setState({
@@ -71,19 +66,19 @@ export class NewPun extends Component {
                 <MDBCol style={{ maxWidth: "35rem" }}>
                     <MDBCard>
                         <MDBCardTitle className='m-2'>
-                            Create Meme
+                            Create Puns
                </MDBCardTitle>
                         <MDBCardBody>
                             <form onSubmit={this.registerPun}>
-                                <MDBInput label='Add an image'
+                                <MDBInput label='Pun-ch line'
                                     type='text'
-                                    name='punContent'
-                                    value={this.state.punContent}
+                                    name='punLine'
+                                    value={this.state.punLine}
                                     onChange={this.handleChange}>
                                 </MDBInput>
                                 <MDBInput label='caption'
                                     type='text'
-                                    name='memeCaption'
+                                    name='punCaption'
                                     value={this.state.punCaption}
                                     onChange={this.handleChange}>
                                 </MDBInput>

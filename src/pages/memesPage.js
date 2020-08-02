@@ -2,9 +2,30 @@ import React, { Component, Fragment } from 'react'
 import NavBar from '../components/navBar'
 import {MDBRow} from 'mdbreact'
 import ContentCard from '../components/contentCard'
+import api from '../api'
 
+export class MemesPage extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+             memesData : ''
+        }
+    }
+    
+    componentDidMount = async () => {
+        try {
+            const response = await api.getAllMemes()
 
-export class memesPage extends Component {
+            this.setState({
+                memesData: response.data
+            })
+            console.log(this.state.memesData)
+        } catch (err) {
+            this.setState({
+                error: err
+            })
+        }
+    }
     render() {
         return (
             <Fragment>
@@ -18,9 +39,23 @@ export class memesPage extends Component {
                         width='300' height='300' />
                 </MDBRow>
 
-                {/* fetch meme here */}
 
                 <MDBRow style={{ width: "70%", justifyContent: "center" }} className='mx-auto'>
+                {/* fetch meme here */}
+                    {this.state.memesData ?
+                        this.state.memesData.map((meme, index) => {
+                            return <ContentCard
+                                imgUrl={meme.content}
+                                caption={meme.caption}
+                                postedBy={meme.username}
+                                commentAmt={meme.comments.length}
+                                likeAmt= {0}
+                                key={meme._id}
+                            />
+                        })
+                        :
+                        null
+                    }
                     <ContentCard
                         imgUrl='https://pics.me.me/when-you-hate-your-job-but-cant-quit-because-people-24711873.png'
                         caption = 'Its friday!'
@@ -69,4 +104,4 @@ export class memesPage extends Component {
     }
 }
 
-export default memesPage
+export default MemesPage
