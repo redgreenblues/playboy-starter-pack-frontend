@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
-import {Redirect, Link} from "react-router-dom"
+import {Redirect, Link} from "react-router-dom";
 import { MDBContainer, MDBBtn, MDBInput,
     MDBCol,MDBCard, MDBCardBody,
     MDBCardTitle } 
 from 'mdbreact';
 
-const api = Axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
-})
+import api from '../api';
 
 class signUpPage extends Component {
     constructor(props) {
@@ -29,7 +26,7 @@ class signUpPage extends Component {
             [event.target.name]: event.target.value
         })
     }
-    redirecting = ()=> { // adding a function to redirect
+    redirecting = () => { // adding a function to redirect
         if(this.state.registerSuccess){
         return <Redirect to='/'/>
         } else return false
@@ -39,15 +36,14 @@ class signUpPage extends Component {
         event.preventDefault();
         console.log('this.state is: ', this.state)
         try {
-            await api.post('/register', {
+            const payload = {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,
                 password: this.state.registerPassword,
                 profileImg: this.state.profileImg,
                 // add a field of profile bio
-            }, {
-                withCredentials: true
-            })
+            }
+            await api.registerUser(payload);
             this.setState({
                 registerUsername: '',
                 registerPassword: '',
@@ -56,9 +52,9 @@ class signUpPage extends Component {
                 registerProfileImg: '',
                 registerSuccess : true // adding a function to redirect
             })
-            console.log('registered')
-            await alert('Sign up successful!')
-            await this.redirecting()
+            console.log('registered');
+            await alert('Sign up successful!');
+            await this.redirecting();
         } catch (err) {
             this.setState ({
                 error : true
@@ -77,7 +73,7 @@ class signUpPage extends Component {
                    <MDBCardTitle className='m-2'>
                        This is sign up page
                    </MDBCardTitle>
-                   {this.state.error? <h1>username already existed! </h1> : null}
+                   {this.state.error ? <h1>username already existed! </h1> : null}
                    <MDBCardBody>
                    <form onSubmit={this.register}>
                        <MDBInput label='username' 
