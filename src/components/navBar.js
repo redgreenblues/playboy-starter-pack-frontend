@@ -12,7 +12,8 @@ export class NavBar extends Component {
 
     this.state = {
       isOpen: false,
-      username: ''
+      username: '',
+      profileImg: ''
     }
   }
 
@@ -25,6 +26,7 @@ export class NavBar extends Component {
       const response = await api.getUser();
       this.setState({
         username: response.data.username,
+        profileImg: response.data.profileImg,
         authenticated: true
       })
       console.log(response)

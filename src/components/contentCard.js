@@ -1,11 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { MDBCol, MDBRow, MDBBtn, MDBCard, MDBCardBody,MDBCardTitle, MDBCardImage, MDBIcon, MDBCardText, MDBCardFooter } from 'mdbreact'
 
-export class ContentCard extends Component {
-    constructor(props) {
-        super(props)
-    }
-    
+class ContentCard extends Component {
     render() {
         return (
             <Fragment>

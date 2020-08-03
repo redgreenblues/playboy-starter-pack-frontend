@@ -36,3 +36,22 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+/* User Dashboard */
+
+.user-content-header {
+  cursor: pointer;
+  color: #616A6B;
+}
+
+.user-content-header:hover {
+  color: #000;
+}
+
+.user-content {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}

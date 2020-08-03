@@ -12,16 +12,19 @@ const getUser = () => api.get('/user');
 const logOut = () => api.get('/logout');
 
 // Gif
-const registerGif = payload => api.post('/gif',payload);
+const registerGif = payload => api.post('/gif', payload);
 const getAllGifs = () => api.get('/gifs');
+const getGifsByUser = username => api.get(`/gifs/${username}`);
 
 // Meme
 const registerMeme = payload => api.post('/meme', payload);
 const getAllMemes = () => api.get('/memes');
+const getMemesByUser = username => api.get(`/memes/${username}`);
 
 // Pun
 const registerPun = payload => api.post('/pun', payload);
 const getAllPuns = () => api.get('/puns');
+const getPunsByUser = username => api.get(`/puns/${username}`);
 
 
 const apis = {
@@ -34,7 +37,10 @@ const apis = {
     registerPun,
     getAllGifs,
     getAllMemes,
-    getAllPuns
+    getAllPuns,
+    getGifsByUser,
+    getMemesByUser,
+    getPunsByUser
 }
 
 export default apis
