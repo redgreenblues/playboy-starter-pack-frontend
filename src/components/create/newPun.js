@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import { Redirect, Link } from "react-router-dom"
-import Axios from 'axios';
-import NavBar from '../navBar'
+import { Redirect, Link } from "react-router-dom";
+import NavBar from '../navBar';
 import {
     MDBContainer, MDBBtn, MDBInput,
     MDBCol, MDBCard, MDBCardBody,
