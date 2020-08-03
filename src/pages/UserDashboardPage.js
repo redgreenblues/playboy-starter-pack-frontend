@@ -5,6 +5,7 @@ import api from '../api';
 import UserGifs from '../components/UserGifs';
 import UserMemes from '../components/UserMemes';
 import UserPuns from '../components/UserPuns';
+import defaultProfilePic from '../public/default-profile-pic.jpg'
 
 class UserDashboardPage extends Component {
     constructor(props) {
@@ -86,7 +87,8 @@ class UserDashboardPage extends Component {
                 <NavBar />
                 <MDBRow>
                     <MDBCol className="text-center mt-4">
-                        <img src={this.state.profileImg} className="img-fluid z-depth-1 rounded-circle" alt="" style={{ width: '10%' }} />
+                        {this.state.profileImg ? <img src={this.state.profileImg} className="img-fluid z-depth-1 rounded-circle" alt="" style={{ width: '10%' }} />
+                        : <img src={defaultProfilePic} className="img-fluid z-depth-1 rounded-circle" alt="" style={{ width: '10%' }} />}
                     </MDBCol>
                 </MDBRow>
 
