@@ -13,9 +13,10 @@ class UserDashboardPage extends Component {
         this.state = {
             username: '',
             profileImg: '',
+            profileBio: '',
             memes: [],
             gifs: [],
-            puns: '',
+            puns: [],
             memesLoading: false,
             gifsLoading: false,
             punsLoading: false
@@ -81,6 +82,27 @@ class UserDashboardPage extends Component {
         }
     }
 
+    memesHeaderStyle = () => {
+        return {
+            color: this.state.memesLoading ? '#000' : '',
+            fontWeight: this.state.memesLoading ? '400' : ''
+        } 
+    }
+
+    gifsHeaderStyle = () => {
+        return {
+            color: this.state.gifsLoading ? '#000' : '',
+            fontWeight: this.state.gifsLoading ? '400' : ''
+        } 
+    }
+
+    punsHeaderStyle = () => {
+        return {
+            color: this.state.punsLoading ? '#000' : '',
+            fontWeight: this.state.punsLoading ? '400' : ''
+        } 
+    }
+
     render() {
         return (
             <Fragment>
@@ -96,16 +118,20 @@ class UserDashboardPage extends Component {
                     <MDBCardTitle className="indigo-text h3 mt-2">
                         {this.state.username}
                     </MDBCardTitle>
-                    <MDBCardText className='m-4'>
-                        Sed ut perspiciatis unde omnis iste natus sit voluptatem
-                        accusantium doloremque laudantium, totam rem aperiam.
-                    </MDBCardText>
+
+                    {this.state.profileBio ? <MDBCardText className='m-4'>{this.state.profileBio}</MDBCardText> : null}
 
                     <MDBCol className="d-flex justify-content-center border-top" md="12" style={{ width: '65%', margin: '0 auto' }}>
-                        <MDBCol md="4" className="d-flex justify-content-around p-4">
-                            <h3 className="user-content-header" onClick={this.getMemesByUser}>Memes</h3>
-                            <h3 className="user-content-header" onClick={this.getGifsByUser}>Gifs</h3>
-                            <h3 className="user-content-header" onClick={this.getPunsByUser}>Puns</h3>
+                        <MDBCol md="4" className="d-flex justify-content-around align-items-center p-4">
+                            <h3 className="user-content-header" onClick={this.getMemesByUser} style={this.memesHeaderStyle()}>
+                                Memes
+                            </h3>
+                            <h3 className="user-content-header" onClick={this.getGifsByUser} style={this.gifsHeaderStyle()}>
+                                Gifs
+                            </h3>
+                            <h3 className="user-content-header" onClick={this.getPunsByUser} style={this.punsHeaderStyle()}>
+                                Puns
+                            </h3>
                         </MDBCol>
                     </MDBCol>
 
@@ -130,11 +156,9 @@ class UserDashboardPage extends Component {
                             postedBy={pun.username}
                             key={pun._id} />) : null}
                 </div>
-
             </Fragment>
         )
     }
 }
-
 
 export default UserDashboardPage
