@@ -38,25 +38,6 @@ class UserDashboardPage extends Component {
         }
     }
 
-    // Private Route
-
-    const PrivateRoute = ({ component: Component, ...rest }) => {
-        return (
-        <Route
-            {...rest}
-            render={props =>
-            fakeAuth.isAuthenticated === true ? (
-                <Component {...props} />
-            ) : (
-                <Redirect
-                to={{ pathname: "/login", state: { from: props.location } }}
-                />
-            )
-            }
-        />
-        );
-    };
-
 
     getGifsByUser = async () => {
         try {
