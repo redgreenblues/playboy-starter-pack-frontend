@@ -14,11 +14,19 @@ class LandingPage extends Component {
         super(props)
         this.state = {
             loginUsername: '',
-            loginPassword: ''
+            loginPassword: '',
+            islogout: false
         }
     }
     // call the backend to authenticate
     // if authed, redirect to dashboard page. 
+
+    signOut = () => {
+        localStorage.removeItem("token");
+        this.setState({
+          islogout: true
+        });
+      };
 
     handleChange = event => {
         this.setState({
@@ -54,6 +62,9 @@ class LandingPage extends Component {
     }
 
     render() {
+        if (this.state.islogout) {
+            return <Redirect to="/login" />;
+          }
         return (
             <div className='landingPage'>
                 <MDBContainer >

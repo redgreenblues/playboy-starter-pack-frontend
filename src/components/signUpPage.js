@@ -20,7 +20,8 @@ class signUpPage extends Component {
             registerEmail: '',
             registerProfileImg: '',
             registerProfileBio:'',
-            registerSuccess : false
+            registerSuccess : false,
+            islogged : false
         }
     }
 
@@ -39,6 +40,7 @@ class signUpPage extends Component {
         event.preventDefault();
         console.log('this.state is: ', this.state)
         try {
+            localStorage.setItem("token", "T"); //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
             await api.post('/register', {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,
@@ -54,7 +56,8 @@ class signUpPage extends Component {
                 registerPassword2: '', // Confirmation password
                 registerEmail: '',
                 registerProfileImg: '',
-                registerSuccess : true // adding a function to redirect
+                registerSuccess : true, // adding a function to redirect
+                islogged : true
             })
             console.log('registered')
             await alert('Sign up successful!')
@@ -66,31 +69,11 @@ class signUpPage extends Component {
     }
 
     render() {
+        if (localStorage.getItem("token")) {
+            return <Redirect to="/" />;
+          }
         return (
-            
-            /*
-            <div className='landingPage'>
-                {this.redirecting()}
-                <form onSubmit={this.register}>
-                    <label htmlFor='registerUsername'>Username:</label>
-                    <input type='text' name='registerUsername' value={this.state.registerUsername} onChange={this.handleChange} required/>
-                    <br />
-                    <label htmlFor='registerEmail'>Email:</label>
-                    <input type='email' name='registerEmail' value={this.state.registerEmail} onChange={this.handleChange} required/>
-                    <br />
-                    <label htmlFor='registerPassword'>Password:</label>
-                    <input type='password' name='registerPassword' value={this.state.registerPassword} onChange={this.handleChange} required/>
-                    <br />
-                    <label htmlFor='registerPassword2'>Confirm Password:</label>
-                    <input type='password' name='registerPassword2' value={this.state.registerPassword2} onChange={this.handleChange} required/>
-                    <br />
-                    <label htmlFor='registerProfileImg'>Add a profile image:</label>
-                    <input type='url' name='registerProfileImg' value={this.state.registerProfileImg} onChange={this.handleChange} />
-                    <br />
-                    <input type='submit' value='Submit'></input>
-                </form>
-            </div>
-            */
+
            <div className='landingPage'>
            <MDBContainer>
            {this.redirecting()}

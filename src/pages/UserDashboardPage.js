@@ -39,6 +39,7 @@ class UserDashboardPage extends Component {
         }
     }
 
+
     getGifsByUser = async () => {
         try {
             const response = await api.getGifsByUser(this.state.username)
