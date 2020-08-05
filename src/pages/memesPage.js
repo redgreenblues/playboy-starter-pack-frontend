@@ -49,7 +49,8 @@ export class MemesPage extends Component {
                                 caption={meme.caption}
                                 postedBy={meme.username}
                                 commentAmt={meme.comments.length}
-                                likeAmt= {0}
+                                likeAmt= {meme.likes}
+                                id={meme._id}
                                 key={meme._id}
                             />
                         })

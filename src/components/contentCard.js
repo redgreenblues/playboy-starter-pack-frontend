@@ -2,6 +2,16 @@ import React, { Component, Fragment } from 'react'
 import { MDBCol, MDBRow, MDBBtn, MDBCard, MDBCardBody,MDBCardTitle, MDBCardImage, MDBIcon, MDBCardText, MDBCardFooter } from 'mdbreact'
 
 class ContentCard extends Component {
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             
+        }
+    }
+
+    // on click function to update likes
+    
     render() {
         return (
             <Fragment>
