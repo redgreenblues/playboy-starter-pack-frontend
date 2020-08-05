@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import {  MDBRow, MDBCol, MDBIcon } from "mdbreact";
 import {Link} from 'react-router-dom';
+import Header from './Header';
 
  const h5Style = {
    textDecoration : 'none',
@@ -10,6 +11,8 @@ export class Features extends Component {
 
     render() {
         return (
+          <Fragment>
+            <Header/>
             <section className="text-center my-5 w-75 mx-auto">
         <h2 className="h1-responsive font-weight-bold my-5">
           "There is no strong beer only weak men."
@@ -40,6 +43,7 @@ export class Features extends Component {
           </MDBCol>
         </MDBRow>
       </section>
+      </Fragment>
         )
     }
 }

@@ -3,20 +3,19 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
   LandingPage,
   SignUpPage,
-  UserDashboardPage,
   DashboardPage,
+  UserDashboardPage,
   GifsPage,
   MemesPage,
   PunsPage,
   NewMeme,
   NewGif,
   NewPun,
-  EditProfilePage
 }
   from '../pages'
   import api from '../api';
 
-class MainContent extends Component {
+class LandingRoute extends Component {
   constructor(props) {
     super(props)
   
@@ -51,14 +50,15 @@ class MainContent extends Component {
             <Switch>
               <Route path="/" exact component={LandingPage} />
               <Route path="/signup" exact component={SignUpPage} />
-              <Route path="/profile" exact component={UserDashboardPage} />
               <Route path='/dashboard' exact component={DashboardPage} />
+
+              {/* <Route path="/profile" exact component={UserDashboardPage} />
               <Route path="/gifs" exact component={GifsPage} />
               <Route path="/memes" exact component={MemesPage} />
               <Route path="/puns" exact component={PunsPage} />
               <Route path="/new/meme" exact component={NewMeme} />
               <Route path="/new/pun" exact component={NewPun} />
-              <Route path="/new/gif" exact component={NewGif} />
+              <Route path="/new/gif" exact component={NewGif} /> */}
             </Switch>
           </div>
         </Router>
@@ -68,4 +68,4 @@ class MainContent extends Component {
 }
 
 
-export default MainContent
+export default LandingRoute

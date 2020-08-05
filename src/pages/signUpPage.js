@@ -35,6 +35,10 @@ class SignUpPage extends Component {
     register = async event => {
         event.preventDefault();
         console.log('this.state is: ', this.state)
+        if(this.state.registerPassword !== this.state.registerPassword2 ) {
+            alert('password do not match!')
+            return false
+        }
         try {
             const payload = {
                 username: this.state.registerUsername,

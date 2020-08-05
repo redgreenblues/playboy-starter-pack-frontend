@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import MainContent from './components/MainContent'
+import LandingRoute from './components/LandingRoute'
 import Footer from './components/Footer'
 
 import './App.css';
@@ -7,7 +7,7 @@ import './App.css';
 function App() {
   return (
     <Fragment>
-      <MainContent />
+      <LandingRoute />
       <Footer />
     </Fragment>
   );

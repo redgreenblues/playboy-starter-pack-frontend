@@ -55,10 +55,20 @@ export class NavBar extends Component {
       console.log(err)
     }
   }
+  navBarStyle = () => {
+    return {
+      display : 'flex',
+      minWidth: '70%',
+      flexFlow: 'row wrap',
+      margin :'0 auto'
+
+    }
+  }
 
   render() {
     return (
       <MDBNavbar color="rgba-black-strong" dark expand="md">
+        <div style={this.navBarStyle()}>
         <MDBNavbarBrand>
           <Link to='/'><strong className="white-text">Playboy Starter Pack</strong></Link>
         </MDBNavbarBrand>
@@ -67,7 +77,7 @@ export class NavBar extends Component {
           <MDBNavbarNav left>
 
             <MDBNavItem>
-              <MDBNavLink to={`/dashboard/${this.state.username}`}>Home</MDBNavLink>
+              <MDBNavLink to='/dashboard'>Home</MDBNavLink>
             </MDBNavItem>
 
             <MDBNavItem>
@@ -93,10 +103,10 @@ export class NavBar extends Component {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   {/* <MDBCardTitle className='m-2 border-bottom text-center'>Create Content</MDBCardTitle> */}
-                  <MDBDropdownItem href="/profile"><MDBIcon far icon="user-circle" className="mr-2" />Profile</MDBDropdownItem>
-                  <MDBDropdownItem href="/new/meme"><MDBIcon icon="plus-circle" className="mr-2" />Create Memes</MDBDropdownItem>
-                  <MDBDropdownItem href="/new/gif"><MDBIcon icon="plus-circle" className="mr-2" />Create Gifs</MDBDropdownItem>
-                  <MDBDropdownItem href="/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Create Puns</MDBDropdownItem>
+                  <MDBDropdownItem ><Link to ='/profile'><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
+                  <MDBDropdownItem ><Link to ='/new/meme'><MDBIcon icon="plus-circle" className="mr-2" />Create Memes</Link></MDBDropdownItem>
+                  <MDBDropdownItem ><Link to ='/new/gif'><MDBIcon icon="plus-circle" className="mr-2" />Create Gifs</Link></MDBDropdownItem>
+                  <MDBDropdownItem ><Link to ='/new/pun'><MDBIcon icon="plus-circle" className="mr-2" />Create Puns</Link></MDBDropdownItem>
                   <MDBDropdownItem className='border-top' href='#' onClick={this.logOut}>Sign Out</MDBDropdownItem>
                   {this.redirecting()}
                 </MDBDropdownMenu>
@@ -119,6 +129,8 @@ export class NavBar extends Component {
           </MDBNavbarNav>
 
         </MDBCollapse>
+        </div>
+
       </MDBNavbar>
     )
   }

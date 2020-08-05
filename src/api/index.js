@@ -2,11 +2,8 @@ import Axios from 'axios';
 
 const api = Axios.create({
     withCredentials: true,
+    // baseURL: 'http://localhost:3000/app',
     baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
-    // headers : {
-    //     'access-control-allow-origin': '*',
-    //     'Content-Type' : '*'
-    // }
 })
 
 // User
@@ -14,6 +11,10 @@ const registerUser = payload => api.post('/register', payload);
 const loginUser = payload => api.post('/login', payload);
 const getUser = () => api.get('/user');
 const logOut = () => api.get('/logout');
+const updateUser = payload => {
+    console.log('updating with...', payload)
+    api.put(`/update/${payload.userId}`, payload);
+}
 
 // Gif
 const registerGif = payload => api.post('/gif', payload);
@@ -36,6 +37,7 @@ const apis = {
     loginUser,
     getUser,
     logOut,
+    updateUser,
     registerGif,
     registerMeme,
     registerPun,
