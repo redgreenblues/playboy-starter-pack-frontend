@@ -41,7 +41,7 @@ class SignUpPage extends Component {
                 email: this.state.registerEmail,
                 password: this.state.registerPassword,
                 profileImg: this.state.registerProfileImg,
-                // add a field of profile bio
+                profileBio : this.state.registerProfileBio,
             }
             await api.registerUser(payload);
             this.setState({

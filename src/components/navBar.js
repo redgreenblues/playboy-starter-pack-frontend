@@ -29,7 +29,6 @@ export class NavBar extends Component {
         profileImg: response.data.profileImg,
         authenticated: true
       })
-      console.log(response)
       console.log(this.state.username)
     } catch (err) {
       console.log(err)
@@ -61,14 +60,14 @@ export class NavBar extends Component {
     return (
       <MDBNavbar color="rgba-black-strong" dark expand="md">
         <MDBNavbarBrand>
-          <Link to='/dashboard'><strong className="white-text">Playboy Starter Pack</strong></Link>
+          <Link to='/'><strong className="white-text">Playboy Starter Pack</strong></Link>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
 
             <MDBNavItem>
-              <MDBNavLink to="/dashboard">Home</MDBNavLink>
+              <MDBNavLink to={`/dashboard/${this.state.username}`}>Home</MDBNavLink>
             </MDBNavItem>
 
             <MDBNavItem>

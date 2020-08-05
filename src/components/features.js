@@ -15,6 +15,14 @@ export class Features extends Component {
           "There is no strong beer only weak men."
         </h2>
         <MDBRow>
+        <MDBCol md="4">
+            <Link to ='/memes'><MDBIcon far icon="comments" size="3x" className="orange-text" />
+            <h5 className="font-weight-bold my-4" style={h5Style}>MEMES</h5></Link>
+            <p className="grey-text mb-md-0 mb-5">
+              A collection of cultural and behavioral expression enough to bring sunshine 
+              and laughters to your lady.  
+            </p>
+          </MDBCol>
           <MDBCol md="4">
           <Link to ='/gifs'><MDBIcon icon="chart-area" size="3x" className="red-text" />
             <h5 className="font-weight-bold my-4" style={h5Style}>GIFS</h5></Link>
@@ -28,14 +36,6 @@ export class Features extends Component {
             <h5 className="font-weight-bold my-4" style={h5Style}>PUNS</h5></Link>
             <p className="grey-text mb-md-0 mb-5">
               Intelligent attracts, period. So go dazzle your girl with puns that would leave her star-strucked. 
-            </p>
-          </MDBCol>
-          <MDBCol md="4">
-            <Link to ='/memes'><MDBIcon far icon="comments" size="3x" className="orange-text" />
-            <h5 className="font-weight-bold my-4" style={h5Style}>MEMES</h5></Link>
-            <p className="grey-text mb-md-0 mb-5">
-              A collection of cultural and behavioral expression enough to bring sunshine 
-              and laughters to your lady.  
             </p>
           </MDBCol>
         </MDBRow>

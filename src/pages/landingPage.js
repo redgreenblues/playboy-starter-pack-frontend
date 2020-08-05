@@ -82,7 +82,7 @@ class LandingPage extends Component {
                                         <div className='cardbottom'>
                                             <MDBBtn type='submit'>Sign in</MDBBtn>
                                             <MDBCardText className='my-2'>Or</MDBCardText>
-                                            <MDBBtn><Link to='/signup'>Sign up</Link></MDBBtn>
+                                            <MDBBtn href= '/signup'>Sign up</MDBBtn>
                                         </div>
                                 </MDBCardBody>
                             </MDBCard>

@@ -10,12 +10,39 @@ import {
   PunsPage,
   NewMeme,
   NewGif,
-  NewPun
+  NewPun,
+  EditProfilePage
 }
   from '../pages'
-
+  import api from '../api';
 
 class MainContent extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       username: '',
+       profileImg :''
+    }
+  }
+//   componentDidMount = async () => {
+//     try {
+//         const response = await api.getUser();
+//         console.log(response.data)
+//         this.setState({
+//             username: response.data.username,
+//             profileImg: response.data.profileImg,
+//             profileBio: response.data.profileBio,
+//             authenticated: true
+//         })
+//     } catch (err) {
+//         console.log(err)
+//         this.setState({
+//             authenticated: false
+//         })
+//     }
+// }
+  
   render() {
     return (
       <Fragment>
@@ -25,7 +52,7 @@ class MainContent extends Component {
               <Route path="/" exact component={LandingPage} />
               <Route path="/signup" exact component={SignUpPage} />
               <Route path="/profile" exact component={UserDashboardPage} />
-              <Route path="/dashboard" exact component={DashboardPage} />
+              <Route path='/dashboard' exact component={DashboardPage} />
               <Route path="/gifs" exact component={GifsPage} />
               <Route path="/memes" exact component={MemesPage} />
               <Route path="/puns" exact component={PunsPage} />

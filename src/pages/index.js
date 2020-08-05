@@ -8,6 +8,7 @@ import PunsPage from './punsPage';
 import NewMeme from '../components/create/newMeme';
 import NewPun from '../components/create/newPun';
 import NewGif from '../components/create/newGif';
+import EditProfilePage from './EditProfilePage'
 
 export { 
     LandingPage,
@@ -19,5 +20,6 @@ export {
     PunsPage,
     NewMeme,
     NewPun,
-    NewGif
+    NewGif,
+    EditProfilePage,
 }
