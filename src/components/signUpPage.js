@@ -40,7 +40,7 @@ class signUpPage extends Component {
         event.preventDefault();
         console.log('this.state is: ', this.state)
         try {
-            localStorage.setItem("token", "T");
+            localStorage.setItem("token", "T"); //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
             await api.post('/register', {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,

@@ -67,7 +67,7 @@ class SignUpPage extends Component {
     }
 
     render() {
-        if (localStorage.getItem("token")) {
+        if (localStorage.getItem("token")) { //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
             return <Redirect to="/" />;
           }
         return (
