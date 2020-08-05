@@ -94,11 +94,11 @@ export class NavBar extends Component {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   {/* <MDBCardTitle className='m-2 border-bottom text-center'>Create Content</MDBCardTitle> */}
-                  <MDBDropdownItem href="/profile">Profile</MDBDropdownItem>
-                  <MDBDropdownItem href="/new/meme">Create Memes</MDBDropdownItem>
-                  <MDBDropdownItem href="/new/gif">Create Gifs</MDBDropdownItem>
-                  <MDBDropdownItem href="/new/pun">Create Puns</MDBDropdownItem>
-                  <MDBDropdownItem href='#' onClick={this.logOut}>Sign Out</MDBDropdownItem>
+                  <MDBDropdownItem href="/profile"><MDBIcon far icon="user-circle" className="mr-2" />Profile</MDBDropdownItem>
+                  <MDBDropdownItem href="/new/meme"><MDBIcon icon="plus-circle" className="mr-2" />Create Memes</MDBDropdownItem>
+                  <MDBDropdownItem href="/new/gif"><MDBIcon icon="plus-circle" className="mr-2" />Create Gifs</MDBDropdownItem>
+                  <MDBDropdownItem href="/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Create Puns</MDBDropdownItem>
+                  <MDBDropdownItem className='border-top' href='#' onClick={this.logOut}>Sign Out</MDBDropdownItem>
                   {this.redirecting()}
                 </MDBDropdownMenu>
               </MDBDropdown>

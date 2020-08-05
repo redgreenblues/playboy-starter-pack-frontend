@@ -46,6 +46,7 @@
 
 .user-content-header:hover {
   color: #000;
+  font-weight: 400;
 }
 
 .user-content {
