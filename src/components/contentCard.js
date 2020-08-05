@@ -28,8 +28,6 @@ class ContentCard extends Component {
                         <MDBCardText>
                             {this.props.caption}
                             </MDBCardText>
-                        <MDBBtn href="#" size="sm">Edit</MDBBtn> {/*edit route*/}
-                        <MDBBtn href="#" size="sm">delete</MDBBtn>{/*delete route*/}
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>

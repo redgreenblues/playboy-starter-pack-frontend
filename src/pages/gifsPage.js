@@ -27,7 +27,7 @@ export class GifsPage extends Component {
     render() {
         return (
             <Fragment>
-                <NavBar />
+                {/* <NavBar /> */}
                 <MDBRow>
                     <img
                         src='https://i.imgur.com/AqFk9Ux.gif'

@@ -59,7 +59,6 @@ export class NewPun extends Component {
     render() {
         return (
             <Fragment>
-            <NavBar />
             {this.redirecting()}
             <MDBContainer className='my-3'>
                 <MDBCol style={{ maxWidth: "35rem" }}>

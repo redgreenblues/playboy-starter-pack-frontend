@@ -29,7 +29,7 @@ export class PunsPage extends Component {
     render() {
         return (
             <Fragment>
-                <NavBar />
+                {/* <NavBar /> */}
                 <MDBRow>
                     <img
                         src='https://i.redd.it/4iqm06sb22b01.jpg'

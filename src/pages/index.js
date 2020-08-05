@@ -8,6 +8,7 @@ import PunsPage from './punsPage';
 import NewMeme from '../components/create/newMeme';
 import NewPun from '../components/create/newPun';
 import NewGif from '../components/create/newGif';
+import EditProfilePage from './EditProfilePage'
 import ProtectedRoute from './protectedRoute';
 
 export { 
@@ -21,5 +22,6 @@ export {
     NewMeme,
     NewPun,
     NewGif,
+    EditProfilePage,
     ProtectedRoute,
 }

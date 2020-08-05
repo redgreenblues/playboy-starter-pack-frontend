@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 import {
   LandingPage,
   SignUpPage,
-  UserDashboardPage,
   DashboardPage,
+  UserDashboardPage,
   GifsPage,
   MemesPage,
   PunsPage,
@@ -14,9 +14,35 @@ import {
   ProtectedRoute
 }
   from '../pages'
+  import api from '../api';
 
-
-class MainContent extends Component {
+class LandingRoute extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       username: '',
+       profileImg :''
+    }
+  }
+//   componentDidMount = async () => {
+//     try {
+//         const response = await api.getUser();
+//         console.log(response.data)
+//         this.setState({
+//             username: response.data.username,
+//             profileImg: response.data.profileImg,
+//             profileBio: response.data.profileBio,
+//             authenticated: true
+//         })
+//     } catch (err) {
+//         console.log(err)
+//         this.setState({
+//             authenticated: false
+//         })
+//     }
+// }
+  
   render() {
     return (
       <Fragment>
@@ -25,7 +51,7 @@ class MainContent extends Component {
             <Switch>
               <Route path="/" exact component={LandingPage} />
               <Route path="/signup" exact component={SignUpPage} />
-              <ProtectedRoute path="/profile" exact component={UserDashboardPage} />
+              {/* <ProtectedRoute path="/profile" exact component={UserDashboardPage} /> */}
               <ProtectedRoute path="/dashboard" exact component={DashboardPage} />
               <Route path="/gifs" exact component={GifsPage} />
               <Route path="/memes" exact component={MemesPage} />
@@ -44,5 +70,4 @@ class MainContent extends Component {
 }
 
 
-export default MainContent
-
+export default LandingRoute

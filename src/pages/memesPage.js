@@ -29,7 +29,7 @@ export class MemesPage extends Component {
     render() {
         return (
             <Fragment>
-                <NavBar />
+                {/* <NavBar /> */}
                 <MDBRow>
                     <img
                         src='https://www.netbase.com/wp-content/uploads/Brands%E2%80%99-Meme-Marketing-Makes-Sentiment-Analysis-More-Important-Than-Ever.png'
