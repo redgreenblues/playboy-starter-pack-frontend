@@ -21,7 +21,7 @@ import './App.css';
 // }
 
 // export default App; 
-export default function App() {
+function App() {
   return (
     <Router>
       <Switch>
@@ -46,3 +46,5 @@ export default function App() {
     </Router>
   );
 }
+
+export default App;
