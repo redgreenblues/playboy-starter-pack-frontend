@@ -13,10 +13,19 @@ class LandingPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            islogout: false,
             loginUsername: '',
             loginPassword: ''
         }
     }
+
+    signOut = () => {
+        localStorage.removeItem("token");
+        this.setState({
+          islogout: true
+        });
+      };
+
     // call the backend to authenticate
     // if authed, redirect to dashboard page. 
 
@@ -28,7 +37,10 @@ class LandingPage extends Component {
 
     redirecting = () => {
         if (this.state.loginSuccess) return <Redirect to='/dashboard' />
-        else return false
+        // else return false
+        else if (this.state.islogout) {
+            return <Redirect to="/login" />;
+          }
     }
 
     login = async event => {

@@ -24,7 +24,6 @@ class MainContent extends Component {
             <Switch>
               <Route path="/" exact component={LandingPage} />
               <Route path="/signup" exact component={SignUpPage} />
-              {/* <PrivateRoute path="/admin" component={Admin} /> */}
               <Route path="/profile" exact component={UserDashboardPage} />
               <Route path="/dashboard" exact component={DashboardPage} />
               <Route path="/gifs" exact component={GifsPage} />

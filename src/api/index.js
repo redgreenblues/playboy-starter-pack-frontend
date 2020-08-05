@@ -32,7 +32,6 @@ const apis = {
     loginUser,
     getUser,
     logOut,
-    // PrivateRoute,
     registerGif,
     registerMeme,
     registerPun,
