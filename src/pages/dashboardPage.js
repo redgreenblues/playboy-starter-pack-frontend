@@ -12,6 +12,7 @@ import {
     NewMeme,
     NewGif,
     NewPun,
+    ProtectedRoute,
   }
     from '../pages'
 
@@ -51,8 +52,8 @@ class DashboardPage extends Component {
                 <NavBar />
                 <Switch>
                     <Route path= '/' exact component={LandingPage}/>
-                    <Route path= '/dashboard' exact component={Features}/>
-                    <Route path="/profile" exact component={UserDashboardPage} />
+                    <ProtectedRoute path= '/dashboard' exact component={Features}/>
+                    <ProtectedRoute path="/profile" exact component={UserDashboardPage} />
                     <Route path="/gifs" exact component={GifsPage} />
                     <Route path="/memes" exact component={MemesPage} />
                     <Route path="/puns" exact component={PunsPage} />

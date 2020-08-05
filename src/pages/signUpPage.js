@@ -17,7 +17,8 @@ class SignUpPage extends Component {
             registerEmail: '',
             registerProfileImg: '',
             registerProfileBio:'',
-            registerSuccess : false
+            registerSuccess : false,
+            islogged : false
         }
     }
 
@@ -40,6 +41,7 @@ class SignUpPage extends Component {
             return false
         }
         try {
+            localStorage.setItem("token", "T");
             const payload = {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,
@@ -54,7 +56,8 @@ class SignUpPage extends Component {
                 registerPassword2: '', // Confirmation password
                 registerEmail: '',
                 registerProfileImg: '',
-                registerSuccess : true // adding a function to redirect
+                registerSuccess : true, // adding a function to redirect
+                islogged : true
             })
             console.log('registered');
             await alert('Sign up successful!');
@@ -68,6 +71,9 @@ class SignUpPage extends Component {
     }
 
     render() {
+        if (localStorage.getItem("token")) { //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
+            return <Redirect to="/" />;
+          }
         return (
            <div className='landingPage'>
            <MDBContainer>
@@ -133,3 +139,4 @@ class SignUpPage extends Component {
 }
 
 export default SignUpPage
+

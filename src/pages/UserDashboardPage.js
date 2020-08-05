@@ -45,6 +45,7 @@ class UserDashboardPage extends Component {
         }
     }
 
+
     getGifsByUser = async () => {
         try {
             const response = await api.getGifsByUser(this.state.username)
@@ -215,7 +216,7 @@ class UserDashboardPage extends Component {
                 </div>
                 {/* edit modal */}
                 <MDBContainer>
-                    <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
+                    <MDBModal isOpen={this.state.modal} toggle={this.toggleEditProfileModal}>
                         <form onSubmit={this.userUpdateProfile}>
                             <MDBModalHeader toggle={this.toggleEditProfileModal}>{this.state.error? 'Update fail' :'Edit profile'}</MDBModalHeader>
                             <MDBModalBody>
