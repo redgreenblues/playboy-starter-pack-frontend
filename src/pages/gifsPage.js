@@ -27,7 +27,7 @@ export class GifsPage extends Component {
     render() {
         return (
             <Fragment>
-                <NavBar />
+                {/* <NavBar /> */}
                 <MDBRow>
                     <img
                         src='https://i.imgur.com/AqFk9Ux.gif'
@@ -48,8 +48,7 @@ export class GifsPage extends Component {
                                 key={gif._id}
                             />
                         })
-                        :
-                        null
+                        : null
                     }
                 </MDBRow>
             </Fragment>

@@ -1,17 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { MDBCol, MDBRow, MDBBtn, MDBCard, MDBCardBody,MDBCardTitle, MDBCardImage, MDBIcon, MDBCardText, MDBCardFooter } from 'mdbreact'
 
-class ContentCard extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-             
-        }
-    }
-
-    // on click function to update likes
-    
+class UserContentCard extends Component {
     render() {
         return (
             <Fragment>
@@ -28,6 +18,8 @@ class ContentCard extends Component {
                         <MDBCardText>
                             {this.props.caption}
                             </MDBCardText>
+                        <MDBBtn href="#" size="sm">Edit</MDBBtn> {/*edit route*/}
+                        <MDBBtn href="#" size="sm">delete</MDBBtn>{/*delete route*/}
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
@@ -56,4 +48,4 @@ class ContentCard extends Component {
     }
 }
 
-export default ContentCard
+export default UserContentCard

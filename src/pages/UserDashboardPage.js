@@ -1,16 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import NavBar from '../components/navBar';
-import { MDBRow, MDBCol, MDBCardBody, MDBCardText, MDBCardTitle } from 'mdbreact';
+import { MDBRow, MDBCol, MDBCardBody, MDBCardText, MDBCardTitle, MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBInput } from 'mdbreact';
 import api from '../api';
 import UserGifs from '../components/UserGifs';
 import UserMemes from '../components/UserMemes';
 import UserPuns from '../components/UserPuns';
 import defaultProfilePic from '../public/default-profile-pic.jpg'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 class UserDashboardPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            userData: {},
             username: '',
             profileImg: '',
             profileBio: '',
@@ -19,16 +21,20 @@ class UserDashboardPage extends Component {
             puns: [],
             memesLoading: false,
             gifsLoading: false,
-            punsLoading: false
+            punsLoading: false,
+            modal: false,
         }
     }
 
     componentDidMount = async () => {
         try {
             const response = await api.getUser();
+            console.log(response.data)
             this.setState({
+                userId: response.data._id,
                 username: response.data.username,
                 profileImg: response.data.profileImg,
+                profileBio: response.data.profileBio,
                 authenticated: true
             })
         } catch (err) {
@@ -83,35 +89,68 @@ class UserDashboardPage extends Component {
         }
     }
 
+    toggleEditProfileModal = () => {
+        this.setState({
+            modal: !this.state.modal
+        });
+    }
+
+    handleChange = event => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    userUpdateProfile = async event => {
+        event.preventDefault();
+        try {
+            const payload = {
+                userId : this.state.userId,
+                username : this.state.username,
+                profileImg : this.state.profileImg,
+                profileBio : this.state.profileBio
+            }
+            const update = await api.updateUser(payload);
+            if(update) alert('updated')
+            await this.toggleEditProfileModal();
+        }
+        catch (err) {
+            console.log(err)
+            this.setState({error :true})
+        }
+    }
+
+
     memesHeaderStyle = () => {
         return {
             color: this.state.memesLoading ? '#000' : '',
             fontWeight: this.state.memesLoading ? '400' : ''
-        } 
+        }
     }
 
     gifsHeaderStyle = () => {
         return {
             color: this.state.gifsLoading ? '#000' : '',
             fontWeight: this.state.gifsLoading ? '400' : ''
-        } 
+        }
     }
 
     punsHeaderStyle = () => {
         return {
             color: this.state.punsLoading ? '#000' : '',
             fontWeight: this.state.punsLoading ? '400' : ''
-        } 
+        }
     }
+
 
     render() {
         return (
-            <Fragment>
-                <NavBar />
+            <Router>
+                {/* <NavBar /> */}
                 <MDBRow>
                     <MDBCol className="text-center mt-4">
                         {this.state.profileImg ? <img src={this.state.profileImg} className="img-fluid z-depth-1 rounded-circle" alt="" style={{ width: '10%' }} />
-                        : <img src={defaultProfilePic} className="img-fluid z-depth-1 rounded-circle" alt="" style={{ width: '10%' }} />}
+                            : <img src={defaultProfilePic} className="img-fluid z-depth-1 rounded-circle" alt="" style={{ width: '10%' }} />}
                     </MDBCol>
                 </MDBRow>
 
@@ -120,7 +159,25 @@ class UserDashboardPage extends Component {
                         {this.state.username}
                     </MDBCardTitle>
 
-                    {this.state.profileBio ? <MDBCardText className='m-4'>{this.state.profileBio}</MDBCardText> : null}
+
+                    {/* can use router and link together on a page */}
+                    {/* <Link to={`/dashboard/${this.state.username}/edit`}>
+                        <MDBBtn>Edit profile</MDBBtn>
+                    </Link>
+                    <Route
+                        path="/dashboard/:username/edit"
+                        render={() =>
+                            <EditProfilePage userData={this.state.userData} />
+                        }
+                    /> */}
+
+
+                    {this.state.profileBio ?
+                        <MDBCardText className='m-4'>{this.state.profileBio}</MDBCardText>
+                        :
+                        null
+                    }
+                    <MDBBtn onClick={this.toggleEditProfileModal}>Edit profile</MDBBtn>
 
                     <MDBCol className="d-flex justify-content-center border-top" md="12" style={{ width: '65%', margin: '0 auto' }}>
                         <MDBCol md="4" className="d-flex justify-content-around align-items-center p-4">
@@ -157,7 +214,45 @@ class UserDashboardPage extends Component {
                             postedBy={pun.username}
                             key={pun._id} />) : null}
                 </div>
-            </Fragment>
+                {/* edit modal */}
+                <MDBContainer>
+                    <MDBModal isOpen={this.state.modal} toggle={this.toggleEditProfileModal}>
+                        <form onSubmit={this.userUpdateProfile}>
+                            <MDBModalHeader toggle={this.toggleEditProfileModal}>{this.state.error? 'Update fail' :'Edit profile'}</MDBModalHeader>
+                            <MDBModalBody>
+
+                                <MDBInput label='username'
+                                    type='text'
+                                    name='username'
+                                    value={this.state.username}
+                                    onChange={this.handleChange}
+                                    required>
+                                </MDBInput>
+                                <MDBInput label='profile image'
+                                    type='url'
+                                    name='profileImg'
+                                    value={this.state.profileImg}
+                                    onChange={this.handleChange}
+                                    required>
+                                </MDBInput>
+                                <MDBInput label='Description'
+                                    type='text'
+                                    name='profileBio'
+                                    value={this.state.profileBio}
+                                    onChange={this.handleChange}
+                                    required>
+                                </MDBInput>
+                                
+                            </MDBModalBody>
+                            <MDBModalFooter>
+                                <MDBBtn color="secondary" onClick={this.toggleEditProfileModal}>Close</MDBBtn>
+                                <MDBBtn color="primary" type='submit'>Save changes</MDBBtn>
+                            </MDBModalFooter>
+                            </form>
+                    </MDBModal>
+                    
+                </MDBContainer>
+            </Router>
         )
     }
 }
