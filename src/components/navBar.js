@@ -70,7 +70,7 @@ export class NavBar extends Component {
       <MDBNavbar color="rgba-black-strong" dark expand="md">
         <div style={this.navBarStyle()}>
         <MDBNavbarBrand>
-          <Link to='/'><strong className="white-text">Playboy Starter Pack</strong></Link>
+          <Link to='/dashboard'><strong className="white-text">Playboy Starter Pack</strong></Link>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
