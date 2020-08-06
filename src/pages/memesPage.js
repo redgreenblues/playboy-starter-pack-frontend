@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import NavBar from '../components/navBar'
 import {MDBRow} from 'mdbreact'
 import ContentCard from '../components/contentCard'
 import api from '../api'
@@ -21,6 +20,7 @@ export class MemesPage extends Component {
             })
             console.log(this.state.memesData)
         } catch (err) {
+            console.log(err)
             this.setState({
                 error: err
             })
@@ -52,6 +52,7 @@ export class MemesPage extends Component {
                                 likeAmt= {meme.likes}
                                 id={meme._id}
                                 key={meme._id}
+                                contentType={meme.contentType}
                             />
                         })
                         : null

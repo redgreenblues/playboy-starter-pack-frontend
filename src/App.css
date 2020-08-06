@@ -56,3 +56,8 @@
   margin: 0 auto;
   flex-wrap: wrap;
 }
+
+/* Content Card */
+.thumbs-up:hover {
+  cursor: pointer;
+}

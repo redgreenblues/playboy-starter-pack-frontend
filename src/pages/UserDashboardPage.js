@@ -200,19 +200,28 @@ class UserDashboardPage extends Component {
                             imgUrl={gif.content}
                             caption={gif.caption}
                             postedBy={gif.username}
-                            key={gif._id} />) : null}
+                            likeAmt={gif.likes}
+                            key={gif._id}
+                            id={gif._id}
+                            contentType={gif.contentType} />) : null}
                     {this.state.memesLoading ? this.state.memes.map(meme =>
                         <UserMemes
                             imgUrl={meme.content}
                             caption={meme.caption}
                             postedBy={meme.username}
-                            key={meme._id} />) : null}
+                            likeAmt={meme.likes}
+                            key={meme._id}
+                            id={meme._id}
+                            contentType={meme.contentType} />) : null}
                     {this.state.punsLoading ? this.state.puns.map(pun =>
                         <UserPuns
                             pun={pun.content}
                             caption={pun.caption}
                             postedBy={pun.username}
-                            key={pun._id} />) : null}
+                            likeAmt={pun.likes}
+                            key={pun._id}
+                            id={pun._id}
+                            contentType={pun.contentType} />) : null}
                 </div>
                 {/* edit modal */}
                 <MDBContainer>

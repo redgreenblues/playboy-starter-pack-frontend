@@ -4,7 +4,6 @@ import Features from '../components/features.js'
 import NavBar from '../components/navBar'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
-    LandingPage,
     UserDashboardPage,
     GifsPage,
     MemesPage,
@@ -52,7 +51,7 @@ class DashboardPage extends Component {
                 <NavBar />
                 <Switch>
                     {/* <Route path= '/' exact component={LandingPage}/> */}
-                    <ProtectedRoute path= '/dashboard' exact component={Features}/>
+                    <ProtectedRoute path="/dashboard" exact component={Features}/>
                     <ProtectedRoute path="/profile" exact component={UserDashboardPage} />
                     <Route path="/gifs" exact component={GifsPage} />
                     <Route path="/memes" exact component={MemesPage} />

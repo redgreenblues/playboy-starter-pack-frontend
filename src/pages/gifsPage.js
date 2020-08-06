@@ -44,8 +44,10 @@ export class GifsPage extends Component {
                                 caption={gif.caption}
                                 postedBy={gif.username}
                                 commentAmt={gif.comments.length}
-                                likeAmt= {0}
+                                likeAmt= {gif.likes}
+                                id={gif._id}
                                 key={gif._id}
+                                contentType={gif.contentType}
                             />
                         })
                         : null

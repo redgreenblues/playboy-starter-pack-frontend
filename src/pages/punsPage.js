@@ -47,8 +47,10 @@ export class PunsPage extends Component {
                                 caption={pun.caption}
                                 postedBy={pun.username}
                                 commentAmt={pun.comments.length}
-                                likeAmt= {0}
+                                likeAmt= {pun.likes}
+                                id={pun._id}
                                 key={pun._id}
+                                contentType={pun.contentType}
                             />
                         })
                         : null

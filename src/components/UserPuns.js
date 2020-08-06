@@ -5,7 +5,13 @@ class UserPuns extends Component {
     render() {
         return (
             <Fragment>
-                <UserContentCard caption={this.props.caption} pun={this.props.pun} postedBy={this.props.postedBy} />
+                <UserContentCard
+                caption={this.props.caption}
+                pun={this.props.pun}
+                postedBy={this.props.postedBy}
+                id={this.props.id}
+                contentType={this.props.contentType}
+                likeAmt={this.props.likeAmt} />
             </Fragment>
         )
     }
