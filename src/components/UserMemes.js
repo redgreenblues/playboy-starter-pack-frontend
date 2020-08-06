@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import ContentCard from '../components/contentCard';
+import UserContentCard from '../components/UserContentCard';
 
 class UserMemes extends Component {
     render() {
         return (
             <Fragment>
-                <ContentCard caption={this.props.caption} imgUrl={this.props.imgUrl} postedBy={this.props.postedBy} />
+                <UserContentCard caption={this.props.caption} imgUrl={this.props.imgUrl} postedBy={this.props.postedBy} />
             </Fragment>
         )
     }

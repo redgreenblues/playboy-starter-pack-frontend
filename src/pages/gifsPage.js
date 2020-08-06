@@ -48,8 +48,7 @@ export class GifsPage extends Component {
                                 key={gif._id}
                             />
                         })
-                        :
-                        null
+                        : null
                     }
                 </MDBRow>
             </Fragment>

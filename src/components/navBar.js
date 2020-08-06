@@ -38,19 +38,20 @@ export class NavBar extends Component {
     }
   }
 
-  redirecting = () => {
-    if (this.state.loggedOut) return <Redirect to='/' />
-    else return false
-  }
+  // redirecting = () => {
+  //   if (this.state.loggedOut) return <Redirect to='/' />
+  //   else return false
+  // }
 
   logOut = async () => {
     try {
       const response = await api.logOut();
       console.log(response)
-      this.setState({
-        loggedOut: true
-      })
-      await this.redirecting();
+      // this.setState({
+      //   loggedOut: true
+      // })
+      // await this.redirecting();
+      window.location.href = '/'
     } catch (err) {
       console.log(err)
     }
@@ -108,7 +109,7 @@ export class NavBar extends Component {
                   <MDBDropdownItem ><Link to ='/new/gif'><MDBIcon icon="plus-circle" className="mr-2" />Create Gifs</Link></MDBDropdownItem>
                   <MDBDropdownItem ><Link to ='/new/pun'><MDBIcon icon="plus-circle" className="mr-2" />Create Puns</Link></MDBDropdownItem>
                   <MDBDropdownItem className='border-top' href='#' onClick={this.logOut}>Sign Out</MDBDropdownItem>
-                  {this.redirecting()}
+                  {/* {this.redirecting()} */}
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavItem>

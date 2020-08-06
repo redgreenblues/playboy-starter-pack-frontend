@@ -51,51 +51,8 @@ export class PunsPage extends Component {
                                 key={pun._id}
                             />
                         })
-                        :
-                        null
+                        : null
                     }
-                    <ContentCard
-                        pun= 'I lost my job at the bank on my very first day. A woman asked me to check her balance, so I pushed her over'
-                        caption = 'Its friday!'
-                        postedBy= 'username'
-                        likeAmt = '7'
-                        commentAmt = '3'
-                    ></ContentCard>
-                    <ContentCard
-                        pun='I Renamed my iPod The Titanic, so when I plug it in, it says “The Titanic is syncing.'
-                        caption= 'Whhaaaaaaaaaaaaattttttt'
-                        postedBy= 'username'
-                        likeAmt = '3'
-                        commentAmt = ''
-                    ></ContentCard>
-                    <ContentCard
-                        pun= 'How do you make holy water? You boil the hell out of it'
-                        caption= 'Areeeeeeee youuuuuuuuuuuuu'
-                        postedBy= 'username'
-                        likeAmt = '6'
-                        commentAmt = '10'
-                    ></ContentCard>
-                    <ContentCard
-                        pun= 'Last night, I dreamed I was swimming in an ocean of orange soda. But it was just a Fanta sea'
-                        caption= 'Thattttt wasssssss impressiveeeeeeee'
-                        postedBy= 'username'
-                        likeAmt = '6'
-                        commentAmt = '10'
-                    ></ContentCard>
-                    <ContentCard
-                        pun= 'I was wondering why the ball was getting bigger. Then it hit me'
-                        caption= 'Kyah yah yah yah yah kya wha give me a hug!'
-                        postedBy= 'username'
-                        likeAmt = '6'
-                        commentAmt = '10'
-                    ></ContentCard>
-                    <ContentCard
-                        pun= 'Will glass coffins be a success? Remains to be seen'
-                        caption= 'MDBbootstrap starter pack'
-                        postedBy= 'username'
-                        likeAmt = '6'
-                        commentAmt = '10'
-                    ></ContentCard>
                 </MDBRow>
             </Fragment>
         )
