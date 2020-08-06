@@ -139,4 +139,3 @@ class SignUpPage extends Component {
 }
 
 export default SignUpPage
-
