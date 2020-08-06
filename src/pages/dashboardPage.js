@@ -51,7 +51,7 @@ class DashboardPage extends Component {
                 {/* <Header /> */}
                 <NavBar />
                 <Switch>
-                    <Route path= '/' exact component={LandingPage}/>
+                    {/* <Route path= '/' exact component={LandingPage}/> */}
                     <ProtectedRoute path= '/dashboard' exact component={Features}/>
                     <ProtectedRoute path="/profile" exact component={UserDashboardPage} />
                     <Route path="/gifs" exact component={GifsPage} />
