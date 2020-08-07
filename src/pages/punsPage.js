@@ -39,7 +39,8 @@ export class PunsPage extends Component {
         const punsContent = this.state.punsData.filter(pun => {
             if (this.state.searchField === null) return pun
             else if (pun.caption.toLowerCase().includes(this.state.searchField.toLowerCase()) 
-            || pun.content.toLowerCase().includes(this.state.searchField.toLowerCase())) {
+            || pun.content.toLowerCase().includes(this.state.searchField.toLowerCase())
+            || pun.username.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                 return pun
             }
         }).map(pun => {
