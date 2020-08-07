@@ -62,9 +62,6 @@ class LandingPage extends Component {
     }
 
     render() {
-        if (this.state.islogout) {
-            return <Redirect to="/login" />;
-          }
         return (
             <div className='landingPage'>
                 <MDBContainer >

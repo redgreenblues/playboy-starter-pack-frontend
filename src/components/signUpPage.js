@@ -32,7 +32,8 @@ class signUpPage extends Component {
     }
     redirecting = ()=> { // adding a function to redirect
         if(this.state.registerSuccess){
-        return <Redirect to='/'/>
+            localStorage.setItem("token", "T"); //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
+            return <Redirect to='/'/>
         } else return false
     }
 
@@ -40,7 +41,7 @@ class signUpPage extends Component {
         event.preventDefault();
         console.log('this.state is: ', this.state)
         try {
-            localStorage.setItem("token", "T"); //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
+            
             await api.post('/register', {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,
@@ -69,11 +70,7 @@ class signUpPage extends Component {
     }
 
     render() {
-        if (localStorage.getItem("token")) {
-            return <Redirect to="/" />;
-          }
         return (
-
            <div className='landingPage'>
            <MDBContainer>
            {this.redirecting()}
