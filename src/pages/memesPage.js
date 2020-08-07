@@ -40,7 +40,8 @@ export class MemesPage extends Component {
         const memesContent = this.state.memesData.filter(meme => {
             if (this.state.searchField === null) return meme
             else if (meme.caption.toLowerCase().includes(this.state.searchField.toLowerCase()) 
-            || meme.content.toLowerCase().includes(this.state.searchField.toLowerCase())) {
+            || meme.content.toLowerCase().includes(this.state.searchField.toLowerCase()) 
+            || meme.username.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                 return meme
             }
         }).map(meme => {
