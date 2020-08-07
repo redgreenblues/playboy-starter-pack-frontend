@@ -41,7 +41,6 @@ class SignUpPage extends Component {
             return false
         }
         try {
-            localStorage.setItem("token", "T");
             const payload = {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,
@@ -60,6 +59,7 @@ class SignUpPage extends Component {
                 islogged : true
             })
             console.log('registered');
+            await localStorage.setItem("token", "T");
             await alert('Sign up successful!');
             await this.redirecting();
         } catch (err) {
@@ -71,9 +71,6 @@ class SignUpPage extends Component {
     }
 
     render() {
-        if (localStorage.getItem("token")) { //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
-            return <Redirect to="/" />;
-          }
         return (
            <div className='landingPage'>
            <MDBContainer>
