@@ -1,12 +1,13 @@
-import React, { Component, Fragment } from 'react'
-import NavBar from '../components/navBar'
-import { MDBRow } from 'mdbreact'
-import ContentCard from '../components/contentCard'
-import api from '../api'
+import React, { Component, Fragment } from 'react';
+import { MDBRow } from 'mdbreact';
+import ContentCard from '../components/contentCard';
+import api from '../api';
+import SearchBox from '../components/SearchBox'
 
 export class GifsPage extends Component {
     state = {
-        gifData: ''
+        gifData: [],
+        searchField: ''
     }
 
     componentDidMount = async () => {
@@ -24,10 +25,35 @@ export class GifsPage extends Component {
         }
     }
 
+    handleChange = event => {
+        this.setState({
+            searchField: event.target.value
+        })
+    }
+
     render() {
+
+        const gifsContent = this.state.gifData.filter(gif => {
+            if (this.state.searchField === null) return gif
+            else if (gif.caption.toLowerCase().includes(this.state.searchField.toLowerCase()) 
+            || gif.content.toLowerCase().includes(this.state.searchField.toLowerCase())) {
+                return gif
+            }
+        }).map(gif => {
+            return <ContentCard
+                imgUrl={gif.content}
+                caption={gif.caption}
+                postedBy={gif.username}
+                commentAmt={gif.comments.length}
+                likeAmt={gif.likes}
+                id={gif._id}
+                key={gif._id}
+                contentType={gif.contentType}
+            />
+        })
+
         return (
             <Fragment>
-                {/* <NavBar /> */}
                 <MDBRow>
                     <img
                         src='https://i.imgur.com/AqFk9Ux.gif'
@@ -36,22 +62,13 @@ export class GifsPage extends Component {
                         title='cat gif'
                         width='300' height='300' />
                 </MDBRow>
+
+                {/* Search box */}
+                <SearchBox handleChange={this.handleChange} />
+
                 <MDBRow style={{ width: "70%", justifyContent: "center" }} className='mx-auto'>
-                    {this.state.gifData ?
-                        this.state.gifData.map((gif, index) => {
-                            return <ContentCard
-                                imgUrl={gif.content}
-                                caption={gif.caption}
-                                postedBy={gif.username}
-                                commentAmt={gif.comments.length}
-                                likeAmt= {gif.likes}
-                                id={gif._id}
-                                key={gif._id}
-                                contentType={gif.contentType}
-                            />
-                        })
-                        : null
-                    }
+                    {/* fetch gif here */}
+                    {this.state.gifData ? gifsContent : null}
                 </MDBRow>
             </Fragment>
         )
