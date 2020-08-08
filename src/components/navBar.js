@@ -48,6 +48,7 @@ export class NavBar extends Component {
   logOut = async () => {
     try {
       const response = await api.logOut();
+      await localStorage.removeItem("token");
       console.log(response)
       // this.setState({
       //   loggedOut: true

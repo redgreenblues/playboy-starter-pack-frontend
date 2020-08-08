@@ -29,7 +29,7 @@ class signUpPage extends Component {
     }
     redirecting = ()=> { // adding a function to redirect
         if(this.state.registerSuccess){
-            localStorage.setItem("token", "T"); //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
+          localStorage.setItem("token", "T");
             return <Redirect to='/'/>
         } else return false
     }

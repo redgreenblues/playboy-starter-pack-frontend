@@ -52,7 +52,8 @@ class LandingRoute extends Component {
               <Route path="/" exact component={LandingPage} />
               <Route path="/signup" exact component={SignUpPage} />
               {/* <ProtectedRoute path="/profile" exact component={UserDashboardPage} /> */}
-              <ProtectedRoute path="/dashboard" exact component={DashboardPage} />
+              {localStorage.getItem("token") && <ProtectedRoute path="/dashboard" exact component={DashboardPage} />}
+              {/* <ProtectedRoute path="/dashboard" exact component={DashboardPage} /> */}
               {/* <Route path="/gifs" exact component={GifsPage} />
               <Route path="/memes" exact component={MemesPage} />
               <Route path="/puns" exact component={PunsPage} />
