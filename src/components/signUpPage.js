@@ -29,7 +29,6 @@ class signUpPage extends Component {
     }
     redirecting = ()=> { // adding a function to redirect
         if(this.state.registerSuccess){
-             //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
             return <Redirect to='/'/>
         } else return false
     }
