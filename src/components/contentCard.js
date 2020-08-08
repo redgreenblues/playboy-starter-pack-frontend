@@ -26,6 +26,10 @@ class ContentCard extends Component {
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
+        await this.setState({
+            likes: this.state.likes + 1
+        })
+        
         const payload = {
             likes: this.state.likes
         }
@@ -33,9 +37,6 @@ class ContentCard extends Component {
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
-            this.setState({
-                likes: this.state.likes + 1
-            })
         } catch (err) {
             console.log(err)
         }

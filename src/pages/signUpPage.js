@@ -73,7 +73,6 @@ class SignUpPage extends Component {
                 error : true
             })
         }
-
     }
 
     render() {

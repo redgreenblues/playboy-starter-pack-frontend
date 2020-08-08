@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import Features from '../components/features.js'
 
 import NavBar from '../components/navBar'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import {
     UserDashboardPage,
     GifsPage,
@@ -62,6 +62,11 @@ class DashboardPage extends Component {
             })
         }
     }
+
+    renderSignIn = () => {
+        window.location.href='/'
+    }
+
     render() {
         return (
             <Router>
@@ -69,8 +74,8 @@ class DashboardPage extends Component {
                 <NavBar />
                 <Switch>
                     {/* <Route path= '/' exact component={LandingPage}/> */}
-                    <ProtectedRoute path="/dashboard" exact component={Features}/>
-                    <ProtectedRoute path="/profile" exact component={UserDashboardPage} />
+                    {localStorage.getItem("token") ? <ProtectedRoute path="/dashboard" exact component={Features}/> : <button onClick={this.renderSignIn}>Please sign in</button>}
+                    <Route path="/profile" exact component={UserDashboardPage} />
                     <Route exact path="/gifs" render = {(props) => <GifsPage {...props} username={this.state.username} />} />
                     <Route exact path="/memes" render = {(props) => <MemesPage {...props} username={this.state.username} /> }/>
                     <Route exact path="/puns" render = {(props) => <PunsPage {...props} username={this.state.username} />}/>
