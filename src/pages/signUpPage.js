@@ -48,7 +48,8 @@ class SignUpPage extends Component {
                 profileImg: this.state.registerProfileImg,
                 profileBio : this.state.registerProfileBio,
             }
-            await api.registerUser(payload);
+            const response = await api.registerUser(payload);
+            console.log(response.data)
             this.setState({
                 registerUsername: '',
                 registerPassword: '',

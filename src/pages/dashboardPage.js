@@ -73,7 +73,7 @@ class DashboardPage extends Component {
                     <ProtectedRoute path="/profile" exact component={UserDashboardPage} />
                     <Route exact path="/gifs" render = {(props) => <GifsPage {...props} username={this.state.username} />} />
                     <Route exact path="/memes" render = {(props) => <MemesPage {...props} username={this.state.username} /> }/>
-                    <Route exact path="/puns" render = {(props) => <MemesPage {...props} username={this.state.username} />}/>
+                    <Route exact path="/puns" render = {(props) => <PunsPage {...props} username={this.state.username} />}/>
                     <Route path="/new/meme" exact component={NewMeme} />
                     <Route path="/new/pun" exact component={NewPun} />
                     <Route path="/new/gif" exact component={NewGif} />
