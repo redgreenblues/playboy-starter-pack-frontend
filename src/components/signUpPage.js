@@ -5,10 +5,7 @@ import { MDBContainer, MDBBtn, MDBInput,
     MDBCol,MDBCard, MDBCardBody,
     MDBCardTitle } 
 from 'mdbreact';
-
-const api = Axios.create({
-    baseURL: 'http://localhost:3000/app',
-})
+import api from '../api'
 
 class signUpPage extends Component {
     constructor(props) {

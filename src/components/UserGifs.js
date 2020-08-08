@@ -5,7 +5,13 @@ class UserGifs extends Component {
     render() {
         return (
             <Fragment>
-                <UserContentCard caption={this.props.caption} imgUrl={this.props.imgUrl} postedBy={this.props.postedBy} />
+                <UserContentCard 
+                    currentUser = {this.props.currentUser}
+                    comments = {this.props.comments}
+                    contentId = {this.props.contentId} 
+                    caption={this.props.caption} 
+                    imgUrl={this.props.imgUrl} 
+                    postedBy={this.props.postedBy} />
             </Fragment>
         )
     }

@@ -2,7 +2,7 @@ import Axios from 'axios';
 
 const api = Axios.create({
     withCredentials: true,
-    baseURL: 'http://localhost:3000/app',    
+    baseURL: 'http://localhost:3000/app',
     // baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
 })
 
@@ -20,6 +20,7 @@ const updateUser = payload => {
 const registerGif = payload => api.post('/gif', payload);
 const getAllGifs = () => api.get('/gifs');
 const getGifsByUser = username => api.get(`/gifs/${username}`);
+const getOneGif = contentId => api.get(`/gif/${contentId}`);
 
 // Meme
 const registerMeme = payload => api.post('/meme', payload);
@@ -31,6 +32,7 @@ const registerPun = payload => api.post('/pun', payload);
 const getAllPuns = () => api.get('/puns');
 const getPunsByUser = username => api.get(`/puns/${username}`);
 
+const postGifComment = payload => {api.post(`/gif/${payload.contentId}/comment`, payload)}
 
 const apis = {
     registerUser,
@@ -46,7 +48,9 @@ const apis = {
     getAllPuns,
     getGifsByUser,
     getMemesByUser,
-    getPunsByUser
+    getPunsByUser,
+    getOneGif,
+    postGifComment
 }
 
 export default apis
