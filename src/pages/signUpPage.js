@@ -60,9 +60,9 @@ class SignUpPage extends Component {
             })
             console.log('registered');
             await localStorage.setItem("token", "T");
-            await alert('Sign up successful!');
             await this.redirecting();
         } catch (err) {
+            console.log(err)
             this.setState ({
                 error : true
             })
