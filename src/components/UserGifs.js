@@ -8,10 +8,12 @@ class UserGifs extends Component {
                 <UserContentCard 
                     currentUser = {this.props.currentUser}
                     comments = {this.props.comments}
-                    contentId = {this.props.contentId} 
-                    caption={this.props.caption} 
-                    imgUrl={this.props.imgUrl} 
-                    postedBy={this.props.postedBy} />
+                    caption={this.props.caption}
+                    imgUrl={this.props.imgUrl}
+                    postedBy={this.props.postedBy}
+                    id={this.props.id}
+                    contentType={this.props.contentType}
+                    likeAmt={this.props.likeAmt} />
             </Fragment>
         )
     }
