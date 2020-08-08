@@ -25,6 +25,20 @@ class UserContentCard extends Component {
         })
     }
 
+    // on click function to edit content
+
+    // editOneGif() {
+    //     this.setState({
+    //         edit: true,
+    //         image: this.props.imgUrl,
+    //         caption: this.props.caption
+    //     })
+    //     const payload = {
+    //         image: this.props.imgUrl,
+    //         caption: this.props.caption
+    //     }
+    // }}
+
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
@@ -65,7 +79,7 @@ class UserContentCard extends Component {
                         <MDBCardText>
                             {this.props.caption}
                         </MDBCardText>
-                        <MDBBtn href="#" size="sm">Edit</MDBBtn> {/*edit route*/}
+                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn> {/*edit route*/}
                         <MDBBtn href="#" size="sm">delete</MDBBtn>{/*delete route*/}
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
