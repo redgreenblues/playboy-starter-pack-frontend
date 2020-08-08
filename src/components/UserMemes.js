@@ -6,12 +6,15 @@ class UserMemes extends Component {
         return (
             <Fragment>
                 <UserContentCard 
-                caption={this.props.caption}
-                imgUrl={this.props.imgUrl}
-                postedBy={this.props.postedBy}
-                id={this.props.id}
-                contentType={this.props.contentType}
-                likeAmt={this.props.likeAmt} />
+                    currentUser = {this.props.currentUser}
+                    comments = {this.props.comments}
+                    commentAmt={this.props.commentAmt}
+                    caption={this.props.caption}
+                    imgUrl={this.props.imgUrl}
+                    postedBy={this.props.postedBy}
+                    id={this.props.id}
+                    contentType={this.props.contentType}
+                    likeAmt={this.props.likeAmt} />
             </Fragment>
         )
     }

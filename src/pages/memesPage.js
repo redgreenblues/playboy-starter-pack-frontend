@@ -46,9 +46,11 @@ export class MemesPage extends Component {
             }
         }).map(meme => {
             return <ContentCard
+                currentUser = {this.props.username}
                 imgUrl={meme.content}
                 caption={meme.caption}
                 postedBy={meme.username}
+                comments ={meme.comments}
                 commentAmt={meme.comments.length}
                 likeAmt={meme.likes}
                 id={meme._id}
@@ -72,7 +74,7 @@ export class MemesPage extends Component {
                 {/* Search box */}
                 <SearchBox handleChange={this.handleChange} />
 
-                <MDBRow style={{ width: "70%", justifyContent: "center" }} className='mx-auto'>
+                <MDBRow style={{ width: "70%", justifyContent: "center" }} className='mx-auto mb-5'>
                     {/* fetch meme here */}
                     {this.state.memesData ? memesContent : null}
                 </MDBRow>

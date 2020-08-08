@@ -1,18 +1,36 @@
-import React, { Component, Fragment } from 'react';
-import { MDBCol, MDBRow, MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardImage, MDBIcon, MDBCardText, MDBCardFooter } from 'mdbreact';
+import React, { Component, Fragment } from 'react'
+import {
+    MDBCol, MDBRow, MDBBtn, 
+    MDBCard, MDBCardBody, MDBCardTitle, 
+    MDBCardImage, MDBIcon, MDBCardText, 
+    MDBCardFooter
+} from 'mdbreact'
+import CommentModal from './CommentModal'
+
 import api from '../api';
 
 class UserContentCard extends Component {
     constructor(props) {
         super(props)
+
         this.state = {
-            likes: this.props.likeAmt
+            likes: this.props.likeAmt,
+            commentModal: false
         }
+    }
+
+    toggleCommentModal = () => {
+        this.setState({
+            commentModal: !this.state.commentModal
+        })
     }
 
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
+        await this.setState({
+            likes: this.state.likes + 1
+        })
 
         const payload = {
             likes: this.state.likes
@@ -21,9 +39,9 @@ class UserContentCard extends Component {
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
-            this.setState({
-                likes: this.state.likes + 1
-            })
+            // this.setState({
+            //     likes: this.state.likes + 1
+            // })
         } catch (err) {
             console.log(err)
         }
@@ -31,10 +49,11 @@ class UserContentCard extends Component {
     }
 
     render() {
+        console.log(this.props.commentAmt)
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
-                    {/*contenttype === puns? if true render text : if false render image*/}
+
                     <MDBCardImage
                         style={{ width: '100%', height: 'auto' }}
                         className="img-fluid mx-auto"
@@ -51,19 +70,23 @@ class UserContentCard extends Component {
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" />
+                            <MDBIcon icon="share" size="lg" className="m-auto align-self-center thumbs-up"/>
                         </MDBCol>
                         <MDBCol>
+
                             <MDBRow className='mx-auto justify-content-center'>
                                 <MDBIcon icon="thumbs-up" size="lg" className="m-auto align-self-center thumbs-up" onClick={() => this.handleLikes(this.props.contentType)} />
                                 <h5 className="font-weight-light m-auto">{this.state.likes}</h5>
                             </MDBRow>
+
                         </MDBCol>
                         <MDBCol>
-                            <MDBRow className='mx-auto justify-content-center'>
-                                <MDBIcon icon="comment-dots" size="lg" className="m-auto align-self-center" />
-                                <h5 className="font-weight-light m-auto align-self-center"> {this.props.commentAmt}</h5>
-                            </MDBRow>
+
+                        <MDBRow className='mx-auto justify-content-center' >
+                            <MDBIcon icon="comment-dots" onClick={()=> {this.toggleCommentModal()}} size="lg" className="m-auto align-self-center thumbs-up" />
+                            <h5 className="font-weight-light m-auto align-self-center"> {this.props.commentAmt}</h5>
+                        </MDBRow>
+
                         </MDBCol>
                     </MDBRow>
                     <MDBCardFooter color="grey lighten-1" >
@@ -71,6 +94,19 @@ class UserContentCard extends Component {
                         <a href='/username' className='text-decoration-none'>{this.props.postedBy}</a>
                     </MDBCardFooter>
                 </MDBCard>
+                {/* comment section */}
+                {this.state.commentModal? 
+                    <CommentModal
+                        currentUser = {this.props.currentUser}
+                        id ={this.props.id}
+                        commentModal ={this.state.commentModal}
+                        comments = {this.props.comments}
+                        handleCommentModal = {this.toggleCommentModal}
+                        content = {this.props.contentType}
+                    />
+                    :
+                    null
+                    }
             </Fragment>
         )
     }

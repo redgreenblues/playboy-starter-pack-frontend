@@ -1,6 +1,13 @@
 import React, { Component, Fragment } from 'react'
-import { MDBCol, MDBRow, MDBBtn, MDBCard, MDBCardBody, MDBCardTitle, MDBCardImage, MDBIcon, MDBCardText, MDBCardFooter } from 'mdbreact'
+import { 
+    MDBCol, MDBRow, MDBBtn, 
+    MDBCard, MDBCardBody, MDBCardTitle, 
+    MDBCardImage, MDBIcon, MDBCardText, 
+    MDBCardFooter 
+} 
+from 'mdbreact'
 import api from '../api';
+import CommentModal from './CommentModal'
 
 class ContentCard extends Component {
     constructor(props) {
@@ -10,11 +17,15 @@ class ContentCard extends Component {
         }
     }
 
+    toggleCommentModal = () => {
+        this.setState({
+            commentModal: !this.state.commentModal
+        })
+    }
 
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
-
         const payload = {
             likes: this.state.likes
         }
@@ -28,14 +39,29 @@ class ContentCard extends Component {
         } catch (err) {
             console.log(err)
         }
-        
+    }
+    componentDidMount = async() => {
+        try {
+            const getContent = await api.getOneContent(this.props.id)
+            await this.setState({
+                contentData : getContent.data,
+                comments: [getContent.data.comments],
+                commentAmt :getContent.data.comments.length
+
+            })
+            console.log(getContent.data)
+        } catch (err) {
+            this.setState({
+                error: true
+            })
+        }
     }
 
     render() {
+
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
-                    {/*contenttype === puns? if true render text : if false render image*/}
                     <MDBCardImage
                         style={{ width: '100%', height: 'auto' }}
                         className="img-fluid mx-auto"
@@ -50,7 +76,7 @@ class ContentCard extends Component {
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" />
+                            <MDBIcon icon="share" size="lg" className='thumbs-up'/>
                         </MDBCol>
                         <MDBCol>
                             <MDBRow className='mx-auto justify-content-center'>
@@ -60,8 +86,9 @@ class ContentCard extends Component {
                         </MDBCol>
                         <MDBCol>
                             <MDBRow className='mx-auto justify-content-center'>
-                                <MDBIcon icon="comment-dots" size="lg" className="m-auto align-self-center" />
-                                <h5 className="font-weight-light m-auto align-self-center"> {this.props.commentAmt}</h5>
+                                <MDBIcon icon="comment-dots" size="lg" onClick={this.toggleCommentModal} className="m-auto align-self-center thumbs-up" />
+                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
+                                {/* /*unable to update the number*/}
                             </MDBRow>
                         </MDBCol>
                     </MDBRow>
@@ -70,6 +97,18 @@ class ContentCard extends Component {
                         <a href='/username' className='text-decoration-none'>{this.props.postedBy}</a>
                     </MDBCardFooter>
                 </MDBCard>
+                {this.state.commentModal? 
+                    <CommentModal
+                        currentUser = {this.props.currentUser}
+                        id ={this.props.id}
+                        commentModal ={this.state.commentModal}
+                        comments = {this.props.comments}
+                        handleCommentModal = {this.toggleCommentModal}
+                        content = {this.props.contentType}
+                    />
+                    :
+                    null
+                    }
             </Fragment>
         )
     }
