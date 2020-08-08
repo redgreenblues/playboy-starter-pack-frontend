@@ -34,10 +34,10 @@ class ContentCard extends Component {
         await this.setState({
             likes: this.state.likes + 1
         })
-        const payload = {
-            likes: this.state.likes
-        }
         try {
+            const payload = {
+                likes: this.state.likes
+            }
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
@@ -93,7 +93,6 @@ class ContentCard extends Component {
                             <MDBRow className='mx-auto justify-content-center'>
                                 <MDBIcon icon="comment-dots" size="lg" onClick={this.toggleCommentModal} className="m-auto align-self-center thumbs-up" />
                                 <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
-                                {/* /*unable to update the number*/}
                             </MDBRow>
                         </MDBCol>
                     </MDBRow>

@@ -37,10 +37,11 @@ class UserContentCard extends Component {
         await this.setState({
             likes: this.state.likes + 1
         })
-        const payload = {
-            likes: this.state.likes
-        }
         try {
+            const payload = {
+                likes: this.state.likes
+            }
+
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
