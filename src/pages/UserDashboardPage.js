@@ -1,6 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import NavBar from '../components/navBar';
-import { MDBRow, MDBCol, MDBCardBody, MDBCardText, MDBCardTitle, MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBInput } from 'mdbreact';
+// import NavBar from '../components/navBar';
+import { 
+    MDBRow, MDBCol, MDBCardBody, 
+    MDBCardText, MDBCardTitle, MDBContainer, 
+    MDBBtn, MDBModal, MDBModalBody, 
+    MDBModalHeader, MDBModalFooter, MDBInput 
+    } 
+from 'mdbreact';
 import api from '../api';
 import UserGifs from '../components/UserGifs';
 import UserMemes from '../components/UserMemes';
@@ -13,6 +19,7 @@ class UserDashboardPage extends Component {
         super(props)
         this.state = {
             userData: {},
+            userId: '',
             username: '',
             profileImg: '',
             profileBio: '',
@@ -153,24 +160,10 @@ class UserDashboardPage extends Component {
                             : <img src={defaultProfilePic} className="img-fluid z-depth-1 rounded-circle" alt="" style={{ width: '10%' }} />}
                     </MDBCol>
                 </MDBRow>
-
                 <MDBCardBody>
                     <MDBCardTitle className="indigo-text h3 mt-2">
                         {this.state.username}
                     </MDBCardTitle>
-
-
-                    {/* can use router and link together on a page */}
-                    {/* <Link to={`/dashboard/${this.state.username}/edit`}>
-                        <MDBBtn>Edit profile</MDBBtn>
-                    </Link>
-                    <Route
-                        path="/dashboard/:username/edit"
-                        render={() =>
-                            <EditProfilePage userData={this.state.userData} />
-                        }
-                    /> */}
-
 
                     {this.state.profileBio ?
                         <MDBCardText className='m-4'>{this.state.profileBio}</MDBCardText>
@@ -192,44 +185,51 @@ class UserDashboardPage extends Component {
                             </h3>
                         </MDBCol>
                     </MDBCol>
-
                 </MDBCardBody>
-                <div className='user-content'>
+                <div className='user-content mb-5'>
                     {this.state.gifsLoading ? this.state.gifs.map(gif =>
                         <UserGifs
+                            currentUser ={this.state.username}
                             imgUrl={gif.content}
                             caption={gif.caption}
                             postedBy={gif.username}
+                            comments={gif.comments}
+                            commentAmt={gif.comments.length}
                             likeAmt={gif.likes}
                             key={gif._id}
                             id={gif._id}
                             contentType={gif.contentType} />) : null}
                     {this.state.memesLoading ? this.state.memes.map(meme =>
                         <UserMemes
+                            currentUser ={this.state.username}
                             imgUrl={meme.content}
                             caption={meme.caption}
                             postedBy={meme.username}
+                            comments={meme.comments}
+                            commentAmt={meme.comments.length}
                             likeAmt={meme.likes}
                             key={meme._id}
                             id={meme._id}
                             contentType={meme.contentType} />) : null}
                     {this.state.punsLoading ? this.state.puns.map(pun =>
                         <UserPuns
+                            currentUser ={this.state.username}
                             pun={pun.content}
                             caption={pun.caption}
                             postedBy={pun.username}
+                            comments={pun.comments}
+                            commentAmt={pun.comments.length}
                             likeAmt={pun.likes}
                             key={pun._id}
                             id={pun._id}
                             contentType={pun.contentType} />) : null}
                 </div>
-                {/* edit modal */}
+                {/* edit profile modal */}
                 <MDBContainer>
                     <MDBModal isOpen={this.state.modal} toggle={this.toggleEditProfileModal}>
                         <form onSubmit={this.userUpdateProfile}>
                             <MDBModalHeader toggle={this.toggleEditProfileModal}>{this.state.error? 'Update fail' :'Edit profile'}</MDBModalHeader>
                             <MDBModalBody>
-
                                 <MDBInput label='username'
                                     type='text'
                                     name='username'
@@ -251,7 +251,6 @@ class UserDashboardPage extends Component {
                                     onChange={this.handleChange}
                                     required>
                                 </MDBInput>
-                                
                             </MDBModalBody>
                             <MDBModalFooter>
                                 <MDBBtn color="secondary" onClick={this.toggleEditProfileModal}>Close</MDBBtn>
@@ -259,7 +258,6 @@ class UserDashboardPage extends Component {
                             </MDBModalFooter>
                             </form>
                     </MDBModal>
-                    
                 </MDBContainer>
             </Router>
         )

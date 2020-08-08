@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import {
-  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
-  MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon, MDBCardTitle
+  MDBNavbar, MDBNavbarBrand, MDBNavbarNav, 
+  MDBNavItem, MDBNavLink, MDBNavbarToggler, 
+  MDBCollapse, MDBDropdown, MDBDropdownToggle, 
+  MDBDropdownMenu, MDBDropdownItem, MDBIcon, 
 } from "mdbreact";
 import { Redirect, Link } from 'react-router-dom';
 import api from '../api';
@@ -72,7 +74,7 @@ export class NavBar extends Component {
       <MDBNavbar color="rgba-black-strong" dark expand="md">
         <div style={this.navBarStyle()}>
         <MDBNavbarBrand>
-          <Link to='/'><strong className="white-text">Playboy Starter Pack</strong></Link>
+          <Link to='/dashboard'><strong className="white-text">Playboy Starter Pack</strong></Link>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -81,55 +83,55 @@ export class NavBar extends Component {
             <MDBNavItem>
               <MDBNavLink to='/dashboard'>Home</MDBNavLink>
             </MDBNavItem>
-
             <MDBNavItem>
               <MDBNavLink to="/memes">Memes</MDBNavLink>
             </MDBNavItem>
-
             <MDBNavItem>
               <MDBNavLink to="/gifs">Gifs</MDBNavLink>
             </MDBNavItem>
-
             <MDBNavItem>
               <MDBNavLink to="/puns">Puns</MDBNavLink>
             </MDBNavItem>
 
+          </MDBNavbarNav>
+
+          <MDBNavbarNav right className= 'justify-content-right'>
+
+            {/* <MDBNavItem className="white-text d-flex align-items-center ml-3">
+            <MDBNavLink to="/profile"><MDBIcon icon="user" className="mr-2" />{this.state.username}</MDBNavLink>
+            </MDBNavItem> */}
+
             <MDBNavItem className="white-text d-flex align-items-center ml-3">
-              <strong>{this.state.username}</strong>
+            <MDBNavLink to="/new/meme"><MDBIcon icon="plus-circle" className="mr-2" />Meme</MDBNavLink>
             </MDBNavItem>
 
+            <MDBNavItem className="white-text d-flex align-items-center ml-3">
+              <MDBNavLink to="/new/gif"><MDBIcon icon="plus-circle" className="mr-2" />Gif</MDBNavLink>
+            </MDBNavItem>
+
+            <MDBNavItem className="white-text d-flex align-items-center ml-3">
+            <MDBNavLink to="/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Pun</MDBNavLink>
+            </MDBNavItem>
+
+            {/* <MDBNavItem className="white-text d-flex align-items-center ml-3" onClick={this.logOut}>
+            <MDBNavLink to="#">Sign Out</MDBNavLink>
+            </MDBNavItem> */}
+            
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
-                  <MDBIcon icon="user" />
+                <strong className='white-text'><MDBIcon icon="user" />{this.state.username}</strong>
+                  
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   {/* <MDBCardTitle className='m-2 border-bottom text-center'>Create Content</MDBCardTitle> */}
                   <MDBDropdownItem ><Link to ='/profile'><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
-                  <MDBDropdownItem ><Link to ='/new/meme'><MDBIcon icon="plus-circle" className="mr-2" />Create Memes</Link></MDBDropdownItem>
-                  <MDBDropdownItem ><Link to ='/new/gif'><MDBIcon icon="plus-circle" className="mr-2" />Create Gifs</Link></MDBDropdownItem>
-                  <MDBDropdownItem ><Link to ='/new/pun'><MDBIcon icon="plus-circle" className="mr-2" />Create Puns</Link></MDBDropdownItem>
                   <MDBDropdownItem className='border-top' href='#' onClick={this.logOut}>Sign Out</MDBDropdownItem>
                   {/* {this.redirecting()} */}
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavItem>
           </MDBNavbarNav>
-
-          <MDBNavbarNav right>
-            <MDBNavItem>
-              <MDBNavLink className="waves-effect waves-light" to="#!">
-                <MDBIcon fab icon="twitter" />
-              </MDBNavLink>
-            </MDBNavItem>
-
-            <MDBNavItem>
-              <MDBNavLink className="waves-effect waves-light" to="#!">
-                <MDBIcon fab icon="google-plus-g" />
-              </MDBNavLink>
-            </MDBNavItem>
-          </MDBNavbarNav>
-
         </MDBCollapse>
         </div>
 

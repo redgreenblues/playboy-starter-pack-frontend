@@ -5,10 +5,7 @@ import { MDBContainer, MDBBtn, MDBInput,
     MDBCol,MDBCard, MDBCardBody,
     MDBCardTitle } 
 from 'mdbreact';
-
-const api = Axios.create({
-    baseURL: 'http://localhost:3000/app',
-})
+import api from '../api'
 
 class signUpPage extends Component {
     constructor(props) {
@@ -32,6 +29,7 @@ class signUpPage extends Component {
     }
     redirecting = ()=> { // adding a function to redirect
         if(this.state.registerSuccess){
+          localStorage.setItem("token", "T");
             return <Redirect to='/'/>
         } else return false
     }
@@ -40,12 +38,15 @@ class signUpPage extends Component {
         event.preventDefault();
         console.log('this.state is: ', this.state)
         try {
-             await api.post('/register', {
+            const payload = {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,
                 password: this.state.registerPassword,
                 profileImg: this.state.profileImg,
-                // add a field of profile bio
+                profileBio : this.state.registerProfileBio,
+            }
+            await api.post('/register', {
+                payload
             }, {
                 withCredentials: true
             })
@@ -59,8 +60,6 @@ class signUpPage extends Component {
                 islogged : true
             })
             console.log('registered')
-            await localStorage.setItem("token", "T"); //If the user logged, the user will get a fake-token, which is used as a key to open each protected page.
-            await alert('Sign up successful!')
             await this.redirecting()
         } catch (err) {
             console.log(err)
