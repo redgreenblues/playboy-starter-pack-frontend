@@ -17,8 +17,8 @@ export class Features extends Component {
         <h2 className="h1-responsive font-weight-bold my-5">
           "There is no strong beer only weak men."
         </h2>
-        <MDBRow>
-        <MDBCol md="4">
+        <MDBRow className='my-5'>
+        <MDBCol md="4" className='pb-5'>
             <Link to ='/memes'><MDBIcon far icon="comments" size="3x" className="orange-text" />
             <h5 className="font-weight-bold my-4" style={h5Style}>MEMES</h5></Link>
             <p className="grey-text mb-md-0 mb-5">
@@ -26,7 +26,7 @@ export class Features extends Component {
               and laughters to your lady.  
             </p>
           </MDBCol>
-          <MDBCol md="4">
+          <MDBCol md="4" className='pb-5'>
           <Link to ='/gifs'><MDBIcon icon="chart-area" size="3x" className="red-text" />
             <h5 className="font-weight-bold my-4" style={h5Style}>GIFS</h5></Link>
             <p className="grey-text mb-md-0 mb-5">
@@ -34,7 +34,7 @@ export class Features extends Component {
               ,making her feel comfortable and at ease at all times.
             </p>
           </MDBCol>
-          <MDBCol md="4">
+          <MDBCol md="4" className='pb-5'>
             <Link to ='/puns'><MDBIcon icon="book" size="3x" className="cyan-text" />
             <h5 className="font-weight-bold my-4" style={h5Style}>PUNS</h5></Link>
             <p className="grey-text mb-md-0 mb-5">

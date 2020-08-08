@@ -42,9 +42,11 @@ export class GifsPage extends Component {
             }
         }).map(gif => {
             return <ContentCard
+                currentUser = {this.props.username}
                 imgUrl={gif.content}
                 caption={gif.caption}
                 postedBy={gif.username}
+                comments ={gif.comments}
                 commentAmt={gif.comments.length}
                 likeAmt={gif.likes}
                 id={gif._id}
@@ -61,13 +63,14 @@ export class GifsPage extends Component {
                         className="rounded-circle img-fluid mx-auto my-3 d-block"
                         alt="cat gif"
                         title='cat gif'
-                        width='300' height='300' />
+                        width='500' height='300'
+                        style={{ margin: '0 auto' }} />
                 </MDBRow>
 
                 {/* Search box */}
                 <SearchBox handleChange={this.handleChange} />
 
-                <MDBRow style={{ width: "70%", justifyContent: "center" }} className='mx-auto'>
+                <MDBRow style={{ width: "75%", justifyContent: "center" }} className='mx-auto mb-5'>
                     {/* fetch gif here */}
                     {this.state.gifData ? gifsContent : null}
                 </MDBRow>
