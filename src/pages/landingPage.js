@@ -52,6 +52,7 @@ class LandingPage extends Component {
                 loginPassword: '',
                 loginSuccess: true
             })
+            await localStorage.getItem("token")
             await alert('Sign in successful!');
             await this.redirecting();
         } catch(err) {
@@ -61,12 +62,11 @@ class LandingPage extends Component {
         }
     }
 
-    render() {
+    render() {           
         return (
             <div className='landingPage'>
                 <MDBContainer >
                     {this.redirecting()}
-                    
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <form onSubmit={this.login}>
                             <MDBCard>
