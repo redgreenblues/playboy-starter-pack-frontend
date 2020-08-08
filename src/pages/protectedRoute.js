@@ -6,16 +6,7 @@ const ProtectedRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        localStorage.getItem("token") ? (
-          children
-        ) : (
-          <Redirect
-            to={{
-              pathname: "/",
-              state: { from: location }
-            }}
-          />
-        )
+        localStorage.getItem("token") ? children : window.location.href='/'
       }
     />
   );
