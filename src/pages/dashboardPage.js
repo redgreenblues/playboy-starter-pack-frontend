@@ -14,6 +14,7 @@ import {
     ProtectedRoute,
   }
     from '../pages'
+import api from '../api'
 
 // class DashboardPage extends Component {
 //     constructor(props) {
@@ -43,7 +44,24 @@ class DashboardPage extends Component {
             username: '',
         }
     }
-
+    componentDidMount = async () => {
+        try {
+            const response = await api.getUser();
+            console.log(response.data)
+            this.setState({
+                userId: response.data._id,
+                username: response.data.username,
+                profileImg: response.data.profileImg,
+                profileBio: response.data.profileBio,
+                authenticated: true
+            })
+        } catch (err) {
+            console.log(err)
+            this.setState({
+                authenticated: false
+            })
+        }
+    }
     render() {
         return (
             <Router>
@@ -53,9 +71,9 @@ class DashboardPage extends Component {
                     {/* <Route path= '/' exact component={LandingPage}/> */}
                     <ProtectedRoute path="/dashboard" exact component={Features}/>
                     <ProtectedRoute path="/profile" exact component={UserDashboardPage} />
-                    <Route path="/gifs" exact component={GifsPage} />
-                    <Route path="/memes" exact component={MemesPage} />
-                    <Route path="/puns" exact component={PunsPage} />
+                    <Route exact path="/gifs" render = {(props) => <GifsPage {...props} username={this.state.username} />} />
+                    <Route exact path="/memes" render = {(props) => <MemesPage {...props} username={this.state.username} /> }/>
+                    <Route exact path="/puns" render = {(props) => <MemesPage {...props} username={this.state.username} />}/>
                     <Route path="/new/meme" exact component={NewMeme} />
                     <Route path="/new/pun" exact component={NewPun} />
                     <Route path="/new/gif" exact component={NewGif} />
