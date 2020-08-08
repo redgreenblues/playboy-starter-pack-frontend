@@ -186,7 +186,7 @@ class UserDashboardPage extends Component {
                         </MDBCol>
                     </MDBCol>
                 </MDBCardBody>
-                <div className='user-content'>
+                <div className='user-content mb-5'>
                     {this.state.gifsLoading ? this.state.gifs.map(gif =>
                         <UserGifs
                             currentUser ={this.state.username}
@@ -194,6 +194,7 @@ class UserDashboardPage extends Component {
                             caption={gif.caption}
                             postedBy={gif.username}
                             comments={gif.comments}
+                            commentAmt={gif.comments.length}
                             likeAmt={gif.likes}
                             key={gif._id}
                             id={gif._id}
@@ -204,15 +205,20 @@ class UserDashboardPage extends Component {
                             imgUrl={meme.content}
                             caption={meme.caption}
                             postedBy={meme.username}
+                            comments={meme.comments}
+                            commentAmt={meme.comments.length}
                             likeAmt={meme.likes}
                             key={meme._id}
                             id={meme._id}
                             contentType={meme.contentType} />) : null}
                     {this.state.punsLoading ? this.state.puns.map(pun =>
                         <UserPuns
+                            currentUser ={this.state.username}
                             pun={pun.content}
                             caption={pun.caption}
                             postedBy={pun.username}
+                            comments={pun.comments}
+                            commentAmt={pun.comments.length}
                             likeAmt={pun.likes}
                             key={pun._id}
                             id={pun._id}

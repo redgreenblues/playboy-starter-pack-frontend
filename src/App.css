@@ -57,6 +57,10 @@
   flex-wrap: wrap;
 }
 
+i.pointer {
+  cursor: pointer;
+}
+
 /* Content Card */
 .thumbs-up:hover {
   cursor: pointer;

@@ -8,6 +8,7 @@ class UserGifs extends Component {
                 <UserContentCard 
                     currentUser = {this.props.currentUser}
                     comments = {this.props.comments}
+                    commentAmt={this.props.commentAmt}
                     caption={this.props.caption}
                     imgUrl={this.props.imgUrl}
                     postedBy={this.props.postedBy}

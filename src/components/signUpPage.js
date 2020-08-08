@@ -38,13 +38,15 @@ class signUpPage extends Component {
         event.preventDefault();
         console.log('this.state is: ', this.state)
         try {
-            
-            await api.post('/register', {
+            const payload = {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,
                 password: this.state.registerPassword,
                 profileImg: this.state.profileImg,
-                // add a field of profile bio
+                profileBio : this.state.registerProfileBio,
+            }
+            await api.post('/register', {
+                payload
             }, {
                 withCredentials: true
             })
@@ -58,7 +60,6 @@ class signUpPage extends Component {
                 islogged : true
             })
             console.log('registered')
-            await alert('Sign up successful!')
             await this.redirecting()
         } catch (err) {
             console.log(err)

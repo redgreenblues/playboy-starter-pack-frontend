@@ -6,6 +6,9 @@ class UserPuns extends Component {
         return (
             <Fragment>
                 <UserContentCard
+                currentUser = {this.props.currentUser}
+                comments = {this.props.comments}
+                commentAmt={this.props.commentAmt}
                 caption={this.props.caption}
                 pun={this.props.pun}
                 postedBy={this.props.postedBy}

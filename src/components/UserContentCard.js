@@ -28,6 +28,9 @@ class UserContentCard extends Component {
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
+        await this.setState({
+            likes: this.state.likes + 1
+        })
 
         const payload = {
             likes: this.state.likes
@@ -36,9 +39,9 @@ class UserContentCard extends Component {
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
-            this.setState({
-                likes: this.state.likes + 1
-            })
+            // this.setState({
+            //     likes: this.state.likes + 1
+            // })
         } catch (err) {
             console.log(err)
         }
@@ -46,10 +49,11 @@ class UserContentCard extends Component {
     }
 
     render() {
+        console.log(this.props.commentAmt)
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
-                    {/*contenttype === puns? if true render text : if false render image*/}
+
                     <MDBCardImage
                         style={{ width: '100%', height: 'auto' }}
                         className="img-fluid mx-auto"
@@ -66,7 +70,7 @@ class UserContentCard extends Component {
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" />
+                            <MDBIcon icon="share" size="lg" className="m-auto align-self-center thumbs-up"/>
                         </MDBCol>
                         <MDBCol>
 
@@ -79,7 +83,7 @@ class UserContentCard extends Component {
                         <MDBCol>
 
                         <MDBRow className='mx-auto justify-content-center' >
-                            <MDBIcon icon="comment-dots" onClick={this.toggleCommentModal} size="lg" className="m-auto align-self-center" />
+                            <MDBIcon icon="comment-dots" onClick={()=> {this.toggleCommentModal()}} size="lg" className="m-auto align-self-center thumbs-up" />
                             <h5 className="font-weight-light m-auto align-self-center"> {this.props.commentAmt}</h5>
                         </MDBRow>
 
@@ -94,10 +98,11 @@ class UserContentCard extends Component {
                 {this.state.commentModal? 
                     <CommentModal
                         currentUser = {this.props.currentUser}
-                        contentId ={this.props.contentId}
+                        id ={this.props.id}
                         commentModal ={this.state.commentModal}
                         comments = {this.props.comments}
                         handleCommentModal = {this.toggleCommentModal}
+                        content = {this.props.contentType}
                     />
                     :
                     null

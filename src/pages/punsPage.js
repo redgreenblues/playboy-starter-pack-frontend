@@ -45,9 +45,11 @@ export class PunsPage extends Component {
             }
         }).map(pun => {
             return <ContentCard
+                currentUser = {this.props.username}
                 pun={pun.content}
                 caption={pun.caption}
                 postedBy={pun.username}
+                comments ={pun.comments}
                 commentAmt={pun.comments.length}
                 likeAmt={pun.likes}
                 id={pun._id}
@@ -65,13 +67,13 @@ export class PunsPage extends Component {
                         className=" img-fluid mx-auto my-3 d-block"
                         alt="puns title"
                         title='puns title'
-                        width='300' height='300' />
+                        width='500' height='300' />
                 </MDBRow>
 
                 {/* Search box */}
                 <SearchBox handleChange={this.handleChange} />
 
-                <MDBRow style={{ width: "70%", justifyContent: "center" }} className='mx-auto'>
+                <MDBRow style={{ width: "70%", justifyContent: "center" }} className='mx-auto mb-5'>
                     {/* fetch pun here */}
                     {this.state.punsData ? punsContent : null}
                 </MDBRow>

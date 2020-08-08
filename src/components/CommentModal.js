@@ -12,10 +12,11 @@ export class CommentModal extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            contentId : this.props.contentId,
+            id : this.props.id,
             postComment : '',
             comments : this.props.comments,
-            currentUser : this.props.currentUser
+            currentUser : this.props.currentUser,
+
         }
     }
     handleChange = event => {
@@ -28,20 +29,17 @@ export class CommentModal extends Component {
         event.preventDefault();
         try {
             const payload = {
-                contentId : this.props.contentId,
+                id : this.state.id,
                 comment : this.state.postComment,
                 currentUser : this.state.currentUser
             }
-            console.log(payload)
-            const postComment = await api.postGifComment(payload)
-
-            const result = await api.getOneGif(this.props.contentId)
-            console.log(result.data)
+            await api.postComment(payload)
+            const result = await api.getOneContent(this.state.id)
             await this.setState({
-                contentId : result.data._id,
+                id : result.data._id,
+                postComment : '',
                 comments : result.data.comments
-            }) 
-            alert(this.state)      
+            })  
         } catch (err) {
             this.setState({
                 error: true
@@ -49,27 +47,26 @@ export class CommentModal extends Component {
         }
         
     }
-
-
     render() {
-        console.log(this.props.comments)
         return (
             <MDBContainer>
-            <MDBModal isOpen={this.props.commentModal} toggle={this.props.handleCommentModal}>
+            <MDBModal 
+            isOpen={this.props.commentModal} 
+            toggle={this.props.handleCommentModal}>
                 <MDBModalHeader toggle={this.props.handleCommentModal} className='text-center'>
                     Comments
                 </MDBModalHeader>
                 <MDBModalBody>
                     <MDBListGroup style={{ width: "100%", height: '200px', overflow: 'scroll' }}>
                         {this.state.comments.map ((comment,index)=> {
-                            return <MDBListGroupItem>
+                            return <MDBListGroupItem className ={index}>
                                 <div className="d-flex w-100 align-items-end">
                                     <p className="mb-1">{comment.description}</p>
                                 </div>
                                 <small className='text-right'>posted by :{comment.commentedBy} </small>
                             </MDBListGroupItem>
                         })
-                        }
+                    }
                     </MDBListGroup>
                     <form onSubmit={this.postComment}>
                         <MDBInput label='comment'
