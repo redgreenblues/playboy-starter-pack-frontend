@@ -25,23 +25,6 @@ class LandingRoute extends Component {
        profileImg :''
     }
   }
-//   componentDidMount = async () => {
-//     try {
-//         const response = await api.getUser();
-//         console.log(response.data)
-//         this.setState({
-//             username: response.data.username,
-//             profileImg: response.data.profileImg,
-//             profileBio: response.data.profileBio,
-//             authenticated: true
-//         })
-//     } catch (err) {
-//         console.log(err)
-//         this.setState({
-//             authenticated: false
-//         })
-//     }
-// }
   
   render() {
     return (
@@ -69,6 +52,4 @@ class LandingRoute extends Component {
     )
   }
 }
-
-
 export default LandingRoute

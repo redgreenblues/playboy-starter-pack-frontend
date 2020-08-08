@@ -29,7 +29,6 @@ class signUpPage extends Component {
     }
     redirecting = ()=> { // adding a function to redirect
         if(this.state.registerSuccess){
-          localStorage.setItem("token", "T");
             return <Redirect to='/'/>
         } else return false
     }
@@ -37,6 +36,10 @@ class signUpPage extends Component {
     register = async event => {
         event.preventDefault();
         console.log('this.state is: ', this.state)
+        if (this.state.registerPassword === this.state.registerPassword2) {
+            alert('Password do not match')
+            return false
+        }
         try {
             const payload = {
                 username: this.state.registerUsername,
@@ -63,6 +66,9 @@ class signUpPage extends Component {
             await this.redirecting()
         } catch (err) {
             console.log(err)
+            this.setState ({
+                error:true
+            })
         }
 
     }
@@ -77,6 +83,7 @@ class signUpPage extends Component {
                    <MDBCardTitle className='m-2'>
                        This is sign up page
                    </MDBCardTitle>
+                   {this.state.error? <h1>username already existed!</h1> : null}
                    <MDBCardBody>
                    <form onSubmit={this.register}>
                        <MDBInput label='username' 

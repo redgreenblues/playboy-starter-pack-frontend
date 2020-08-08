@@ -16,27 +16,6 @@ import {
     from '../pages'
 import api from '../api'
 
-// class DashboardPage extends Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = {
-//             username: '',
-//         }
-//     }
-
-//     render() {
-//         return (
-//             <Fragment>
-//                 <Header />
-//                 <NavBar /> 
-//                 {/* first time NavBar is rendered */}
-//                 <Features /> 
-//             </Fragment>
-//         )
-//     }
-// }
-
-
 class DashboardPage extends Component {
     constructor(props) {
         super(props)
@@ -44,10 +23,10 @@ class DashboardPage extends Component {
             username: '',
         }
     }
+
     componentDidMount = async () => {
         try {
             const response = await api.getUser();
-            console.log(response.data)
             this.setState({
                 userId: response.data._id,
                 username: response.data.username,
@@ -84,7 +63,6 @@ class DashboardPage extends Component {
                     <Route path="/new/gif" exact component={NewGif} />
                 </Switch>
                 {/* first time NavBar is rendered */}
-                
             </Router>
         )
     }
