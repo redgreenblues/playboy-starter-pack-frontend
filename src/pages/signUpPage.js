@@ -50,18 +50,23 @@ class SignUpPage extends Component {
             }
             const response = await api.registerUser(payload);
             console.log(response.data)
-            this.setState({
-                registerUsername: '',
-                registerPassword: '',
-                registerPassword2: '', // Confirmation password
-                registerEmail: '',
-                registerProfileImg: '',
-                registerSuccess : true, // adding a function to redirect
-                islogged : true
-            })
-            console.log('registered');
-            await localStorage.setItem("token", "T");
-            await this.redirecting();
+            if (this.state.registerEmail === response.data.email) {
+                alert('email exist')
+            } else if (this.state.registerUsername === response.data.username) {
+                alert('user exist')
+            } else {
+                this.setState({
+                    registerUsername: '',
+                    registerPassword: '',
+                    registerPassword2: '', // Confirmation password
+                    registerEmail: '',
+                    registerProfileImg: '',
+                    registerSuccess : true, // adding a function to redirect
+                    islogged : true
+                })
+                console.log('registered');
+                await this.redirecting();
+            }       
         } catch (err) {
             console.log(err)
             this.setState ({
