@@ -23,7 +23,9 @@ export class CommentModal extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
-        console.log(this.state[event.target.name])
+    }
+    handleComment = (commentAmt) => {
+        this.props.handleComment(commentAmt)
     }
     postComment = async (event) => {
         event.preventDefault();
@@ -38,14 +40,15 @@ export class CommentModal extends Component {
             await this.setState({
                 id : result.data._id,
                 postComment : '',
-                comments : result.data.comments
-            })  
+                comments : result.data.comments,
+                commentAmt : result.data.comments.length
+            })
+            await this.handleComment(this.state.commentAmt)
         } catch (err) {
             this.setState({
                 error: true
             })
         }
-        
     }
     render() {
         return (

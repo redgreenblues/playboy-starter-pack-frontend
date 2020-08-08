@@ -63,7 +63,6 @@ class signUpPage extends Component {
                 islogged : true
             })
             console.log('registered')
-            await localStorage.setItem("token", "T");
             await this.redirecting()
         } catch (err) {
             console.log(err)

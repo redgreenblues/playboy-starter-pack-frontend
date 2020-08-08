@@ -22,10 +22,18 @@ class ContentCard extends Component {
             commentModal: !this.state.commentModal
         })
     }
+    updateComment = (commentAmt) => {
+        this.setState({
+            commentAmt : commentAmt
+        })
+    }
 
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
+        await this.setState({
+            likes: this.state.likes + 1
+        })
         const payload = {
             likes: this.state.likes
         }
@@ -33,9 +41,6 @@ class ContentCard extends Component {
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
-            this.setState({
-                likes: this.state.likes + 1
-            })
         } catch (err) {
             console.log(err)
         }
@@ -58,7 +63,7 @@ class ContentCard extends Component {
     }
 
     render() {
-
+        console.log(this.state.likes)
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
@@ -105,6 +110,7 @@ class ContentCard extends Component {
                         comments = {this.props.comments}
                         handleCommentModal = {this.toggleCommentModal}
                         content = {this.props.contentType}
+                        handleComment = {this.updateComment}
                     />
                     :
                     null

@@ -15,13 +15,19 @@ class UserContentCard extends Component {
 
         this.state = {
             likes: this.props.likeAmt,
-            commentModal: false
+            commentModal: false,
+            commentAmt: this.props.commentAmt
         }
     }
 
     toggleCommentModal = () => {
         this.setState({
             commentModal: !this.state.commentModal
+        })
+    }
+    updateComment = (commentAmt) => {
+        this.setState({
+            commentAmt : commentAmt
         })
     }
 
@@ -31,7 +37,6 @@ class UserContentCard extends Component {
         await this.setState({
             likes: this.state.likes + 1
         })
-
         const payload = {
             likes: this.state.likes
         }
@@ -39,17 +44,12 @@ class UserContentCard extends Component {
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
-            // this.setState({
-            //     likes: this.state.likes + 1
-            // })
         } catch (err) {
             console.log(err)
         }
-        
     }
 
     render() {
-        console.log(this.props.commentAmt)
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
@@ -84,7 +84,7 @@ class UserContentCard extends Component {
 
                         <MDBRow className='mx-auto justify-content-center' >
                             <MDBIcon icon="comment-dots" onClick={()=> {this.toggleCommentModal()}} size="lg" className="m-auto align-self-center thumbs-up" />
-                            <h5 className="font-weight-light m-auto align-self-center"> {this.props.commentAmt}</h5>
+                            <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5>
                         </MDBRow>
 
                         </MDBCol>
@@ -103,6 +103,7 @@ class UserContentCard extends Component {
                         comments = {this.props.comments}
                         handleCommentModal = {this.toggleCommentModal}
                         content = {this.props.contentType}
+                        handleComment = {this.updateComment}
                     />
                     :
                     null

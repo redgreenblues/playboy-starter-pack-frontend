@@ -52,7 +52,7 @@ class LandingPage extends Component {
                 loginPassword: '',
                 loginSuccess: true
             })
-            await localStorage.getItem("token")
+            await localStorage.setItem("token","T")
             await alert('Sign in successful!');
             await this.redirecting();
         } catch(err) {
