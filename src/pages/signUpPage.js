@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
-import {Redirect, Link} from "react-router-dom"
+import {Redirect, Link} from "react-router-dom";
 import { MDBContainer, MDBBtn, MDBInput,
     MDBCol,MDBCard, MDBCardBody,
     MDBCardTitle } 
 from 'mdbreact';
 
-const api = Axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
-})
+import api from '../api';
 
-class signUpPage extends Component {
+class SignUpPage extends Component {
     constructor(props) {
         super(props) 
         this.state = {
@@ -20,7 +17,8 @@ class signUpPage extends Component {
             registerEmail: '',
             registerProfileImg: '',
             registerProfileBio:'',
-            registerSuccess : false
+            registerSuccess : false,
+            islogged : false
         }
     }
 
@@ -29,7 +27,7 @@ class signUpPage extends Component {
             [event.target.name]: event.target.value
         })
     }
-    redirecting = ()=> { // adding a function to redirect
+    redirecting = () => { // adding a function to redirect
         if(this.state.registerSuccess){
         return <Redirect to='/'/>
         } else return false
@@ -38,33 +36,43 @@ class signUpPage extends Component {
     register = async event => {
         event.preventDefault();
         console.log('this.state is: ', this.state)
+        if(this.state.registerPassword !== this.state.registerPassword2 ) {
+            alert('password do not match!')
+            return false
+        }
         try {
-            await api.post('/register', {
+            const payload = {
                 username: this.state.registerUsername,
                 email: this.state.registerEmail,
                 password: this.state.registerPassword,
-                profileImg: this.state.profileImg,
-                // add a field of profile bio
-            }, {
-                withCredentials: true
-            })
-            this.setState({
-                registerUsername: '',
-                registerPassword: '',
-                registerPassword2: '', // Confirmation password
-                registerEmail: '',
-                registerProfileImg: '',
-                registerSuccess : true // adding a function to redirect
-            })
-            console.log('registered')
-            await alert('Sign up successful!')
-            await this.redirecting()
+                profileImg: this.state.registerProfileImg,
+                profileBio : this.state.registerProfileBio,
+            }
+            const response = await api.registerUser(payload);
+            console.log(response.data)
+            if (this.state.registerEmail === response.data.email) {
+                alert('email exist')
+            } else if (this.state.registerUsername === response.data.username) {
+                alert('user exist')
+            } else {
+                this.setState({
+                    registerUsername: '',
+                    registerPassword: '',
+                    registerPassword2: '', // Confirmation password
+                    registerEmail: '',
+                    registerProfileImg: '',
+                    registerSuccess : true, // adding a function to redirect
+                    islogged : true
+                })
+                console.log('registered');
+                await this.redirecting();
+            }       
         } catch (err) {
+            console.log(err)
             this.setState ({
                 error : true
             })
         }
-
     }
 
     render() {
@@ -77,7 +85,7 @@ class signUpPage extends Component {
                    <MDBCardTitle className='m-2'>
                        This is sign up page
                    </MDBCardTitle>
-                   {this.state.error? <h1>username already existed! </h1> : null}
+                   {this.state.error ? <h1>username already existed! </h1> : null}
                    <MDBCardBody>
                    <form onSubmit={this.register}>
                        <MDBInput label='username' 
@@ -132,4 +140,4 @@ class signUpPage extends Component {
     }
 }
 
-export default signUpPage
+export default SignUpPage

@@ -4,6 +4,7 @@
   text-align: center;
 }
 
+ /* landing page */
 .landingPage {
   background-image: url("./public/landingpage_bg.jpg");
   height: 100vh; 
@@ -22,4 +23,45 @@
 .cardbottom {
   display: flex;
   flex-flow: column nowrap;
+}
+
+/* navbar */
+.header {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-end;
+  background-image: url("./public/banner_bg.jpg");
+  height: 60vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* User Dashboard */
+
+.user-content-header {
+  cursor: pointer;
+  color: #616A6B;
+}
+
+.user-content-header:hover {
+  color: #000;
+  font-weight: 400;
+}
+
+.user-content {
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+i.pointer {
+  cursor: pointer;
+}
+
+/* Content Card */
+.thumbs-up:hover {
+  cursor: pointer;
 }
