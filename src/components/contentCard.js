@@ -22,20 +22,25 @@ class ContentCard extends Component {
             commentModal: !this.state.commentModal
         })
     }
+    updateComment = (commentAmt) => {
+        this.setState({
+            commentAmt : commentAmt
+        })
+    }
 
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
-        const payload = {
-            likes: this.state.likes
-        }
+        await this.setState({
+            likes: this.state.likes + 1
+        })
         try {
+            const payload = {
+                likes: this.state.likes
+            }
             if (content === 'Meme') await api.updateMeme(id, payload);
             if (content === 'Gif') await api.updateGif(id, payload);
             if (content === 'Pun') await api.updatePun(id, payload);
-            this.setState({
-                likes: this.state.likes + 1
-            })
         } catch (err) {
             console.log(err)
         }
@@ -58,7 +63,7 @@ class ContentCard extends Component {
     }
 
     render() {
-
+        console.log(this.state.likes)
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
@@ -88,7 +93,6 @@ class ContentCard extends Component {
                             <MDBRow className='mx-auto justify-content-center'>
                                 <MDBIcon icon="comment-dots" size="lg" onClick={this.toggleCommentModal} className="m-auto align-self-center thumbs-up" />
                                 <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
-                                {/* /*unable to update the number*/}
                             </MDBRow>
                         </MDBCol>
                     </MDBRow>
@@ -105,6 +109,7 @@ class ContentCard extends Component {
                         comments = {this.props.comments}
                         handleCommentModal = {this.toggleCommentModal}
                         content = {this.props.contentType}
+                        handleComment = {this.updateComment}
                     />
                     :
                     null
