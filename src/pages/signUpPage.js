@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Redirect} from "react-router-dom";
 import { MDBContainer, MDBBtn, MDBInput,
     MDBCol,MDBCard, MDBCardBody,
-    MDBCardTitle } 
+    MDBCardTitle, MDBAlert } 
 from 'mdbreact';
 
 import api from '../api';
@@ -49,7 +49,7 @@ class SignUpPage extends Component {
                 profileBio: this.state.registerProfileBio,
             }
             const response = await api.registerUser(payload);
-
+            console.log(response.data)
             if (this.state.registerPassword !== this.state.registerPassword2) {
                 this.setState({
                     passwordError: true,
