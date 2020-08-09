@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { 
-    MDBCol, MDBRow, MDBBtn, 
+    MDBCol, MDBRow,
     MDBCard, MDBCardBody, MDBCardTitle, 
     MDBCardImage, MDBIcon, MDBCardText, 
     MDBCardFooter 
@@ -62,6 +62,10 @@ class ContentCard extends Component {
         }
     }
 
+    renderProfile = () => {
+        window.location.href=`/session/profile/${this.props.postedBy}`
+    }
+
     render() {
         console.log(this.state.likes)
         return (
@@ -97,8 +101,7 @@ class ContentCard extends Component {
                         </MDBCol>
                     </MDBRow>
                     <MDBCardFooter color="grey lighten-1" >
-                        posted by,
-                        <a href='/username' className='text-decoration-none'>{this.props.postedBy}</a>
+                        <p className="content-username" onClick={this.renderProfile}>posted by <span>{this.props.postedBy}</span></p>
                     </MDBCardFooter>
                 </MDBCard>
                 {this.state.commentModal? 

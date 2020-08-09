@@ -89,7 +89,7 @@ export class NavBar extends Component {
               <MDBNavLink to='/session/dashboard'>Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/sessions/memes">Memes</MDBNavLink>
+              <MDBNavLink to="/session/memes">Memes</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/session/gifs">Gifs</MDBNavLink>
@@ -114,7 +114,7 @@ export class NavBar extends Component {
               <MDBNavLink to="/session/new/gif"><MDBIcon icon="plus-circle" className="mr-2" />Gif</MDBNavLink>
             </MDBNavItem>
 
-            <MDBNavItem className="white-text d-flex align-items-center ml-3">
+            <MDBNavItem className="white-text d-flex align-items-center ml-3 mr-3">
             <MDBNavLink to="/session/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Pun</MDBNavLink>
             </MDBNavItem>
 
@@ -125,13 +125,13 @@ export class NavBar extends Component {
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
-                <strong className='white-text'><MDBIcon icon="user" />{this.state.username}</strong>
+                <strong className='white-text'><MDBIcon icon="user mr-2" />{this.state.username}</strong>
                   
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   {/* <MDBCardTitle className='m-2 border-bottom text-center'>Create Content</MDBCardTitle> */}
-                  <MDBDropdownItem ><Link onClick={this.renderProfile}><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
-                  <MDBDropdownItem className='border-top' href='#' onClick={this.logOut}>Sign Out</MDBDropdownItem>
+                  <MDBDropdownItem className="pl-0"><Link onClick={this.renderProfile}><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
+                  <MDBDropdownItem className='border-top' onClick={this.logOut}>Sign Out</MDBDropdownItem>
                   {/* {this.redirecting()} */}
                 </MDBDropdownMenu>
               </MDBDropdown>
