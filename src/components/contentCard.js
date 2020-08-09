@@ -7,7 +7,8 @@ import {
 } 
 from 'mdbreact'
 import api from '../api';
-import CommentModal from './CommentModal'
+import CommentModal from './CommentModal';
+import editGifModal from './edit/editGif';
 
 class ContentCard extends Component {
     constructor(props) {
@@ -25,6 +26,25 @@ class ContentCard extends Component {
     updateComment = (commentAmt) => {
         this.setState({
             commentAmt : commentAmt
+        })
+    }
+
+    toggleEditGifModal = () => {
+        this.setState({
+            editGifModal: !this.state.editGifModal
+        })
+    }
+
+    handleEditGif = (commentAmt) => {
+        this.props.handleEditGif(commentAmt)
+    }
+
+    updateGif = (commentAmt) => {
+        this.setState({
+            id: this.state.id,
+            gifImg: '',
+            gifCaption: '',
+            currentUser : this.state.currentUser
         })
     }
 
@@ -83,6 +103,16 @@ class ContentCard extends Component {
                         <MDBCol>
                             <MDBIcon icon="share" size="lg" className='thumbs-up'/>
                         </MDBCol>
+                        {/* <MDBCol>
+                            <MDBIcon icon="edit" size="lg" onClick={this.toggleEditGifModal} className="m-auto align-self-center thumbs-up" />
+                            <h5 className="font-weight-light m-auto align-self-center"> {this.state.gifModal}</h5> 
+                        </MDBCol> */}
+                        <MDBCol>
+                            <MDBRow className='mx-auto justify-content-center'>
+                                <MDBIcon icon="edit" size="lg" onClick={this.toggleEditGifModal} className="m-auto align-self-center thumbs-up" />
+                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5> 
+                            </MDBRow>
+                        </MDBCol>
                         <MDBCol>
                             <MDBRow className='mx-auto justify-content-center'>
                                 <MDBIcon icon="thumbs-up" size="lg" className="m-auto align-self-center thumbs-up" onClick={() => this.handleLikes(this.props.contentType)} />
@@ -110,6 +140,19 @@ class ContentCard extends Component {
                         handleCommentModal = {this.toggleCommentModal}
                         content = {this.props.contentType}
                         handleComment = {this.updateComment}
+                    />
+                    :
+                    null
+                    }
+
+                {this.state.editGifModal? 
+                    <editGifModal
+                        currentUser = {this.props.currentUser}
+                        id ={this.props.id}
+                        gifModal = {this.state.editGifModal}
+                        editGifModal = {this.toggleEditGifModal}
+                        content = {this.props.contentType}
+                        handleEditGif = {this.handleEditGif}
                     />
                     :
                     null

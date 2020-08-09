@@ -23,7 +23,7 @@ const getGifsByUser = username => api.get(`/gifs/${username}`);
 const updateGif = (id, payload) => api.put(`/gif/${id}`, payload);
 const getOneGif = id => api.get(`/gif/${id}`);
 
-// const editOneGif = (id, payload) => api.get(`/gif/${id}`, payload);
+const getGifById = (id, payload) => api.get(`/gif/${id}`, payload);
 
 
 // Meme
@@ -67,7 +67,7 @@ const apis = {
     updateMeme,
     updateGif,
     updatePun,
-    editOneGif,
+    getGifById,
     // editOneMeme,
     // editOnePun,
     postComment,
