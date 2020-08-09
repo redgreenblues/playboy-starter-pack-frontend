@@ -15,6 +15,7 @@ const updateUser = payload => {
     console.log('updating with...', payload)
     api.put(`/update/${payload.userId}`, payload);
 }
+const getUserByUsername = username => api.get(`/user/${username}`);
 
 // Gif
 const registerGif = payload => api.post('/gif', payload);
@@ -73,7 +74,8 @@ const apis = {
     // editOnePun,
     postComment,
     getOneContent,
-    deleteContent
+    deleteContent,
+    getUserByUsername
 }
 
 export default apis

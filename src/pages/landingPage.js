@@ -53,7 +53,6 @@ class LandingPage extends Component {
                 loginSuccess: true
             })
             await localStorage.setItem("token", "T");
-            await alert('Sign in successful!');
             await this.redirecting();
         } catch(err) {
             this.setState({
@@ -90,7 +89,7 @@ class LandingPage extends Component {
                                         <div className='cardbottom'>
                                             <MDBBtn type='submit'>Sign in</MDBBtn>
                                             <MDBCardText className='my-2'>Or</MDBCardText>
-                                            <MDBBtn href='/signup' >Sign up</MDBBtn>
+                                            <MDBBtn href='/signup' style={{ textDecoration:'none' }}>Sign up</MDBBtn>
                                         </div>
                                 </MDBCardBody>
                             </MDBCard>

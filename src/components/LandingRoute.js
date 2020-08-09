@@ -8,7 +8,6 @@ import {
 }
   from '../pages'
 
-
 class LandingRoute extends Component {
   constructor(props) {
     super(props)

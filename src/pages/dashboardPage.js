@@ -56,7 +56,7 @@ class DashboardPage extends Component {
                         : 
                         <button onClick={this.renderSignIn}>Please sign in</button>
                     }
-                    <Route path="/session/profile" component={UserDashboardPage} />
+                    <Route path="/session/profile/:username" component={UserDashboardPage} />
                     <Route path="/session/gifs" 
                         render = {
                             (props) => 

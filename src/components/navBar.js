@@ -48,6 +48,11 @@ export class NavBar extends Component {
       console.log(err)
     }
   }
+
+  renderProfile = () => {
+    window.location.href=`/session/profile/${this.state.username}`
+  }
+
   navBarStyle = () => {
     return {
       display : 'flex',
@@ -94,21 +99,21 @@ export class NavBar extends Component {
               <MDBNavLink to="/session/new/gif"><MDBIcon icon="plus-circle" className="mr-2" />Gif</MDBNavLink>
             </MDBNavItem>
 
-            <MDBNavItem className="white-text d-flex align-items-center ml-3">
+            <MDBNavItem className="white-text d-flex align-items-center ml-3 mr-3">
             <MDBNavLink to="/session/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Pun</MDBNavLink>
             </MDBNavItem>
             
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
-                <strong className='white-text'><MDBIcon icon="user" />{this.state.username}</strong>
+                <strong className='white-text'><MDBIcon icon="user mr-2" />{this.state.username}</strong>
                   
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
-
-                  <MDBDropdownItem ><Link to ='/session/profile'><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
-                  <MDBDropdownItem className='border-top' href='#' onClick={this.logOut}>Sign Out</MDBDropdownItem>
-
+                  {/* <MDBCardTitle className='m-2 border-bottom text-center'>Create Content</MDBCardTitle> */}
+                  <MDBDropdownItem className="pl-0"><Link onClick={this.renderProfile}><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
+                  <MDBDropdownItem className='border-top' onClick={this.logOut}>Sign Out</MDBDropdownItem>
+                  {/* {this.redirecting()} */}
                 </MDBDropdownMenu>
               </MDBDropdown>
             </MDBNavItem>

@@ -34,7 +34,7 @@ class UserDashboardPage extends Component {
 
     componentDidMount = async () => {
         try {
-            const response = await api.getUser();
+            const response = await api.getUserByUsername(this.props.match.params.username);
             console.log(response.data)
             this.setState({
                 userId: response.data._id,
