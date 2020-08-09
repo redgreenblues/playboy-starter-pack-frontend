@@ -111,7 +111,7 @@ export class NavBar extends Component {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   {/* <MDBCardTitle className='m-2 border-bottom text-center'>Create Content</MDBCardTitle> */}
-                  <MDBDropdownItem className="pl-0"><Link onClick={this.renderProfile}><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
+                  <MDBDropdownItem onClick={this.renderProfile}><MDBIcon far icon="user-circle" className="mr-2" />Profile</MDBDropdownItem>
                   <MDBDropdownItem className='border-top' onClick={this.logOut}>Sign Out</MDBDropdownItem>
                   {/* {this.redirecting()} */}
                 </MDBDropdownMenu>

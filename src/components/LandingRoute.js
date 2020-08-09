@@ -24,9 +24,9 @@ class LandingRoute extends Component {
         <Router>
           <div className="App">
             <Switch>
-              <Route exact path="/"  component={LandingPage} />
+              <Route exact path="/" component={LandingPage} />
               <Route path="/signup" component={SignUpPage} />
-              <ProtectedRoute path="/session" component={DashboardPage} />
+              <ProtectedRoute path="/session" ><DashboardPage /></ProtectedRoute>
             </Switch>
           </div>
         </Router>

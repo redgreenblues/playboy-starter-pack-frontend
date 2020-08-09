@@ -38,12 +38,9 @@ export class MemesPage extends Component {
     render() {
 
         const memesContent = this.state.memesData.filter(meme => {
-            if (this.state.searchField === null) return meme
-            else if (meme.caption.toLowerCase().includes(this.state.searchField.toLowerCase()) 
+            return (meme.caption.toLowerCase().includes(this.state.searchField.toLowerCase()) 
             || meme.content.toLowerCase().includes(this.state.searchField.toLowerCase()) 
-            || meme.username.toLowerCase().includes(this.state.searchField.toLowerCase())) {
-                return meme
-            }
+            || meme.username.toLowerCase().includes(this.state.searchField.toLowerCase()))
         }).map(meme => {
             return <ContentCard
                 currentUser = {this.props.username}

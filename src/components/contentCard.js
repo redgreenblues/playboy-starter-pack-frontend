@@ -54,7 +54,6 @@ class ContentCard extends Component {
                 commentAmt :getContent.data.comments.length
 
             })
-            console.log(getContent.data)
         } catch (err) {
             this.setState({
                 error: true
@@ -67,7 +66,6 @@ class ContentCard extends Component {
     }
 
     render() {
-        console.log(this.state.likes)
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
