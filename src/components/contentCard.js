@@ -73,7 +73,6 @@ class ContentCard extends Component {
                 commentAmt :getContent.data.comments.length
 
             })
-            console.log(getContent.data)
         } catch (err) {
             this.setState({
                 error: true
@@ -81,8 +80,11 @@ class ContentCard extends Component {
         }
     }
 
+    renderProfile = () => {
+        window.location.href=`/session/profile/${this.props.postedBy}`
+    }
+
     render() {
-        console.log(this.state.likes)
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
@@ -126,8 +128,7 @@ class ContentCard extends Component {
                         </MDBCol>
                     </MDBRow>
                     <MDBCardFooter color="grey lighten-1" >
-                        posted by,
-                        <a href='/username' className='text-decoration-none'>{this.props.postedBy}</a>
+                        <p className="content-username" onClick={this.renderProfile}>posted by <span>{this.props.postedBy}</span></p>
                     </MDBCardFooter>
                 </MDBCard>
                 {this.state.commentModal? 

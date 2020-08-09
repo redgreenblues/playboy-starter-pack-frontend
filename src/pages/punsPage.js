@@ -37,12 +37,9 @@ export class PunsPage extends Component {
     render() {
 
         const punsContent = this.state.punsData.filter(pun => {
-            if (this.state.searchField === null) return pun
-            else if (pun.caption.toLowerCase().includes(this.state.searchField.toLowerCase()) 
+            return (pun.caption.toLowerCase().includes(this.state.searchField.toLowerCase()) 
             || pun.content.toLowerCase().includes(this.state.searchField.toLowerCase())
-            || pun.username.toLowerCase().includes(this.state.searchField.toLowerCase())) {
-                return pun
-            }
+            || pun.username.toLowerCase().includes(this.state.searchField.toLowerCase()))
         }).map(pun => {
             return <ContentCard
                 currentUser = {this.props.username}

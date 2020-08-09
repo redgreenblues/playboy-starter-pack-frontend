@@ -19,7 +19,7 @@ export class Features extends Component {
         </h2>
         <MDBRow className='my-5'>
         <MDBCol md="4" className='pb-5'>
-            <Link to ='/memes'><MDBIcon far icon="comments" size="3x" className="orange-text" />
+            <Link to ='/session/memes'><MDBIcon far icon="comments" size="3x" className="orange-text" />
             <h5 className="font-weight-bold my-4" style={h5Style}>MEMES</h5></Link>
             <p className="grey-text mb-md-0 mb-5">
               A collection of cultural and behavioral expression enough to bring sunshine 
@@ -27,7 +27,7 @@ export class Features extends Component {
             </p>
           </MDBCol>
           <MDBCol md="4" className='pb-5'>
-          <Link to ='/gifs'><MDBIcon icon="chart-area" size="3x" className="red-text" />
+          <Link to ='/session/gifs'><MDBIcon icon="chart-area" size="3x" className="red-text" />
             <h5 className="font-weight-bold my-4" style={h5Style}>GIFS</h5></Link>
             <p className="grey-text mb-md-0 mb-5">
               Express yourself with giphys to make your conversation with her lighted
@@ -35,7 +35,7 @@ export class Features extends Component {
             </p>
           </MDBCol>
           <MDBCol md="4" className='pb-5'>
-            <Link to ='/puns'><MDBIcon icon="book" size="3x" className="cyan-text" />
+            <Link to ='/session/puns'><MDBIcon icon="book" size="3x" className="cyan-text" />
             <h5 className="font-weight-bold my-4" style={h5Style}>PUNS</h5></Link>
             <p className="grey-text mb-md-0 mb-5">
               Intelligent attracts, period. So go dazzle your girl with puns that would leave her star-strucked. 

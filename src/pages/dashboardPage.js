@@ -1,5 +1,5 @@
 import React, { Component} from 'react'
-import Features from '../components/features.js'
+import Features from '../components/Features.js'
 import NavBar from '../components/navBar'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
@@ -9,10 +9,9 @@ import {
     PunsPage,
     NewMeme,
     NewGif,
-    NewPun,
-    ProtectedRoute,
+    NewPun
   }
-    from '../pages'
+    from '.'
 import api from '../api'
 
 class DashboardPage extends Component {
@@ -51,12 +50,8 @@ class DashboardPage extends Component {
                 {/* <Header /> */}
                 <NavBar />
                 <Switch>
-                    {localStorage.getItem("token") ? 
-                        <ProtectedRoute path="/session/dashboard" exact component={Features}/> 
-                        : 
-                        <button onClick={this.renderSignIn}>Please sign in</button>
-                    }
-                    <Route path="/session/profile" component={UserDashboardPage} />
+                    <Route path="/session/dashboard" exact component={Features} />
+                    <Route path="/session/profile/:username" component={UserDashboardPage} />
                     <Route path="/session/gifs" 
                         render = {
                             (props) => 

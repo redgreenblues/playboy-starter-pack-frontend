@@ -34,12 +34,9 @@ export class GifsPage extends Component {
     render() {
 
         const gifsContent = this.state.gifData.filter(gif => {
-            if (this.state.searchField === null) return gif
-            else if (gif.caption.toLowerCase().includes(this.state.searchField.toLowerCase()) 
+            return (gif.caption.toLowerCase().includes(this.state.searchField.toLowerCase()) 
             || gif.content.toLowerCase().includes(this.state.searchField.toLowerCase())
-            || gif.username.toLowerCase().includes(this.state.searchField.toLowerCase())) {
-                return gif
-            }
+            || gif.username.toLowerCase().includes(this.state.searchField.toLowerCase()))
         }).map(gif => {
             return <ContentCard
                 currentUser = {this.props.username}

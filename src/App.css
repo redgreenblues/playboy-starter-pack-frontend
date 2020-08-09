@@ -15,6 +15,7 @@
   display: flex;
   align-items: center;
 }
+
 .col {
   justify-content: center;
   margin: 0 auto;
@@ -23,6 +24,10 @@
 .cardbottom {
   display: flex;
   flex-flow: column nowrap;
+}
+
+.landingPage a:hover {
+  text-decoration: underline;
 }
 
 /* navbar */
@@ -64,4 +69,20 @@ i.pointer {
 /* Content Card */
 .thumbs-up:hover {
   cursor: pointer;
+}
+
+.content-username {
+  margin: 0;
+}
+
+.content-username span {
+  font-weight: 700;
+  font-size: 1.1em;
+
+}
+
+.content-username span:hover {
+  cursor: pointer;
+  color: #3498DB;
+  text-decoration: underline;
 }

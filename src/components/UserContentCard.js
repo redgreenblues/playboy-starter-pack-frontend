@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import {
-    MDBCol, MDBRow, MDBBtn, 
-    MDBCard, MDBCardBody, MDBCardTitle, 
-    MDBCardImage, MDBIcon, MDBCardText, 
+    MDBCol, MDBRow, MDBBtn,
+    MDBCard, MDBCardBody, MDBCardTitle,
+    MDBCardImage, MDBIcon, MDBCardText,
     MDBCardFooter
 } from 'mdbreact'
 import CommentModal from './CommentModal'
@@ -26,7 +26,7 @@ class UserContentCard extends Component {
     }
     updateComment = (commentAmt) => {
         this.setState({
-            commentAmt : commentAmt
+            commentAmt: commentAmt
         })
     }
     
@@ -77,6 +77,9 @@ class UserContentCard extends Component {
     }
     
 
+    renderProfile = () => {
+        window.location.href=`/session/profile/${this.props.postedBy}`
+    }
 
     render() {
         return (
@@ -101,7 +104,7 @@ class UserContentCard extends Component {
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" className="m-auto align-self-center thumbs-up"/>
+                            <MDBIcon icon="share" size="lg" className="m-auto align-self-center thumbs-up" />
                         </MDBCol>
                         <MDBCol>
 
@@ -119,44 +122,31 @@ class UserContentCard extends Component {
                             </MDBRow>
                         </MDBCol>
 
-                        <MDBRow className='mx-auto justify-content-center' >
-                            <MDBIcon icon="comment-dots" onClick={()=> {this.toggleCommentModal()}} size="lg" className="m-auto align-self-center thumbs-up" />
-                            <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5>
-                        </MDBRow>
+                            <MDBRow className='mx-auto justify-content-center' >
+                                <MDBIcon icon="comment-dots" onClick={() => { this.toggleCommentModal() }} size="lg" className="m-auto align-self-center thumbs-up" />
+                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5>
+                            </MDBRow>
 
                         </MDBCol>
                     </MDBRow>
                     <MDBCardFooter color="grey lighten-1" >
-                        posted by,
-                        <a href='/username' className='text-decoration-none'>{this.props.postedBy}</a>
+                        <p className="content-username" onClick={this.renderProfile}>posted by <span>{this.props.postedBy}</span></p>
                     </MDBCardFooter>
                 </MDBCard>
                 {/* comment section */}
-                {this.state.commentModal? 
+                {this.state.commentModal ?
                     <CommentModal
-                        currentUser = {this.props.currentUser}
-                        id ={this.props.id}
-                        commentModal ={this.state.commentModal}
-                        comments = {this.props.comments}
-                        handleCommentModal = {this.toggleCommentModal}
-                        content = {this.props.contentType}
-                        handleComment = {this.updateComment}
+                        currentUser={this.props.currentUser}
+                        id={this.props.id}
+                        commentModal={this.state.commentModal}
+                        comments={this.props.comments}
+                        handleCommentModal={this.toggleCommentModal}
+                        content={this.props.contentType}
+                        handleComment={this.updateComment}
                     />
                     :
                     null
-                    }
-                {this.state.gifModal? 
-                    <editGifModal
-                        currentUser = {this.props.currentUser}
-                        id ={this.props.id}
-                        image ={this.state.gifImg}
-                        caption = {this.props.caption}
-                        editGifModal = {this.toggleEditGifModal}
-                        handleEditGif = {this.handleEditGif}
-                    />
-                    :
-                    null
-                    }
+                }
             </Fragment>
         )
     }
