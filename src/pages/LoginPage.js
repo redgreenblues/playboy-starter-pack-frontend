@@ -5,7 +5,6 @@ import {
     MDBCardTitle, MDBCardText
 }
     from 'mdbreact';
-import { Redirect } from 'react-router-dom';
 
 import api from '../api';
 
@@ -34,10 +33,10 @@ class LandingPage extends Component {
         })
     }
 
-    redirecting = () => {
-        if (this.state.loginSuccess) return <Redirect to='/session/dashboard' />
-        else return false
-    }
+    // redirecting = () => {
+    //     if (this.state.loginSuccess) return <Redirect to='/session/dashboard' />
+    //     else return false
+    // }
 
     login = async event => {
         event.preventDefault();
@@ -53,7 +52,8 @@ class LandingPage extends Component {
                 loginSuccess: true
             })
             await localStorage.setItem("token", "T");
-            await this.redirecting();
+            // await this.redirecting();
+            window.location.href='/session/dashboard';
         } catch(err) {
             this.setState({
                 error: true
@@ -65,7 +65,7 @@ class LandingPage extends Component {
         return (
             <div className='landingPage'>
                 <MDBContainer >
-                    {this.redirecting()}
+                    {/* {this.redirecting()} */}
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <form onSubmit={this.login}>
                             <MDBCard>

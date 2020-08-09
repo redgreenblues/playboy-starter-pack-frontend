@@ -1,15 +1,15 @@
-import LandingPage from './landingPage';
+import LandingPage from './LoginPage';
 import SignUpPage from './signUpPage';
 import UserDashboardPage from './UserDashboardPage';
 import DashboardPage from './dashboardPage';
 import GifsPage from './gifsPage';
-import MemesPage from './memesPage';
+import MemesPage from './MemesPage';
 import PunsPage from './punsPage';
 import NewMeme from '../components/create/newMeme';
 import NewPun from '../components/create/newPun';
 import NewGif from '../components/create/newGif';
 import EditProfilePage from './EditProfilePage'
-import ProtectedRoute from './protectedRoute';
+import ProtectedRoute from './ProtectedRoute';
 
 export { 
     LandingPage,
