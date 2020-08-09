@@ -2,8 +2,8 @@ import Axios from 'axios';
 
 const api = Axios.create({
     withCredentials: true,
-    // baseURL: 'http://localhost:3000/app',
-    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
+    baseURL: 'http://localhost:3000/app',
+    // baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
 })
 
 // User
@@ -45,6 +45,7 @@ const updatePun = (id, payload) => api.put(`/pun/${id}`, payload);
 //General
 const postComment = payload => api.post(`/${payload.id}/comment`, payload)
 const getOneContent = id => api.get(`/content/${id}`);
+const deleteContent = id => api.delete(`/content/${id}`);
 
 
 const apis = {
@@ -71,7 +72,8 @@ const apis = {
     // editOneMeme,
     // editOnePun,
     postComment,
-    getOneContent
+    getOneContent,
+    deleteContent
 }
 
 export default apis
