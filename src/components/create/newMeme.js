@@ -6,7 +6,6 @@ import {
     MDBCardTitle
 }
     from 'mdbreact';
-import NavBar from '../navBar';
 import api from '../../api';
 
 export class NewMeme extends Component {
@@ -28,7 +27,7 @@ export class NewMeme extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/memes' />
+            return <Redirect to='/session/memes' />
         } else return false
     }
     registerMeme = async event => {
