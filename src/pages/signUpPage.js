@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect } from "react-router-dom";
-import {
-    MDBContainer, MDBBtn, MDBInput,
-    MDBCol, MDBCard, MDBCardBody,
-    MDBCardTitle, MDBAlert
-}
-    from 'mdbreact';
+import {Redirect} from "react-router-dom";
+import { MDBContainer, MDBBtn, MDBInput,
+    MDBCol,MDBCard, MDBCardBody,
+    MDBCardTitle } 
+from 'mdbreact';
 
 import api from '../api';
 

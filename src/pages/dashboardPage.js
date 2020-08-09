@@ -1,6 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component} from 'react'
 import Features from '../components/features.js'
-
 import NavBar from '../components/navBar'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {

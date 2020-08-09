@@ -31,7 +31,6 @@ export class NavBar extends Component {
         profileImg: response.data.profileImg,
         authenticated: true
       })
-      console.log(this.state.username)
     } catch (err) {
       console.log(err)
       this.setState({
@@ -40,20 +39,10 @@ export class NavBar extends Component {
     }
   }
 
-  // redirecting = () => {
-  //   if (this.state.loggedOut) return <Redirect to='/' />
-  //   else return false
-  // }
-
   logOut = async () => {
     try {
-      const response = await api.logOut();
+      await api.logOut();
       await localStorage.removeItem("token");
-      console.log(response)
-      // this.setState({
-      //   loggedOut: true
-      // })
-      // await this.redirecting();
       window.location.href = '/'
     } catch (err) {
       console.log(err)
@@ -102,10 +91,6 @@ export class NavBar extends Component {
 
           <MDBNavbarNav right className= 'justify-content-right'>
 
-            {/* <MDBNavItem className="white-text d-flex align-items-center ml-3">
-            <MDBNavLink to="/profile"><MDBIcon icon="user" className="mr-2" />{this.state.username}</MDBNavLink>
-            </MDBNavItem> */}
-
             <MDBNavItem className="white-text d-flex align-items-center ml-3">
             <MDBNavLink to="/session/new/meme"><MDBIcon icon="plus-circle" className="mr-2" />Meme</MDBNavLink>
             </MDBNavItem>
@@ -117,10 +102,6 @@ export class NavBar extends Component {
             <MDBNavItem className="white-text d-flex align-items-center ml-3 mr-3">
             <MDBNavLink to="/session/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Pun</MDBNavLink>
             </MDBNavItem>
-
-            {/* <MDBNavItem className="white-text d-flex align-items-center ml-3" onClick={this.logOut}>
-            <MDBNavLink to="#">Sign Out</MDBNavLink>
-            </MDBNavItem> */}
             
             <MDBNavItem>
               <MDBDropdown>
