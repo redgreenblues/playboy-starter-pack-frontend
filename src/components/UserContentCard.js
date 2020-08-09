@@ -30,28 +30,13 @@ class UserContentCard extends Component {
             commentAmt : commentAmt
         })
     }
-    toggleEditGifModal = () => {
-        this.setState({
-            editGifModal: !this.state.editGifModal
-        });
-    }
-
-
-    handleEditGif = (commentAmt) => {
-        this.props.handleEditGif(commentAmt)
-    }
-
-
-    updateGif = (commentAmt) => {
-        this.setState({
-            commentAmt : commentAmt
-        })
-    }
-
-    updateComment = (commentAmt) => {
-        this.setState({
-            commentAmt : commentAmt
-        })
+    deleteContent = async () => {
+        const id = this.props.id;
+        try {
+            await api.deleteContent(id)
+        } catch (err) {
+            console.log(err)
+        }
     }
 
 
@@ -75,6 +60,7 @@ class UserContentCard extends Component {
         }
     }
 
+
     render() {
         return (
             <Fragment>
@@ -91,8 +77,10 @@ class UserContentCard extends Component {
                         <MDBCardText>
                             {this.props.caption}
                         </MDBCardText>
-                        {/* <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn> edit route */}
-                        <MDBBtn href="#" size="sm">delete</MDBBtn>{/*delete route*/}
+
+                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn> {/*edit route*/}
+                        <MDBBtn onClick={this.deleteContent} size="sm">delete</MDBBtn>{/*delete route*/}
+
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
