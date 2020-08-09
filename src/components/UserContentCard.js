@@ -30,6 +30,14 @@ class UserContentCard extends Component {
             commentAmt : commentAmt
         })
     }
+    deleteContent = async () => {
+        const id = this.props.id;
+        try {
+            await api.deleteContent(id)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     // on click function to update likes
     handleLikes = async content => {
@@ -50,6 +58,7 @@ class UserContentCard extends Component {
         }
     }
 
+
     render() {
         return (
             <Fragment>
@@ -66,8 +75,8 @@ class UserContentCard extends Component {
                         <MDBCardText>
                             {this.props.caption}
                         </MDBCardText>
-                        <MDBBtn href="#" size="sm">Edit</MDBBtn> {/*edit route*/}
-                        <MDBBtn href="#" size="sm">delete</MDBBtn>{/*delete route*/}
+                        <MDBBtn href='#' size="sm">Edit</MDBBtn> {/*edit route*/}
+                        <MDBBtn onClick={this.deleteContent} size="sm">delete</MDBBtn>{/*delete route*/}
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
