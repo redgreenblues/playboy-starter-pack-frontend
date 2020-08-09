@@ -5,7 +5,7 @@ import {
   MDBCollapse, MDBDropdown, MDBDropdownToggle, 
   MDBDropdownMenu, MDBDropdownItem, MDBIcon, 
 } from "mdbreact";
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../api';
 
 export class NavBar extends Component {
@@ -59,6 +59,11 @@ export class NavBar extends Component {
       console.log(err)
     }
   }
+
+  renderProfile = () => {
+    window.location.href=`/profile/${this.state.username}`
+  }
+
   navBarStyle = () => {
     return {
       display : 'flex',
@@ -125,7 +130,7 @@ export class NavBar extends Component {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   {/* <MDBCardTitle className='m-2 border-bottom text-center'>Create Content</MDBCardTitle> */}
-                  <MDBDropdownItem ><Link to ='/profile'><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
+                  <MDBDropdownItem ><Link onClick={this.renderProfile}><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
                   <MDBDropdownItem className='border-top' href='#' onClick={this.logOut}>Sign Out</MDBDropdownItem>
                   {/* {this.redirecting()} */}
                 </MDBDropdownMenu>

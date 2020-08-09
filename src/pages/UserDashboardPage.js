@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from 'react';
-// import NavBar from '../components/navBar';
+import React, { Component } from 'react';
 import { 
     MDBRow, MDBCol, MDBCardBody, 
     MDBCardText, MDBCardTitle, MDBContainer, 
@@ -12,7 +11,7 @@ import UserGifs from '../components/UserGifs';
 import UserMemes from '../components/UserMemes';
 import UserPuns from '../components/UserPuns';
 import defaultProfilePic from '../public/default-profile-pic.jpg'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 class UserDashboardPage extends Component {
     constructor(props) {
@@ -35,7 +34,7 @@ class UserDashboardPage extends Component {
 
     componentDidMount = async () => {
         try {
-            const response = await api.getUser();
+            const response = await api.getUserByUsername(this.props.match.params.username);
             console.log(response.data)
             this.setState({
                 userId: response.data._id,

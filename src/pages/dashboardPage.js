@@ -53,14 +53,14 @@ class DashboardPage extends Component {
                 <NavBar />
                 <Switch>
                     {/* <Route path= '/' exact component={LandingPage}/> */}
-                    {localStorage.getItem("token") ? <ProtectedRoute path="/dashboard" exact component={Features}/> : <button onClick={this.renderSignIn}>Please sign in</button>}
-                    <Route path="/profile" exact component={UserDashboardPage} />
-                    <Route exact path="/gifs" render = {(props) => <GifsPage {...props} username={this.state.username} />} />
-                    <Route exact path="/memes" render = {(props) => <MemesPage {...props} username={this.state.username} /> }/>
-                    <Route exact path="/puns" render = {(props) => <PunsPage {...props} username={this.state.username} />}/>
-                    <Route path="/new/meme" exact component={NewMeme} />
-                    <Route path="/new/pun" exact component={NewPun} />
-                    <Route path="/new/gif" exact component={NewGif} />
+                    {localStorage.getItem("token") ? <ProtectedRoute path="/session/dashboard" component={Features}/> : <button onClick={this.renderSignIn}>Please sign in</button>}
+                    <Route path="/session/profile/:username" component={UserDashboardPage} />
+                    <Route path="/session/gifs" render = {(props) => <GifsPage {...props} username={this.state.username} />} />
+                    <Route path="/session/memes" render = {(props) => <MemesPage {...props} username={this.state.username} /> }/>
+                    <Route path="/session/puns" render = {(props) => <PunsPage {...props} username={this.state.username} />}/>
+                    <Route path="/session/new/meme" component={NewMeme} />
+                    <Route path="/session/new/pun" component={NewPun} />
+                    <Route path="/session/new/gif" component={NewGif} />
                 </Switch>
                 {/* first time NavBar is rendered */}
             </Router>
