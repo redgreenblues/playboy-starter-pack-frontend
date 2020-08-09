@@ -2,8 +2,8 @@ import Axios from 'axios';
 
 const api = Axios.create({
     withCredentials: true,
-    baseURL: 'http://localhost:3000/app',
-    // baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
+    // baseURL: 'http://localhost:3000/app',
+    baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app',
 })
 
 // User
@@ -68,7 +68,11 @@ const apis = {
     updateMeme,
     updateGif,
     updatePun,
+<<<<<<< HEAD
     getGifById,
+=======
+    // editOneGif,
+>>>>>>> 687d75431768e14bedf7c10321f1250780af1742
     // editOneMeme,
     // editOnePun,
     postComment,

@@ -1,8 +1,7 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component} from 'react'
 import Features from '../components/features.js'
-import editContent from '../components/editContent'
 import NavBar from '../components/navBar'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
     UserDashboardPage,
     GifsPage,
@@ -15,7 +14,6 @@ import {
   }
     from '../pages'
 import api from '../api'
-
 
 class DashboardPage extends Component {
     constructor(props) {

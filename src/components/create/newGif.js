@@ -1,21 +1,13 @@
 import React, { Component, Fragment } from 'react'
-import NavBar from '../navBar'
-import { Redirect, Link } from "react-router-dom"
+import { Redirect} from "react-router-dom"
 import {
     MDBContainer, MDBBtn, MDBInput,
     MDBCol, MDBCard, MDBCardBody,
     MDBCardTitle
 }
     from 'mdbreact';
-// import Axios from 'axios';
-// const api = Axios.create({
-//     baseURL: process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000/app'
-// })
 
 import api from '../../api';
-
-
-
 
 export class NewGif extends Component {
     constructor(props) {
@@ -36,7 +28,7 @@ export class NewGif extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/gifs' />
+            return <Redirect to='/session/gifs' />
         } else return false
     }
     registerGif = async event => {
