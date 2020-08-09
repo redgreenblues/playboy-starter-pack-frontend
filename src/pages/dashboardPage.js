@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Features from '../components/features.js'
-
+import editContent from '../components/editContent'
 import NavBar from '../components/navBar'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import {
@@ -16,13 +16,6 @@ import {
     from '../pages'
 import api from '../api'
 
-class editContent extends Component {
-    render(){
-        return <div>
-            <h1>this is editpage</h1>
-        </div>
-    }
-}
 
 class DashboardPage extends Component {
     constructor(props) {
@@ -87,6 +80,11 @@ class DashboardPage extends Component {
                     <Route path="/session/new/meme" component={NewMeme} />
                     <Route path="/session/new/pun" component={NewPun} />
                     <Route path="/session/new/gif" component={NewGif} />
+
+                    <Route path="/session/edit/meme/:id" component={editContent} />
+                    <Route path="/session/edit/pun/:id" component={editContent} />
+                    <Route path="/session/edit/gif/:id" component={editContent} />
+
                 </Switch>
                 {/* first time NavBar is rendered */}
             </Router>

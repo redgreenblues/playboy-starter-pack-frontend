@@ -6,7 +6,6 @@ import {
     MDBCardFooter
 } from 'mdbreact'
 import CommentModal from './CommentModal'
-import editGifModal from './edit/editGif'
 import api from '../api';
 
 class UserContentCard extends Component {

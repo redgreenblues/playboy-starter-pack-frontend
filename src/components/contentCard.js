@@ -8,7 +8,6 @@ import {
 from 'mdbreact'
 import api from '../api';
 import CommentModal from './CommentModal';
-import editGifModal from './edit/editGif';
 
 class ContentCard extends Component {
     constructor(props) {
