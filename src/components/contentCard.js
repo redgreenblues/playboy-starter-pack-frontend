@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { 
-    MDBCol, MDBRow, MDBBtn, 
+    MDBCol, MDBRow, 
     MDBCard, MDBCardBody, MDBCardTitle, 
     MDBCardImage, MDBIcon, MDBCardText, 
     MDBCardFooter 

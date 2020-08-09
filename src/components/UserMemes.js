@@ -14,7 +14,8 @@ class UserMemes extends Component {
                     postedBy={this.props.postedBy}
                     id={this.props.id}
                     contentType={this.props.contentType}
-                    likeAmt={this.props.likeAmt} />
+                    likeAmt={this.props.likeAmt}
+                    handleDelete = {this.props.deleteContent} />
             </Fragment>
         )
     }

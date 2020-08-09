@@ -5,7 +5,7 @@ import {
     MDBCardTitle, MDBCardText
 }
     from 'mdbreact';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import api from '../api';
 

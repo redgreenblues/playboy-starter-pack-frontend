@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Redirect, Link } from "react-router-dom";
-import NavBar from '../navBar';
+import { Redirect } from "react-router-dom";
 import {
     MDBContainer, MDBBtn, MDBInput,
     MDBCol, MDBCard, MDBCardBody,
@@ -28,7 +27,7 @@ export class NewPun extends Component {
             this.setState({
                 addSuccess : false
             })
-            return <Redirect to='/puns' />
+            return <Redirect to='/session/puns' />
         } else return false
     }
     registerPun = async event => {

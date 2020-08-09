@@ -30,28 +30,34 @@ class UserContentCard extends Component {
             commentAmt : commentAmt
         })
     }
-    deleteContent = async () => {
-        const id = this.props.id;
-        try {
-            await api.deleteContent(id)
-        } catch (err) {
-            console.log(err)
+    
+    handleDelete = async () => {
+        const payload = {
+            id : this.props.id,
+            contentType : this.props.contentType
         }
+        
+        let c = window.confirm('confirm delete')
+        if(c) {
+            this.props.handleDelete(payload)
+        }
+        else return false
     }
 
     // on click function to edit content
 
-    // editOneGif() {
-    //     this.setState({
-    //         edit: true,
-    //         image: this.props.imgUrl,
-    //         caption: this.props.caption
-    //     })
-    //     const payload = {
-    //         image: this.props.imgUrl,
-    //         caption: this.props.caption
-    //     }
-    // }}
+    editOneGif = () => {
+        alert('editing')
+        // this.setState({
+        //     edit: true,
+        //     image: this.props.imgUrl,
+        //     caption: this.props.caption
+        // })
+        // const payload = {
+        //     image: this.props.imgUrl,
+        //     caption: this.props.caption
+        // }
+    }
 
     // on click function to update likes
     handleLikes = async content => {
@@ -71,6 +77,7 @@ class UserContentCard extends Component {
             console.log(err)
         }
     }
+    
 
 
     render() {
@@ -90,8 +97,8 @@ class UserContentCard extends Component {
                             {this.props.caption}
                         </MDBCardText>
 
-                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn> {/*edit route*/}
-                        <MDBBtn onClick={this.deleteContent} size="sm">delete</MDBBtn>{/*delete route*/}
+                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn> edit route
+                        <MDBBtn onClick={this.handleDelete} size="sm">delete</MDBBtn>{/*delete route*/}
 
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
