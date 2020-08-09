@@ -46,6 +46,7 @@ const updatePun = (id, payload) => api.put(`/pun/${id}`, payload);
 //General
 const postComment = payload => api.post(`/${payload.id}/comment`, payload)
 const getOneContent = id => api.get(`/content/${id}`);
+const deleteContent = id => api.delete(`/content/${id}`);
 
 
 const apis = {
@@ -70,6 +71,7 @@ const apis = {
     updatePun,
     postComment,
     getOneContent,
+    deleteContent,
     getUserByUsername
 }
 

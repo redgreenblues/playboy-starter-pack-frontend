@@ -61,7 +61,7 @@ export class NavBar extends Component {
   }
 
   renderProfile = () => {
-    window.location.href=`/profile/${this.state.username}`
+    window.location.href=`/session/profile/${this.state.username}`
   }
 
   navBarStyle = () => {
@@ -79,23 +79,23 @@ export class NavBar extends Component {
       <MDBNavbar color="rgba-black-strong" dark expand="md">
         <div style={this.navBarStyle()}>
         <MDBNavbarBrand>
-          <Link to='/dashboard'><strong className="white-text">Playboy Starter Pack</strong></Link>
+          <Link to='/session/dashboard'><strong className="white-text">Playboy Starter Pack</strong></Link>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
 
             <MDBNavItem>
-              <MDBNavLink to='/dashboard'>Home</MDBNavLink>
+              <MDBNavLink to='/session/dashboard'>Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/memes">Memes</MDBNavLink>
+              <MDBNavLink to="/sessions/memes">Memes</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/gifs">Gifs</MDBNavLink>
+              <MDBNavLink to="/session/gifs">Gifs</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/puns">Puns</MDBNavLink>
+              <MDBNavLink to="/session/puns">Puns</MDBNavLink>
             </MDBNavItem>
 
           </MDBNavbarNav>
@@ -107,15 +107,15 @@ export class NavBar extends Component {
             </MDBNavItem> */}
 
             <MDBNavItem className="white-text d-flex align-items-center ml-3">
-            <MDBNavLink to="/new/meme"><MDBIcon icon="plus-circle" className="mr-2" />Meme</MDBNavLink>
+            <MDBNavLink to="/session/new/meme"><MDBIcon icon="plus-circle" className="mr-2" />Meme</MDBNavLink>
             </MDBNavItem>
 
             <MDBNavItem className="white-text d-flex align-items-center ml-3">
-              <MDBNavLink to="/new/gif"><MDBIcon icon="plus-circle" className="mr-2" />Gif</MDBNavLink>
+              <MDBNavLink to="/session/new/gif"><MDBIcon icon="plus-circle" className="mr-2" />Gif</MDBNavLink>
             </MDBNavItem>
 
             <MDBNavItem className="white-text d-flex align-items-center ml-3">
-            <MDBNavLink to="/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Pun</MDBNavLink>
+            <MDBNavLink to="/session/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Pun</MDBNavLink>
             </MDBNavItem>
 
             {/* <MDBNavItem className="white-text d-flex align-items-center ml-3" onClick={this.logOut}>

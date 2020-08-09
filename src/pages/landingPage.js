@@ -35,7 +35,7 @@ class LandingPage extends Component {
     }
 
     redirecting = () => {
-        if (this.state.loginSuccess) return <Redirect to='/dashboard' />
+        if (this.state.loginSuccess) return <Redirect to='/session/dashboard' />
         else return false
     }
 

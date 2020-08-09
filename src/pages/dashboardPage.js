@@ -16,6 +16,14 @@ import {
     from '../pages'
 import api from '../api'
 
+class editContent extends Component {
+    render(){
+        return <div>
+            <h1>this is editpage</h1>
+        </div>
+    }
+}
+
 class DashboardPage extends Component {
     constructor(props) {
         super(props)
@@ -52,12 +60,30 @@ class DashboardPage extends Component {
                 {/* <Header /> */}
                 <NavBar />
                 <Switch>
-                    {/* <Route path= '/' exact component={LandingPage}/> */}
-                    {localStorage.getItem("token") ? <ProtectedRoute path="/session/dashboard" component={Features}/> : <button onClick={this.renderSignIn}>Please sign in</button>}
+                    {localStorage.getItem("token") ? 
+                        <ProtectedRoute path="/session/dashboard" exact component={Features}/> 
+                        : 
+                        <button onClick={this.renderSignIn}>Please sign in</button>
+                    }
                     <Route path="/session/profile/:username" component={UserDashboardPage} />
-                    <Route path="/session/gifs" render = {(props) => <GifsPage {...props} username={this.state.username} />} />
-                    <Route path="/session/memes" render = {(props) => <MemesPage {...props} username={this.state.username} /> }/>
-                    <Route path="/session/puns" render = {(props) => <PunsPage {...props} username={this.state.username} />}/>
+                    <Route path="/session/gifs" 
+                        render = {
+                            (props) => 
+                            <GifsPage {...props} username={this.state.username} />
+                            } 
+                        />
+                    <Route path="/session/memes" 
+                        render = {
+                            (props) => 
+                            <MemesPage {...props} username={this.state.username} /> 
+                            }
+                        />
+                    <Route path="/session/puns" 
+                        render = {
+                            (props) => 
+                            <PunsPage {...props} username={this.state.username} />
+                            }
+                        />
                     <Route path="/session/new/meme" component={NewMeme} />
                     <Route path="/session/new/pun" component={NewPun} />
                     <Route path="/session/new/gif" component={NewGif} />

@@ -24,19 +24,9 @@ class LandingRoute extends Component {
         <Router>
           <div className="App">
             <Switch>
-              <Route path="/" exact component={LandingPage} />
-              <Route path="/signup" exact component={SignUpPage} />
-              {/* <ProtectedRoute path="/profile" exact component={UserDashboardPage} /> */}
-              <ProtectedRoute path="/session" exact component={DashboardPage} />
-              {/* <ProtectedRoute path="/dashboard" exact component={DashboardPage} /> */}
-              {/* {/* <Route path="/gifs" exact component={GifsPage} />
-              <Route path="/memes" exact component={MemesPage} />
-              <Route path="/puns" exact component={PunsPage} />
-              <Route path="/new/meme" exact component={NewMeme} />
-              <Route path="/new/pun" exact component={NewPun} />
-              <Route path="/new/gif" exact component={NewGif} /> */}
-              {/* <Route exact path="/"><Redirect exact from="/" to="dashboard" /></Route>
-              <Route path="*"><Redirect from="/" to="dashboard" /></Route> */}
+              <Route exact path="/"  component={LandingPage} />
+              <Route path="/signup" component={SignUpPage} />
+              <ProtectedRoute path="/session" component={DashboardPage} />
             </Switch>
           </div>
         </Router>
