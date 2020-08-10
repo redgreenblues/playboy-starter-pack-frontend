@@ -5,7 +5,7 @@ import {
   MDBCollapse, MDBDropdown, MDBDropdownToggle, 
   MDBDropdownMenu, MDBDropdownItem, MDBIcon, 
 } from "mdbreact";
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../api';
 
 export class NavBar extends Component {
@@ -31,7 +31,6 @@ export class NavBar extends Component {
         profileImg: response.data.profileImg,
         authenticated: true
       })
-      console.log(this.state.username)
     } catch (err) {
       console.log(err)
       this.setState({
@@ -40,25 +39,20 @@ export class NavBar extends Component {
     }
   }
 
-  // redirecting = () => {
-  //   if (this.state.loggedOut) return <Redirect to='/' />
-  //   else return false
-  // }
-
   logOut = async () => {
     try {
-      const response = await api.logOut();
+      await api.logOut();
       await localStorage.removeItem("token");
-      console.log(response)
-      // this.setState({
-      //   loggedOut: true
-      // })
-      // await this.redirecting();
       window.location.href = '/'
     } catch (err) {
       console.log(err)
     }
   }
+
+  renderProfile = () => {
+    window.location.href=`/session/profile/${this.state.username}`
+  }
+
   navBarStyle = () => {
     return {
       display : 'flex',
@@ -71,62 +65,54 @@ export class NavBar extends Component {
 
   render() {
     return (
-      <MDBNavbar color="rgba-black-strong" dark expand="md">
+      <MDBNavbar color="elegant-color" dark expand="md">
         <div style={this.navBarStyle()}>
         <MDBNavbarBrand>
-          <Link to='/dashboard'><strong className="white-text">Playboy Starter Pack</strong></Link>
+          <Link to='/session/dashboard'><strong className="white-text">Playboy Starter Pack</strong></Link>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
 
             <MDBNavItem>
-              <MDBNavLink to='/dashboard'>Home</MDBNavLink>
+              <MDBNavLink to='/session/dashboard'>Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/memes">Memes</MDBNavLink>
+              <MDBNavLink to="/session/memes">Memes</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/gifs">Gifs</MDBNavLink>
+              <MDBNavLink to="/session/gifs">Gifs</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/puns">Puns</MDBNavLink>
+              <MDBNavLink to="/session/puns">Puns</MDBNavLink>
             </MDBNavItem>
 
           </MDBNavbarNav>
 
           <MDBNavbarNav right className= 'justify-content-right'>
 
-            {/* <MDBNavItem className="white-text d-flex align-items-center ml-3">
-            <MDBNavLink to="/profile"><MDBIcon icon="user" className="mr-2" />{this.state.username}</MDBNavLink>
-            </MDBNavItem> */}
-
             <MDBNavItem className="white-text d-flex align-items-center ml-3">
-            <MDBNavLink to="/new/meme"><MDBIcon icon="plus-circle" className="mr-2" />Meme</MDBNavLink>
+            <MDBNavLink to="/session/new/meme"><MDBIcon icon="plus-circle" className="mr-2" />Meme</MDBNavLink>
             </MDBNavItem>
 
             <MDBNavItem className="white-text d-flex align-items-center ml-3">
-              <MDBNavLink to="/new/gif"><MDBIcon icon="plus-circle" className="mr-2" />Gif</MDBNavLink>
+              <MDBNavLink to="/session/new/gif"><MDBIcon icon="plus-circle" className="mr-2" />Gif</MDBNavLink>
             </MDBNavItem>
 
-            <MDBNavItem className="white-text d-flex align-items-center ml-3">
-            <MDBNavLink to="/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Pun</MDBNavLink>
+            <MDBNavItem className="white-text d-flex align-items-center ml-3 mr-3">
+            <MDBNavLink to="/session/new/pun"><MDBIcon icon="plus-circle" className="mr-2" />Pun</MDBNavLink>
             </MDBNavItem>
-
-            {/* <MDBNavItem className="white-text d-flex align-items-center ml-3" onClick={this.logOut}>
-            <MDBNavLink to="#">Sign Out</MDBNavLink>
-            </MDBNavItem> */}
             
             <MDBNavItem>
               <MDBDropdown>
                 <MDBDropdownToggle nav caret>
-                <strong className='white-text'><MDBIcon icon="user" />{this.state.username}</strong>
+                <strong className='white-text'><MDBIcon icon="user mr-2" />{this.state.username}</strong>
                   
                 </MDBDropdownToggle>
                 <MDBDropdownMenu className="dropdown-default">
                   {/* <MDBCardTitle className='m-2 border-bottom text-center'>Create Content</MDBCardTitle> */}
-                  <MDBDropdownItem ><Link to ='/profile'><MDBIcon far icon="user-circle" className="mr-2" />Profile</Link></MDBDropdownItem>
-                  <MDBDropdownItem className='border-top' href='#' onClick={this.logOut}>Sign Out</MDBDropdownItem>
+                  <MDBDropdownItem onClick={this.renderProfile}><MDBIcon far icon="user-circle" className="mr-2" />Profile</MDBDropdownItem>
+                  <MDBDropdownItem className='border-top' onClick={this.logOut}>Sign Out</MDBDropdownItem>
                   {/* {this.redirecting()} */}
                 </MDBDropdownMenu>
               </MDBDropdown>

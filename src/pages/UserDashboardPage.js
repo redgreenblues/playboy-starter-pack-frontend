@@ -1,5 +1,4 @@
-import React, { Component, Fragment } from 'react';
-// import NavBar from '../components/navBar';
+import React, { Component} from 'react';
 import { 
     MDBRow, MDBCol, MDBCardBody, 
     MDBCardText, MDBCardTitle, MDBContainer, 
@@ -12,7 +11,7 @@ import UserGifs from '../components/UserGifs';
 import UserMemes from '../components/UserMemes';
 import UserPuns from '../components/UserPuns';
 import defaultProfilePic from '../public/default-profile-pic.jpg'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
 
 class UserDashboardPage extends Component {
     constructor(props) {
@@ -35,9 +34,10 @@ class UserDashboardPage extends Component {
 
     componentDidMount = async () => {
         try {
-            const response = await api.getUser();
+            const response = await api.getUserByUsername(this.props.match.params.username);
             console.log(response.data)
             this.setState({
+                userData: response.data,
                 userId: response.data._id,
                 username: response.data.username,
                 profileImg: response.data.profileImg,
@@ -51,14 +51,12 @@ class UserDashboardPage extends Component {
             })
         }
     }
-
-
     getGifsByUser = async () => {
         try {
             const response = await api.getGifsByUser(this.state.username)
             this.setState({
                 gifs: response.data,
-                gifsLoading: !this.state.gifsLoading,
+                gifsLoading: true,
                 memesLoading: false,
                 punsLoading: false
             })
@@ -72,7 +70,7 @@ class UserDashboardPage extends Component {
             const response = await api.getMemesByUser(this.state.username)
             this.setState({
                 memes: response.data,
-                memesLoading: !this.state.memesLoading,
+                memesLoading: true,
                 gifsLoading: false,
                 punsLoading: false
             })
@@ -86,7 +84,7 @@ class UserDashboardPage extends Component {
             const response = await api.getPunsByUser(this.state.username)
             this.setState({
                 puns: response.data,
-                punsLoading: !this.state.punsLoading,
+                punsLoading: true,
                 gifsLoading: false,
                 memesLoading: false
             })
@@ -117,8 +115,9 @@ class UserDashboardPage extends Component {
                 profileImg : this.state.profileImg,
                 profileBio : this.state.profileBio
             }
-            const update = await api.updateUser(payload);
-            if(update) alert('updated')
+            await api.updateContentByUsername(payload , this.state.userData.username)
+            const update = await api.updateUser(payload);            
+            if(update) alert(`updated old username, ${this.state.userData.username} with ${payload.username}`)
             await this.toggleEditProfileModal();
         }
         catch (err) {
@@ -126,8 +125,20 @@ class UserDashboardPage extends Component {
             this.setState({error :true})
         }
     }
+    deleteContent = async (payload) => {
+        console.log(payload)
+        try {
+            await api.deleteContent(payload.id)
+            //refresh page
+            if(payload.contentType === 'Pun') {await this.getPunsByUser()}
+            else if (payload.contentType === 'Meme') {await this.getMemesByUser()}
+            else if (payload.contentType === 'Gif') {await this.getGifsByUser()}
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
-
+    /// STYLE
     memesHeaderStyle = () => {
         return {
             color: this.state.memesLoading ? '#000' : '',
@@ -198,7 +209,8 @@ class UserDashboardPage extends Component {
                             likeAmt={gif.likes}
                             key={gif._id}
                             id={gif._id}
-                            contentType={gif.contentType} />) : null}
+                            contentType={gif.contentType}
+                            deleteContent = {this.deleteContent} />) : null}
                     {this.state.memesLoading ? this.state.memes.map(meme =>
                         <UserMemes
                             currentUser ={this.state.username}
@@ -210,7 +222,8 @@ class UserDashboardPage extends Component {
                             likeAmt={meme.likes}
                             key={meme._id}
                             id={meme._id}
-                            contentType={meme.contentType} />) : null}
+                            contentType={meme.contentType}
+                            deleteContent = {this.deleteContent} />) : null}
                     {this.state.punsLoading ? this.state.puns.map(pun =>
                         <UserPuns
                             currentUser ={this.state.username}
@@ -222,7 +235,8 @@ class UserDashboardPage extends Component {
                             likeAmt={pun.likes}
                             key={pun._id}
                             id={pun._id}
-                            contentType={pun.contentType} />) : null}
+                            contentType={pun.contentType}
+                            deleteContent = {this.deleteContent} />) : null}
                 </div>
                 {/* edit profile modal */}
                 <MDBContainer>

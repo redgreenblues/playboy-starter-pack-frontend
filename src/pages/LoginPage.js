@@ -5,7 +5,6 @@ import {
     MDBCardTitle, MDBCardText
 }
     from 'mdbreact';
-import { Redirect, Link } from 'react-router-dom';
 
 import api from '../api';
 
@@ -34,10 +33,10 @@ class LandingPage extends Component {
         })
     }
 
-    redirecting = () => {
-        if (this.state.loginSuccess) return <Redirect to='/dashboard' />
-        else return false
-    }
+    // redirecting = () => {
+    //     if (this.state.loginSuccess) return <Redirect to='/session/dashboard' />
+    //     else return false
+    // }
 
     login = async event => {
         event.preventDefault();
@@ -53,8 +52,8 @@ class LandingPage extends Component {
                 loginSuccess: true
             })
             await localStorage.setItem("token", "T");
-            await alert('Sign in successful!');
-            await this.redirecting();
+            // await this.redirecting();
+            window.location.href='/session/dashboard';
         } catch(err) {
             this.setState({
                 error: true
@@ -66,7 +65,7 @@ class LandingPage extends Component {
         return (
             <div className='landingPage'>
                 <MDBContainer >
-                    {this.redirecting()}
+                    {/* {this.redirecting()} */}
                     <MDBCol style={{ maxWidth: "35rem" }}>
                         <form onSubmit={this.login}>
                             <MDBCard>
@@ -90,7 +89,7 @@ class LandingPage extends Component {
                                         <div className='cardbottom'>
                                             <MDBBtn type='submit'>Sign in</MDBBtn>
                                             <MDBCardText className='my-2'>Or</MDBCardText>
-                                            <MDBBtn href='/signup' >Sign up</MDBBtn>
+                                            <MDBBtn href='/signup' style={{ textDecoration:'none' }}>Sign up</MDBBtn>
                                         </div>
                                 </MDBCardBody>
                             </MDBCard>

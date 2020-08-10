@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import {
-    MDBCol, MDBRow, MDBBtn, 
-    MDBCard, MDBCardBody, MDBCardTitle, 
-    MDBCardImage, MDBIcon, MDBCardText, 
+    MDBCol, MDBRow, MDBBtn,
+    MDBCard, MDBCardBody, MDBCardTitle,
+    MDBCardImage, MDBIcon, MDBCardText,
     MDBCardFooter
 } from 'mdbreact'
 import CommentModal from './CommentModal'
-
+import Share from './Share'
 import api from '../api';
 
 class UserContentCard extends Component {
@@ -16,6 +16,7 @@ class UserContentCard extends Component {
         this.state = {
             likes: this.props.likeAmt,
             commentModal: false,
+            shareModal : false,
             commentAmt: this.props.commentAmt
         }
     }
@@ -27,8 +28,36 @@ class UserContentCard extends Component {
     }
     updateComment = (commentAmt) => {
         this.setState({
-            commentAmt : commentAmt
+            commentAmt: commentAmt
         })
+    }
+    
+    handleDelete = async () => {
+        const payload = {
+            id : this.props.id,
+            contentType : this.props.contentType
+        }
+        
+        let c = window.confirm('confirm delete')
+        if(c) {
+            this.props.handleDelete(payload)
+        }
+        else return false
+    }
+
+    // on click function to edit content
+
+    editOneGif = () => {
+        alert('editing')
+        // this.setState({
+        //     edit: true,
+        //     image: this.props.imgUrl,
+        //     caption: this.props.caption
+        // })
+        // const payload = {
+        //     image: this.props.imgUrl,
+        //     caption: this.props.caption
+        // }
     }
 
     // on click function to update likes
@@ -49,6 +78,15 @@ class UserContentCard extends Component {
             console.log(err)
         }
     }
+    toggleShare = () => {
+        this.setState({
+            shareModal : !this.state.shareModal
+        })
+    }
+
+    renderProfile = () => {
+        window.location.href=`/session/profile/${this.props.postedBy}`
+    }
 
     render() {
         return (
@@ -66,49 +104,71 @@ class UserContentCard extends Component {
                         <MDBCardText>
                             {this.props.caption}
                         </MDBCardText>
-                        <MDBBtn href="#" size="sm">Edit</MDBBtn> {/*edit route*/}
-                        <MDBBtn href="#" size="sm">delete</MDBBtn>{/*delete route*/}
+
+                        <MDBBtn href="#" size="sm" onClick={() => this.handleEdit(this.props.contentType)}>Edit</MDBBtn> edit route
+                        <MDBBtn onClick={this.handleDelete} size="sm">delete</MDBBtn>{/*delete route*/}
+
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" className="m-auto align-self-center thumbs-up"/>
+                            <MDBIcon 
+                                icon="share-alt" 
+                                size="lg" 
+                                className="m-auto align-self-center thumbs-up" 
+                                onClick={this.toggleShare}
+                            />
                         </MDBCol>
                         <MDBCol>
 
                             <MDBRow className='mx-auto justify-content-center'>
-                                <MDBIcon icon="thumbs-up" size="lg" className="m-auto align-self-center thumbs-up" onClick={() => this.handleLikes(this.props.contentType)} />
+                                <MDBIcon 
+                                    icon="thumbs-up" 
+                                    size="lg" 
+                                    className="m-auto align-self-center thumbs-up" 
+                                    onClick={() => this.handleLikes(this.props.contentType)} 
+                                />
                                 <h5 className="font-weight-light m-auto">{this.state.likes}</h5>
                             </MDBRow>
 
                         </MDBCol>
                         <MDBCol>
 
-                        <MDBRow className='mx-auto justify-content-center' >
-                            <MDBIcon icon="comment-dots" onClick={()=> {this.toggleCommentModal()}} size="lg" className="m-auto align-self-center thumbs-up" />
-                            <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5>
-                        </MDBRow>
+                            <MDBRow className='mx-auto justify-content-center' >
+                                <MDBIcon icon="comment-dots" onClick={() => { this.toggleCommentModal() }} size="lg" className="m-auto align-self-center thumbs-up" />
+                                <h5 className="font-weight-light m-auto align-self-center"> {this.state.commentAmt}</h5>
+                            </MDBRow>
 
                         </MDBCol>
                     </MDBRow>
                     <MDBCardFooter color="grey lighten-1" >
-                        posted by,
-                        <a href='/username' className='text-decoration-none'>{this.props.postedBy}</a>
+                        <p className="content-username" onClick={this.renderProfile}>posted by <span>{this.props.postedBy}</span></p>
                     </MDBCardFooter>
                 </MDBCard>
                 {/* comment section */}
-                {this.state.commentModal? 
+                {this.state.commentModal ?
                     <CommentModal
-                        currentUser = {this.props.currentUser}
-                        id ={this.props.id}
-                        commentModal ={this.state.commentModal}
-                        comments = {this.props.comments}
-                        handleCommentModal = {this.toggleCommentModal}
-                        content = {this.props.contentType}
-                        handleComment = {this.updateComment}
+                        currentUser={this.props.currentUser}
+                        id={this.props.id}
+                        commentModal={this.state.commentModal}
+                        comments={this.props.comments}
+                        handleCommentModal={this.toggleCommentModal}
+                        content={this.props.contentType}
+                        handleComment={this.updateComment}
                     />
                     :
                     null
-                    }
+                }
+                {this.state.shareModal? 
+                    <Share
+                        shareModal={this.state.shareModal}
+                        handleShareModal={this.toggleShare}
+                        pun={this.props.pun}
+                        url={this.props.imgUrl}
+                        contentType={ this.props.contentType}
+                        text={this.props.caption}/>
+                    :
+                    null
+                }
             </Fragment>
         )
     }

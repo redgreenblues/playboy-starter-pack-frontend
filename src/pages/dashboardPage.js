@@ -1,8 +1,7 @@
-import React, { Component, Fragment } from 'react'
-import Features from '../components/features.js'
-
+import React, { Component} from 'react'
+import Features from '../components/Features.js'
 import NavBar from '../components/navBar'
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
     UserDashboardPage,
     GifsPage,
@@ -10,10 +9,9 @@ import {
     PunsPage,
     NewMeme,
     NewGif,
-    NewPun,
-    ProtectedRoute,
+    NewPun
   }
-    from '../pages'
+    from '.'
 import api from '../api'
 
 class DashboardPage extends Component {
@@ -34,6 +32,7 @@ class DashboardPage extends Component {
                 profileBio: response.data.profileBio,
                 authenticated: true
             })
+            console.log(response)
         } catch (err) {
             console.log(err)
             this.setState({
@@ -52,15 +51,29 @@ class DashboardPage extends Component {
                 {/* <Header /> */}
                 <NavBar />
                 <Switch>
-                    {/* <Route path= '/' exact component={LandingPage}/> */}
-                    {localStorage.getItem("token") ? <ProtectedRoute path="/dashboard" exact component={Features}/> : <button onClick={this.renderSignIn}>Please sign in</button>}
-                    <Route path="/profile" exact component={UserDashboardPage} />
-                    <Route exact path="/gifs" render = {(props) => <GifsPage {...props} username={this.state.username} />} />
-                    <Route exact path="/memes" render = {(props) => <MemesPage {...props} username={this.state.username} /> }/>
-                    <Route exact path="/puns" render = {(props) => <PunsPage {...props} username={this.state.username} />}/>
-                    <Route path="/new/meme" exact component={NewMeme} />
-                    <Route path="/new/pun" exact component={NewPun} />
-                    <Route path="/new/gif" exact component={NewGif} />
+                    <Route path="/session/dashboard" exact component={Features} />
+                    <Route path="/session/profile/:username" component={UserDashboardPage} />
+                    <Route path="/session/gifs" 
+                        render = {
+                            (props) => 
+                            <GifsPage {...props} username={this.state.username} />
+                            } 
+                        />
+                    <Route path="/session/memes" 
+                        render = {
+                            (props) => 
+                            <MemesPage {...props} username={this.state.username} /> 
+                            }
+                        />
+                    <Route path="/session/puns" 
+                        render = {
+                            (props) => 
+                            <PunsPage {...props} username={this.state.username} />
+                            }
+                        />
+                    <Route path="/session/new/meme" component={NewMeme} />
+                    <Route path="/session/new/pun" component={NewPun} />
+                    <Route path="/session/new/gif" component={NewGif} />
                 </Switch>
                 {/* first time NavBar is rendered */}
             </Router>

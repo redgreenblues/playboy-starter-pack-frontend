@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { 
-    MDBCol, MDBRow, MDBBtn, 
+    MDBCol, MDBRow, 
     MDBCard, MDBCardBody, MDBCardTitle, 
     MDBCardImage, MDBIcon, MDBCardText, 
     MDBCardFooter 
@@ -8,11 +8,14 @@ import {
 from 'mdbreact'
 import api from '../api';
 import CommentModal from './CommentModal'
+import Share from './Share'
 
 class ContentCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            commentModal: false,
+            shareModal :false,
             likes: this.props.likeAmt
         }
     }
@@ -22,12 +25,16 @@ class ContentCard extends Component {
             commentModal: !this.state.commentModal
         })
     }
+    toggleShare = () => {
+        this.setState({
+            shareModal : !this.state.shareModal
+        })
+    }
     updateComment = (commentAmt) => {
         this.setState({
             commentAmt : commentAmt
         })
     }
-
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
@@ -54,7 +61,6 @@ class ContentCard extends Component {
                 commentAmt :getContent.data.comments.length
 
             })
-            console.log(getContent.data)
         } catch (err) {
             this.setState({
                 error: true
@@ -62,8 +68,11 @@ class ContentCard extends Component {
         }
     }
 
+    renderProfile = () => {
+        window.location.href=`/session/profile/${this.props.postedBy}`
+    }
+
     render() {
-        console.log(this.state.likes)
         return (
             <Fragment>
                 <MDBCard style={{ width: "22rem" }} className='m-4'>
@@ -81,7 +90,12 @@ class ContentCard extends Component {
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" className='thumbs-up'/>
+                        <MDBIcon 
+                                icon="share-alt" 
+                                size="lg" 
+                                className="m-auto align-self-center thumbs-up" 
+                                onClick={this.toggleShare}
+                            />
                         </MDBCol>
                         <MDBCol>
                             <MDBRow className='mx-auto justify-content-center'>
@@ -97,8 +111,7 @@ class ContentCard extends Component {
                         </MDBCol>
                     </MDBRow>
                     <MDBCardFooter color="grey lighten-1" >
-                        posted by,
-                        <a href='/username' className='text-decoration-none'>{this.props.postedBy}</a>
+                        <p className="content-username" onClick={this.renderProfile}>posted by <span>{this.props.postedBy}</span></p>
                     </MDBCardFooter>
                 </MDBCard>
                 {this.state.commentModal? 
@@ -114,6 +127,17 @@ class ContentCard extends Component {
                     :
                     null
                     }
+                {this.state.shareModal? 
+                    <Share
+                        shareModal={this.state.shareModal}
+                        handleShareModal={this.toggleShare}
+                        pun={this.props.pun}
+                        url={this.props.imgUrl}
+                        contentType={ this.props.contentType}
+                        text={this.props.caption}/>
+                    :
+                    null
+                }
             </Fragment>
         )
     }
