@@ -65,7 +65,7 @@ export class NavBar extends Component {
 
   render() {
     return (
-      <MDBNavbar color="rgba-black-strong" dark expand="md">
+      <MDBNavbar color="elegant-color" dark expand="md">
         <div style={this.navBarStyle()}>
         <MDBNavbarBrand>
           <Link to='/session/dashboard'><strong className="white-text">Playboy Starter Pack</strong></Link>
