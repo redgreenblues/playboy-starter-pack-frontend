@@ -115,9 +115,7 @@ class UserDashboardPage extends Component {
                 profileImg : this.state.profileImg,
                 profileBio : this.state.profileBio
             }
-            console.log('payload name', payload.username)
-            console.log('old username', this.state.userData.username)
-            const updateContent = await api.updateContentByUsername(payload , this.state.userData.username)
+            await api.updateContentByUsername(payload , this.state.userData.username)
             const update = await api.updateUser(payload);            
             if(update) alert(`updated old username, ${this.state.userData.username} with ${payload.username}`)
             await this.toggleEditProfileModal();

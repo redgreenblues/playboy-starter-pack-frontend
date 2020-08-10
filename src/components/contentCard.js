@@ -8,11 +8,14 @@ import {
 from 'mdbreact'
 import api from '../api';
 import CommentModal from './CommentModal'
+import Share from './Share'
 
 class ContentCard extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            commentModal: false,
+            shareModal :false,
             likes: this.props.likeAmt
         }
     }
@@ -22,12 +25,16 @@ class ContentCard extends Component {
             commentModal: !this.state.commentModal
         })
     }
+    toggleShare = () => {
+        this.setState({
+            shareModal : !this.state.shareModal
+        })
+    }
     updateComment = (commentAmt) => {
         this.setState({
             commentAmt : commentAmt
         })
     }
-
     // on click function to update likes
     handleLikes = async content => {
         const id = this.props.id;
@@ -83,7 +90,12 @@ class ContentCard extends Component {
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" className='thumbs-up'/>
+                        <MDBIcon 
+                                icon="share-alt" 
+                                size="lg" 
+                                className="m-auto align-self-center thumbs-up" 
+                                onClick={this.toggleShare}
+                            />
                         </MDBCol>
                         <MDBCol>
                             <MDBRow className='mx-auto justify-content-center'>
@@ -115,6 +127,17 @@ class ContentCard extends Component {
                     :
                     null
                     }
+                {this.state.shareModal? 
+                    <Share
+                        shareModal={this.state.shareModal}
+                        handleShareModal={this.toggleShare}
+                        pun={this.props.pun}
+                        url={this.props.imgUrl}
+                        contentType={ this.props.contentType}
+                        text={this.props.caption}/>
+                    :
+                    null
+                }
             </Fragment>
         )
     }
