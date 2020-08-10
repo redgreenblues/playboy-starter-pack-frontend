@@ -1,6 +1,6 @@
 import React, { Component} from 'react'
 import Features from '../components/Features.js'
-import NavBar from '../components/navBar'
+import NavBar from '../components/NavBar'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import {
     UserDashboardPage,
