@@ -9,7 +9,8 @@ import {
     PunsPage,
     NewMeme,
     NewGif,
-    NewPun
+    NewPun,
+    GamePage
   }
     from '.'
 import api from '../api'
@@ -73,6 +74,7 @@ class DashboardPage extends Component {
                     <Route path="/session/new/meme" component={NewMeme} />
                     <Route path="/session/new/pun" component={NewPun} />
                     <Route path="/session/new/gif" component={NewGif} />
+                    <Route path="/session/game" component={GamePage} />
                 </Switch>
                 {/* first time NavBar is rendered */}
             </Router>

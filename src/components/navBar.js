@@ -86,6 +86,9 @@ export class NavBar extends Component {
             <MDBNavItem>
               <MDBNavLink to="/session/puns">Puns</MDBNavLink>
             </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink to="/session/game"><MDBIcon far icon="hand-point-right mdb-gallery-view-icon mr-1" />Prove Your Worth!</MDBNavLink>
+            </MDBNavItem>
 
           </MDBNavbarNav>
 
