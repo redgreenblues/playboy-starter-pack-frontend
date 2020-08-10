@@ -77,6 +77,17 @@ class UserContentCard extends Component {
             console.log(err)
         }
     }
+    share =async () => {
+        const shareData = {
+            title: 'MDN',
+            text: 'Learn web development on MDN!',
+            url: 'https://developer.mozilla.org',
+          }
+    //    await Share.share(shareData)
+       alert('sharing')
+       // react-native, react-share
+       // open social media button. can share in whatsapp / facebook / pinterest / instagram
+    }
     
 
     renderProfile = () => {
@@ -106,7 +117,7 @@ class UserContentCard extends Component {
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" className="m-auto align-self-center thumbs-up" />
+                            <MDBIcon icon="share" size="lg" className="m-auto align-self-center thumbs-up" onClick={this.share}/>
                         </MDBCol>
                         <MDBCol>
 
