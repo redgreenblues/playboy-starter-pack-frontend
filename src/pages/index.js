@@ -10,6 +10,7 @@ import NewPun from '../components/create/NewPun';
 import NewGif from '../components/create/NewGif';
 import EditProfilePage from './EditProfilePage'
 import ProtectedRoute from './ProtectedRoute';
+import GamePage from './GamePage';
 
 export { 
     LandingPage,
@@ -24,4 +25,5 @@ export {
     NewGif,
     EditProfilePage,
     ProtectedRoute,
+    GamePage
 }
