@@ -47,6 +47,7 @@ const updatePun = (id, payload) => api.put(`/pun/${id}`, payload);
 const postComment = payload => api.post(`/${payload.id}/comment`, payload)
 const getOneContent = id => api.get(`/content/${id}`);
 const deleteContent = id => api.delete(`/content/${id}`);
+const updateContentByUsername = (payload,username) => api.put(`/content/${username}`, payload)
 
 
 const apis = {
@@ -75,7 +76,8 @@ const apis = {
     postComment,
     getOneContent,
     deleteContent,
-    getUserByUsername
+    getUserByUsername,
+    updateContentByUsername
 }
 
 export default apis

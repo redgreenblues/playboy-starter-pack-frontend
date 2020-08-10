@@ -6,7 +6,7 @@ import {
     MDBCardFooter
 } from 'mdbreact'
 import CommentModal from './CommentModal'
-
+import Share from './Share'
 import api from '../api';
 
 class UserContentCard extends Component {
@@ -16,6 +16,7 @@ class UserContentCard extends Component {
         this.state = {
             likes: this.props.likeAmt,
             commentModal: false,
+            shareModal : false,
             commentAmt: this.props.commentAmt
         }
     }
@@ -77,7 +78,11 @@ class UserContentCard extends Component {
             console.log(err)
         }
     }
-    
+    toggleShare = () => {
+        this.setState({
+            shareModal : !this.state.shareModal
+        })
+    }
 
     renderProfile = () => {
         window.location.href=`/session/profile/${this.props.postedBy}`
@@ -106,12 +111,22 @@ class UserContentCard extends Component {
                     </MDBCardBody>
                     <MDBRow className='mx-0 p-2 justify-content-center align-items-end' style={{ flex: '1 1 auto' }}>
                         <MDBCol>
-                            <MDBIcon icon="share" size="lg" className="m-auto align-self-center thumbs-up" />
+                            <MDBIcon 
+                                icon="share-alt" 
+                                size="lg" 
+                                className="m-auto align-self-center thumbs-up" 
+                                onClick={this.toggleShare}
+                            />
                         </MDBCol>
                         <MDBCol>
 
                             <MDBRow className='mx-auto justify-content-center'>
-                                <MDBIcon icon="thumbs-up" size="lg" className="m-auto align-self-center thumbs-up" onClick={() => this.handleLikes(this.props.contentType)} />
+                                <MDBIcon 
+                                    icon="thumbs-up" 
+                                    size="lg" 
+                                    className="m-auto align-self-center thumbs-up" 
+                                    onClick={() => this.handleLikes(this.props.contentType)} 
+                                />
                                 <h5 className="font-weight-light m-auto">{this.state.likes}</h5>
                             </MDBRow>
 
@@ -140,6 +155,17 @@ class UserContentCard extends Component {
                         content={this.props.contentType}
                         handleComment={this.updateComment}
                     />
+                    :
+                    null
+                }
+                {this.state.shareModal? 
+                    <Share
+                        shareModal={this.state.shareModal}
+                        handleShareModal={this.toggleShare}
+                        pun={this.props.pun}
+                        url={this.props.imgUrl}
+                        contentType={ this.props.contentType}
+                        text={this.props.caption}/>
                     :
                     null
                 }

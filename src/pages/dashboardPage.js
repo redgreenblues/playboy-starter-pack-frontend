@@ -33,6 +33,7 @@ class DashboardPage extends Component {
                 profileBio: response.data.profileBio,
                 authenticated: true
             })
+            console.log(response)
         } catch (err) {
             console.log(err)
             this.setState({
