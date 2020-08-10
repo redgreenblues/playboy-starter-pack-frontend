@@ -15,11 +15,7 @@ import {
     TwitterIcon,
     PinterestIcon, 
 } from "react-share";
-
-
-
-
-
+// random change
 export class Share extends Component {
     constructor(props) {
         super(props)
